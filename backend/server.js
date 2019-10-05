@@ -5,7 +5,7 @@ const dbSettings = require('./db.settings');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 MongoClient.connect(dbSettings.dbUrl, (err, client) => {
   if (err) return console.log(err);
@@ -17,12 +17,21 @@ MongoClient.connect(dbSettings.dbUrl, (err, client) => {
   });
   
   // API
-  app.get('/', (req, res) => {
-    
+  app.get('/api/meals', (req, res) => {
+    db.collection('meals').find().toArray(function(err, results) {
+      res.json(results);
+    });
+
   });
 
-  app.post('/meals', (req, res) => {
-    
-  });  
+  app.post('/api/meals', (req, res) => {
+    console.log(req.body, 'body');
+    db.collection('meals').save(req.body, (err, result) => {
+      if (err) return console.log(err);
+  
+      console.log(result.ops[0], 'saved to database');
+      res.status(200).send(result.ops[0]._id);
+    })
+  })
 })  
 
