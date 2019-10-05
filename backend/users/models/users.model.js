@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const MealSchema = require('../../meals/models/meals.model').MealSchema;
 
 const userSchema = new mongoose.Schema({
   firstName: String,
@@ -11,11 +12,12 @@ const userSchema = new mongoose.Schema({
   },
   password: String,
   permissionLevel: Number,
-  expectedNumberOfCalories: Number
+  expectedNumberOfCalories: Number,
+  meals: [MealSchema]
 });
 
 const User = mongoose.model('Users', userSchema);
-exports.UserModel = User;
+exports.User = User;
 
 exports.createUser = (userData) => {
   const user = new User(userData);
