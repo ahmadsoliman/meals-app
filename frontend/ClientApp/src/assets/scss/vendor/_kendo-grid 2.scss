@@ -1,0 +1,115 @@
+.k-grid {
+    min-height: 200px;
+}
+
+.k-grid-header {
+    .k-header {
+        padding: $table-head-cell-padding;
+        background-color: $table-head-slim-background-color;
+        .k-link {
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
+
+.k-grid td {
+    border-width: 0 0 0 0;
+    padding: $table-cell-padding;
+	color: $table-cell-color;
+	font-size: $table-cell-font-size;
+	font-weight: $table-cell-font-weight;
+	text-align: left;
+	white-space: nowrap;
+	vertical-align: middle;
+
+	&:last-child {
+		padding-right: $spacer;
+	}
+}
+
+.k-grid tr.k-alt {
+    background-color: $table-zebra-row-background-color;
+}
+
+.k-pager-numbers {
+    .k-link {
+        color: #231817;
+        border-radius: 50%;
+    }
+    .k-state-selected {
+        color: #fff;
+        background-color: #54565b;
+
+    }
+}
+.k-pager-wrap .k-link {
+    border-radius: 50%;
+}
+
+.k-i-arrow-60-right::before, .k-i-arrow-e::before, .k-i-sarrow-e::before, .k-i-expand::before, .k-i-expand-e::before {
+    font: normal normal normal 16px/1 LineAwesome;
+    content: "\f112";
+}
+
+.k-i-arrow-end-right::before, .k-i-seek-e::before {
+    font: normal normal normal 16px/1 LineAwesome;
+    content: "\f10e";
+}
+
+.k-i-arrow-60-left::before, .k-i-arrow-w::before, .k-i-sarrow-w::before, .k-i-expand-w::before {
+    font: normal normal normal 16px/1 LineAwesome;
+    content: "\f111";
+}
+
+.k-i-arrow-end-left::before, .k-i-seek-w::before {
+    font: normal normal normal 16px/1 LineAwesome;
+    content: "\f10d";
+}
+
+.k-pager-wrap .k-pager-sizes .k-dropdown, .k-pager-wrap .k-pager-sizes>select {
+    margin: 0 8px 0 0;
+    width: 5.2em;
+    padding: 2px 4px;
+    height: 30px;
+    border-color: #eae1e1;
+}
+
+.k-i-sort-desc-sm::before {
+    font: normal normal normal 16px/1 LineAwesome;
+    content: "\f110";
+}
+.k-i-sort-asc-sm::before {
+    font: normal normal normal 16px/1 LineAwesome;
+    content: "\f113";
+}
+
+.k-grid-header .k-i-sort-asc-sm, .k-grid-header .k-i-sort-desc-sm, .k-grid-header .k-sort-order {
+    color: #80d191;
+}
+
+.k-grid .btn--sm {
+    padding: 0 8px;
+    font-size: 1.125rem;
+    color: #778CA2;
+    cursor: pointer;
+	&:hover {
+        color: $link-hover-color;
+    }
+}
+
+.k-grid a:not(.k-link, .btn--sm) {
+    color: $link-color;
+    &:hover {
+        color: $link-hover-color;
+    }
+}
+
+.k-grid .tooltip::after {
+    line-height: 0.5;
+}
+
+.k-grid .tooltip::after {
+    bottom: 50%;
+}
+

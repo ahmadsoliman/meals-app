@@ -1,0 +1,32 @@
+$gray: #EEEEEE;
+$pink: #FF819C;
+$blue: #36A2EB;
+$yellow: #FFCE56;
+$biolet: #B28CFF;
+
+.gray {
+ background-color: $gray;
+}
+.pink {
+ background-color: $pink;
+}
+.blue {
+ background-color: $blue;
+}
+.yellow {
+ background-color: $yellow;
+}
+.biolet {
+ background-color: $biolet
+}
+.color-box {  
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  margin-right:5px;
+  cursor: pointer;
+  border: 5px solid transparent;
+  &.selected {
+    border: 5px solid #C8C9C6;
+  }
+}

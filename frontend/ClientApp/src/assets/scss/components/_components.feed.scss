@@ -1,0 +1,140 @@
+.news-feed-group {
+	position: relative;
+	margin-bottom: $spacer;
+	padding-left: 32px;
+	overflow: hidden;
+
+	&::before {
+		position: absolute;
+		top: 4px;
+		left: 6px;
+		width: $base-border-width;
+		height: 100%;
+		background-color: $base-border-color;
+		content: "";
+	}
+
+	&.has-icons {
+		padding-left: 47px;
+
+		&::before {
+			left: 14px;
+		}
+	}
+}
+
+.news-feed {
+	position: relative;
+	margin-bottom: 25px;
+
+
+	&::before {
+		position: absolute;
+		top: 4px;
+		left: -32px;
+		width: 12px;
+		height: 12px;
+		border-radius: 100%;
+		background-color: $color-info;
+		content: "";
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+
+		&::after {
+			position: absolute;
+			top: 16px;
+			left: -32px;
+			width: 12px;
+			height: 100%;
+			border-radius: 0;
+			background-color: $base-background-color;
+			content: "";
+		}
+	}
+
+	&.has-icon {
+		&::before {
+			display: none;
+		}
+
+		.news-feed-icon {
+			display: block;
+			position: absolute;
+			top: 4px;
+			left: -47px;
+			width: 30px;
+			height: 30px;
+			border-radius: 100%;
+			background-color: $color-info;
+			color: $white;
+			font-size: $text-font-size;
+			line-height: 30px;
+			text-align: center;
+		}
+
+		&:last-child::after {
+			top: 34px;
+			left: -47px;
+			width: 30px;
+		}
+	}
+}
+
+.news-feed__comment {
+	display: inline-block;
+	margin: $spacer-xsmall 0;
+	padding: $spacer-xsmall;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $secondary-background-color;
+}
+
+
+.news-feed__gallery {
+	display: flex;
+	margin-top: $spacer-xsmall;
+}
+
+.news-feed__gallery-item {
+	width: 80px;
+	height: 80px;
+	margin: 0 $spacer-xsmall $spacer-xsmall 0;
+	border-radius: $base-border-radius;
+	overflow: hidden;
+}
+
+
+.news-feed__meta {
+	display: block;
+	color: $color-mute;
+	font-size: $text-font-size;
+}
+
+/* Style variants
+   ========================================================================== */
+
+.news-feed--fancy {
+	&::before {
+		@include linear-gradient(to bottom, $purple-300, $purple-500);
+	}
+}
+
+.news-feed--info {
+	&::before {
+		@include linear-gradient(to bottom, $blue-300, $blue-400);
+	}
+}
+
+.news-feed--success {
+	&::before {
+		@include linear-gradient(to bottom, $green-300, $green-400);
+	}
+}
+
+
+
+
+
+

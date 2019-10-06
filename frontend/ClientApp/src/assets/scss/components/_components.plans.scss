@@ -1,0 +1,50 @@
+.price-plan {
+	margin: 0 5px 30px;
+	padding: 40px 20px 25px;
+	min-height: 330px;
+	border: 1px solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: transparent;
+	text-align: left;
+	&.is-active {
+		border: 1px solid $green-200;
+	}
+}
+
+.price-plan__img {
+	position: absolute;
+	top: -20px;
+}
+
+.price-plan__title {
+	margin: 0;
+	color: $color-mute;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+.price-plan__price {
+	margin: 0;
+	font-size: 28px;
+}
+
+.price-plan__note {
+	margin: 0;
+	font-size: $text-small-font-size;
+	font-weight: $font-weight-bold;
+	text-transform: uppercase;
+}
+
+.price-plan__divider {
+	display: block;
+	width: 100%;
+	height: 1px;
+	margin: 15px 0;
+	background-color: $base-border-color;
+}
+
+.price-plan__feature {
+	margin-bottom: 5px;
+	color: $color-mute;
+	font-size: $text-font-size;
+}

@@ -1,0 +1,69 @@
+
+
+.hidden {
+	display: none !important;
+}
+
+
+.hidden-visually {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+	padding: 0 !important;
+	border: 0 !important;
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	clip: rect(0 0 0 0) !important;
+	clip-path: inset(50%) !important;
+}
+
+
+@media (max-width: $breakpoint-mobile) {
+	.hidden-down\@mobile { 
+		display: none !important;
+	}
+}
+
+@media (max-width: $breakpoint-tablet) {
+	.hidden-down\@tablet { 
+		display: none !important;
+	}
+}
+
+@media (max-width: $breakpoint-desktop) {
+	.hidden-down\@desktop { 
+		display: none !important;
+	}
+}
+
+@media (max-width: $breakpoint-wide) {
+	.hidden-down\@wide { /* [4] */
+		display: none !important;
+	}
+}
+
+@media (min-width: $breakpoint-mobile) {
+	.hidden-up\@mobile { 
+		display: none !important;
+	}
+}
+
+
+@media (min-width: $breakpoint-tablet) {
+	.hidden-up\@tablet { 
+		display: none !important;
+	}
+}
+
+@media (min-width: $breakpoint-desktop) {
+	.hidden-up\@desktop { 
+		display: none !important;
+	}
+}
+
+@media (min-width: $breakpoint-wide) {
+	.hidden-up\@wide { /* [4] */
+		display: none !important;
+	}
+}

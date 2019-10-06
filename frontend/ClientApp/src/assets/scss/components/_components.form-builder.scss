@@ -1,0 +1,97 @@
+// all the style for form-builder warped insdie "form-builder" to avoid affecting other components
+// and just for demo
+
+.form-builder {
+    .form-builder-panel { 
+        padding: 0;
+    }
+    .builder-group-button {
+        width: 100%;
+        background: #dad7d7;
+        color: #000;
+        border: #eee;
+        border-radius: 0;
+    }
+    .formcomponent {
+        width: 100%;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-xxs i {
+        font-size: 11px !important;
+    }
+    
+}
+.formio-dialog {
+   .nav-tabs {
+       display: none;
+   }
+    .nav-item {
+        display: inline;
+    }
+    .form-check-inline {
+        display: inline-block;
+        margin-right: 15px;
+
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .card-body {
+        padding: 0;
+    }
+    .panel {
+        height: auto;
+    }
+    .lead {
+        font-size: 21px;
+        margin-bottom: 25px;
+    }
+    .card {
+        padding: 21px;
+        background: #eee;
+        margin-bottom: 15px;
+    }
+ 
+}
+.formio-dialog.formio-dialog-theme-default .formio-dialog-content {
+    background: #fff;
+    padding: 30px;
+}
+
+.formio-dialog .card.preview-panel {
+    padding: 21px;
+    background: #eee;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    border: 1px solid #e3dddd;
+}
+
+a[href^="http"] {
+ display: none;
+}
+#group-panel-advanced, #group-panel-layout, #group-panel-data {
+display: none;
+}
+.formio-data-grid {
+    border:0;
+    .formio-drag-column {
+        vertical-align: top;
+    }
+}
+.formio-component-datagrid .datagrid-table>tbody>tr>td:last-child {
+    vertical-align: top;
+}
+.formio-component-values {
+    padding: 19px;
+    border: 1px solid #eee;
+}
+.form-builder-group-header {
+    display: none;
+}
+.form-builder-panel {
+    border: 1px solid #e6eaee;
+}

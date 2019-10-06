@@ -1,0 +1,52 @@
+.graph-card {
+	margin: 0 0 $spacer;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+	overflow: hidden;
+}
+
+.graph-card__content {
+	padding: $spacer $spacer 0;
+}
+
+.graph-card__title {
+	margin: 0;
+	font-size: $h5-font-size;
+}
+
+.graph-card__date {
+	margin: 0 0 $spacer-xsmall;
+	color: $grey-800;
+	font-size: $text-small-font-size;
+}
+
+.graph-card__number {
+	margin: 0;
+	color: $heading-color;
+	font-size: rem(40px);
+	font-weight: $font-weight-light;
+}
+
+.graph-card__status {
+	margin: 0;
+	color: $grey-800;
+	font-size: $text-font-size;
+}
+
+.graph-card__chart {
+	position: relative;
+	margin: 0;
+	padding: $spacer;
+}
+
+.graph-card__footer {
+	height: 100%;
+	padding: $spacer-small $spacer;
+	border-top: $base-border-color solid $base-border-width;
+	background-color: $secondary-background-color;
+}
+
+
+
+

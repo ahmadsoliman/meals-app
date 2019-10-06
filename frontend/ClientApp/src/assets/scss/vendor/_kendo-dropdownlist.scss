@@ -1,0 +1,74 @@
+.k-dropdown {
+  width: 100%;
+
+  .k-dropdown-wrap {
+    background: #fff;
+    background: linear-gradient(180deg, #fff, #f2f4f7);
+    height: 39px;
+    border: 1px solid #dfe3e9;
+    border-radius: 4px;
+    color: rgba(53, 64, 82, .5);
+    font-size: .875rem;
+    font-weight: 500;
+    outline: 0;
+    width: 100%;
+  }
+}
+
+.k-i-arrow-60-down::before,
+.k-i-arrow-s::before,
+.k-i-sarrow-s::before,
+.k-i-collapse::before,
+.k-i-expand-s::before {
+  display: inline-block;
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  height: 100%;
+  margin-left: 1.25rem;
+  padding: 0.5rem 8px;
+  border-color: inherit;
+  color: inherit;
+  font-family: $base-icon-font;
+  content: "\f110"; // fa-angle-down
+}
+.k-multiselect-wrap {
+  display: block;
+	width: 100%;
+	margin: 0;
+	padding: 5px 12px;
+	transition: all .3s;
+	border: $input-border-width solid $input-border-color;
+	border-radius: $input-border-radius;
+	background-color: $input-background-color;
+	color: $input-focus-color;
+	font-size: $input-font-size;
+	font-weight: $input-font-weight;
+	resize: none;
+
+	&::placeholder {
+		transition: opacity 0.3s;
+		color: $input-placeholder-color;
+		font-weight: $input-placeholder-font-weight;
+		opacity: 0.5;
+	}
+
+	&:focus {
+		border-color: $input-focus-border-color;
+		outline: none;
+
+		&::placeholder {
+			opacity: 0.2;
+		}
+  }
+	&:disabled {
+		border-color: $input-disabled-border-color;
+		background-color: $input-disabled-background-color;
+		color: $input-disabled-color;
+		cursor: not-allowed;
+	}
+}
+
+.k-dropdown-wrap .k-input {
+  height: calc(15px + 1.4285714286em);
+}

@@ -1,0 +1,279 @@
+
+.modal-open {
+	overflow: hidden;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 0 $spacer-small;
+	outline: 0;
+	z-index: $z-index-500;
+
+	.modal-open & {
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+}
+
+
+.modal__dialog {
+	position: relative;
+	max-width: map-get($modal-width, medium);
+	margin: $modal-dialog-margin;
+
+	.modal.fade & {
+		animation-duration: 0.3s;
+		animation-fill-mode: both;
+	}
+
+	.modal.show & {
+		animation-name: move;
+	}
+
+
+	.modal & {
+		max-width: map-get($modal-width, medium);
+	}
+
+
+	.modal--xsmall & {
+		max-width: map-get($modal-width, xsmall);
+	}
+
+	.modal--small & {
+		max-width: map-get($modal-width, small);
+	}
+
+	.modal--medium & {
+		max-width: map-get($modal-width, medium);
+	}
+
+	.modal--large & {
+		max-width: map-get($modal-width, large);
+	}
+
+	.modal--xlarge & {
+		max-width: map-get($modal-width, xlarge);
+	}
+
+	.modal--huge & {
+		max-width: map-get($modal-width, huge);
+	}
+}
+
+// Actual modal
+.modal__content {
+	position: relative;
+	width: 100%;
+	border-radius: $base-border-radius;
+	outline: 0;
+	overflow: hidden; 
+}
+
+.modal__header {
+	@include linear-gradient(to bottom, $gradient-info);
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px $spacer;
+}
+
+.modal__title {
+	margin: 0;
+	color: $white;
+	font-size: $h5-font-size;
+}
+
+.modal__close {
+	color: $white;
+	font-size: $h5-font-size;
+	cursor: pointer;
+	opacity: 0.8;
+
+	&:hover {
+		color: $white;
+	}
+}
+
+
+
+.modal__close--absolute {
+	position: absolute;
+	top: $spacer;
+	right: $spacer;
+	z-index: $z-index-500; 
+
+	@include respond-to ($breakpoint-tablet) {
+		top: $spacer-small;
+	}
+}
+
+
+.modal__subheader {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	padding: 15px 30px;
+	background-color: $modal-subheader-background-color;
+	color: $white;
+
+	p {
+		color: inherit;
+	}
+}
+
+
+
+.modal__subheader-tab {
+	color: $color-mute;
+
+	&:hover {
+		color: $white;
+		text-decoration: none;
+	}
+
+	&.is-active {
+		padding: $spacer-small 0;
+		border-bottom: $base-border-width * 3 solid $color-info;
+		color: $white;
+	}
+}
+
+.modal__body {
+	padding: $modal-body-padding;
+	background-color: $modal-body-background-color;
+	overflow: hidden;
+}
+
+
+
+.modal__body--maximized {
+	max-height: $modal-maximized-height;
+	overflow: auto;
+}
+
+.modal__footer {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+	padding: $spacer-small $spacer;
+	border-top: $base-border-width solid $base-border-color;
+	background-color: $body-background-color;
+}
+
+
+
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: $modal-backdrop-background-color;
+	z-index: $z-index-400;
+
+	&.fade {
+		opacity: 0;
+	}
+
+	&.show {
+		opacity: 0.9;
+	}
+}
+
+.modal-scrollbar-measure {
+	position: absolute;
+	top: -9999px;
+	width: 50px;
+	height: 50px;
+	overflow: scroll;
+}
+
+
+
+@-webkit-keyframes move {
+  	from {
+  		transform: translateY(30px);
+		opacity: 0;
+  	}
+
+	50% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes move {
+	from {
+		transform: translateY(30px);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.inline-modal {
+	position: absolute;
+	top: calc(100% + 10px);
+	left: 0;
+	opacity: 0;
+	width: 300px;
+	z-index: -100;
+	border: $card-border-width solid $card-border-color;
+	border-radius: $card-border-radius;
+	background-color: $card-background-color;
+	transition: all .4s;
+	visibility: hidden;
+	&:after {
+		content: "";
+		display: inline-block;
+		position: absolute;
+		top: -7px;
+		left: 10px;
+		border-bottom: 8px solid #fff;
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+	}
+}
+
+.inline-modal-header {
+	padding: 20px 20px 0 20px;
+}
+
+.inline-modal-body {
+	@include scrollbar;
+	overflow: auto;
+	height: 300px; // width: calc(100% + 11px);
+	margin: 10px 6px 0 0;
+	padding: 0 8px 0 20px;
+}
+
+.inline-modal-footer {
+	padding: 10px;
+	margin-top: 8px;
+	background: #fafafa;
+}
+
+.inline-modal.active {
+	top: calc(100% + 25px);
+	opacity: 1;
+	z-index: 50;
+	visibility: visible;
+}
+
+.inline-modal--right {
+	right: 0;
+	&:after {
+		right: 9px;
+	}
+}

@@ -1,0 +1,89 @@
+
+.status-card {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: $spacer;
+	padding: $spacer;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+}
+
+.status-card__icon {
+	display: flex;
+	position: relative;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	height: 60px;
+	margin-right: rem(20px);
+	background-color: $grey-600;
+	color: $white;
+	font-size: $h4-font-size;
+	text-align: center;
+
+	&::after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 52px;
+		height: 52px;
+		margin: auto;
+		border: 2px solid $white;
+		content: "";
+		opacity: 0.2;
+	}
+}
+
+
+.status-card__icon--info {
+	@include linear-gradient(to bottom, $blue-300, $blue-400);
+}
+
+.status-card__icon--fancy {
+	@include linear-gradient(to bottom, $purple-300, $purple-500);
+}
+
+.status-card__icon--warning {
+	@include linear-gradient(to bottom, $orange-300, $orange-500);
+}
+
+.status-card__icon--success {
+	@include linear-gradient(to bottom, $green-300, $green-400);
+}
+
+.status-card__number {
+	display: inline-block;
+	position: relative;
+	margin: 0;
+	font-size: 30px;
+	font-weight: $font-weight-normal;
+}
+
+.status-card__status {
+	display: flex;
+	position: absolute;
+	top: 15px;
+	right: -20px;
+	align-items: center;
+	justify-content: center;
+	width: 14px;
+	height: 14px;
+	border-radius: 100%;
+	background-color: $grey-500;
+	color: $white;
+	font-size: $text-tiny-font-size;
+	text-align: center;
+}
+
+.status-card__meta {
+	margin: 0;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+	font-weight: $font-weight-semibold;
+	text-transform: uppercase;
+}

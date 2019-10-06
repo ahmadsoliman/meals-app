@@ -1,0 +1,23 @@
+
+
+$toggle-height: 45px !default; // [1]
+
+$toggle-width: 50% !default;
+$toggle-height: $toggle-height !default; // [1]
+$toggle-border-width: 1px !default;
+$toggle-border-color: #E7E9ED !default;
+$toggle-border-radius: $base-border-radius !default;
+
+$toggle-font-size: 14px !default;
+$toggle-color: #565F6D !default;
+$toggle-background-color: #FAFBFC !default;
+
+$toggle-active-background-color: #39B54A !default;
+$toggle-active-border-color: #249533 !default;
+$toggle-active-color: $white !default;
+
+
+$toggle-label-width: 100% !default;
+$toggle-label-height: $toggle-height !default; // [2]
+$toggle-label-line-height: $toggle-label-height !default; // [2]
+

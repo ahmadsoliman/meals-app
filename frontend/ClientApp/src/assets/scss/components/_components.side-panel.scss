@@ -1,0 +1,140 @@
+$side-panel-padding:17px;
+$side-panel-width:500px;
+$side-panel--wide-width:900px;
+
+
+.side-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: $side-panel-width;
+    height: 100%;
+    background-color: $navbar-background-color;
+    z-index: 1000;
+    transition: all 0.4s;
+    @include respond-to($breakpoint-mobile) {
+		width: 100%;
+	}
+    &.wide {
+        width: 100%; 
+    }
+}
+
+.right-panel {
+    right: #{-$side-panel-width};
+    &.open {
+        right: 0;
+    }
+}
+.side-panel--wide { // mido
+	width: $side-panel--wide-width;
+	right: #{-$side-panel--wide-width};
+	@include respond-to($breakpoint-mobile) {
+		width: 100%;
+	}
+    &.open {
+        right: 0;
+    }
+}
+
+
+.side-panel--full { // mido
+	width: calc(100% - 320px);
+	right: calc(320px - 100%);
+	transition: 0.5s all;
+	@include respond-to($breakpoint-mobile) {
+		width: 100%;
+	}
+    &.open {
+        right: 0;
+    }
+}
+
+
+
+
+.side-panel-header {
+   
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px $spacer;
+	border-bottom: $navbar-border-width solid $navbar-border-color;
+	background-color: $navbar-background-color;
+}
+
+.side-panel-header__title {
+	margin: 0;
+	color: $black;
+	font-size: $h5-font-size;
+}
+
+.side-panel-header__close {
+	color: $black;
+	font-size: $h5-font-size;
+	cursor: pointer;
+	opacity: 0.8;
+
+	&:hover {
+		color: $black;
+	}
+}
+
+.side-panel-body {
+	padding: $side-panel-padding;
+	background-color: $body-background-color;
+}
+
+.side-panel--has-footer {
+    .side-panel-body {
+        height: calc(100vh - 140px);
+        @include scrollbar;
+        overflow-y: auto;
+    }
+}
+.fixed-side-panel--has-footer {
+	.side-panel-body {
+		background: none;
+		height: calc(100vh - 230px);
+    	overflow-y: auto;
+	}
+}
+// 
+#checkbox-basket.ex-height {
+	height: calc(100vh - 330px);
+}
+
+.side-panel-footer {
+    display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+	padding: $spacer-small $spacer;
+	border-top: $base-border-width solid $base-border-color;
+	
+}
+
+
+.close-panel-btn {
+    cursor: pointer;
+}
+
+
+
+
+.mask {
+    position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: $modal-backdrop-background-color;
+    z-index: 299;
+    display: none;
+
+
+	&.open {
+		opacity: 0.9;
+	}
+}

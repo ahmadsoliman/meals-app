@@ -1,0 +1,39 @@
+.vector-map {
+	overflow: hidden;
+}
+.vector-map__visual {
+	margin-bottom: $spacer;
+}
+
+.vector-map__labels {
+	&--left {
+		margin-right: $spacer-small;
+		margin-left: $spacer-large;
+	}
+
+	&--right {
+		margin-right: $spacer-large;
+		margin-left: $spacer-small;
+	}
+
+	@include respond-to($breakpoint-wide) {
+		margin-right: 0;
+		margin-left: 0;
+	}
+}
+
+.vector-map__label {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: $spacer-xsmall;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.vector-map__country,
+.vector-map__number {
+	color: $heading-color;
+}
+

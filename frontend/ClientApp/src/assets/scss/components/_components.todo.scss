@@ -1,0 +1,81 @@
+
+
+.todo {
+	display: flex;
+	justify-content: space-between;
+	padding: rem(20px) $spacer;
+	border-top: $base-border-width solid $base-border-color;
+	font-size: 0; 
+	font-weight: $choice-font-weight;
+
+	&.is-disabled {
+		.todo__label {
+			color: $choice-disabled-color;
+			cursor: default;
+
+			&::before {
+				border-color: $choice-disabled-border-color;
+				background-color: $choice-disabled-background-color;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+
+.todo__input { 
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+
+	& + .todo__label {
+		display: inline-flex;
+		position: relative;
+		align-items: center;
+		padding-left: rem(25px);
+		color: $heading-color;
+		font-size: $text-font-size;
+		cursor: pointer;
+
+		.todo.is-completed & {
+			text-decoration: line-through;
+			opacity: .5;
+ 		}
+	}
+
+	& + .todo__label::before {
+		display: inline-block;
+		position: absolute;
+		top: 2px; 
+		left: 0;
+		width: 16px;
+		height: 16px;
+		margin: 0 15px 0 0;
+		transition: all .3s;
+		border: $base-border-width solid $grey-600;
+		border-radius: 100%;
+		background-color: $white;
+		color: $white;
+		font-family: $base-icon-font;
+		font-size: 10px;
+		line-height: 15px;
+		text-align: center;
+		text-decoration: none;
+		content: "";
+		visibility: visible; 
+	}
+
+	&:checked + .todo__label::before {
+		border-color: $grey-600;
+		background-color: $grey-600;
+		color: $white;
+		content: "\f00c"; // fa-check
+	}
+}

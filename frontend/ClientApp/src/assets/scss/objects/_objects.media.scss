@@ -1,0 +1,25 @@
+
+.media {
+	@include clearfix;
+	display: block;
+}
+
+
+.media__img { 
+	float: left;
+
+	> img {
+		display: block;
+	}
+}
+
+.media__body {
+	display: block;
+	overflow: hidden;
+
+	&,
+	> :last-child {
+		margin-bottom: 0;
+	}
+}
+

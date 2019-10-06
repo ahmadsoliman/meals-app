@@ -1,0 +1,217 @@
+.btn {
+	display: inline-block;
+	position: relative;
+	max-width: 100%;
+	margin: 0;
+	padding: $btn-padding;
+	transition: all 0.15s ease-in-out;
+	border: $btn-border-width solid;
+	border-radius: $btn-border-radius;
+	border-color: $btn-border-color;
+	color: $btn-color;
+	font-size: $btn-font-size;
+	font-weight: $btn-font-weight;
+	line-height: $btn-line-height;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-transform: uppercase;
+	cursor: pointer;
+	overflow: hidden;
+	vertical-align: middle;
+	appearance: none;
+	user-select: none;
+	@include linear-gradient(to bottom, $gradient-info);
+
+	&:hover,
+	&:focus {
+		outline: 0;
+		color: $btn-hover-color;
+		text-decoration: none;
+	}
+
+	i {
+		position: relative;
+		bottom: -1px;
+		font-size: 16px;
+	}
+
+	&.has-dropdown {
+		position: relative;
+		padding-right: 2.5rem;
+
+		&::after {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 100%;
+			margin-left: 1.25rem;
+			padding: 0.5rem 8px;
+			border-left: 1px solid;
+			border-color: inherit;
+			color: inherit;
+			font-family: $base-icon-font;
+			content: "\f110"; // fa-angle-down
+		}
+	}
+
+	&.is-disabled,
+	&:disabled {
+		/* [4] */
+		border-color: $btn-disabled-border-color;
+		background: $btn-disabled-background-color;
+		color: $btn-disabled-color;
+
+		&:hover,
+		&:focus {
+			border-color: $btn-disabled-border-color;
+			background: $btn-disabled-background-color;
+			color: $btn-disabled-color;
+			cursor: not-allowed;
+		}
+	}
+}
+.btn--round {
+	border-radius: 30px;
+}
+.btn--sm {
+	cursor: pointer;
+	padding: 8px;
+	font-size: rem(18px);
+	color: #778CA2;
+	cursor: pointer;
+}
+
+.btn--booked {
+	// mido
+
+	background: #F4FCEF;
+	color: #6DD230;
+	border: 1px solid #d5eacf;
+
+	&:hover {
+		color: #6DD230;
+	}
+}
+
+.btn--fullwidth {
+	width: 100%;
+}
+
+.btn--small {
+	padding: $btn-small-padding;
+	font-size: $btn-small-font-size;
+
+	i {
+		margin-right: 5px;
+	}
+}
+
+.btn--large {
+	padding: $btn-large-padding;
+	font-size: $btn-large-font-size;
+}
+
+
+
+
+.btn--primary {
+	@include linear-gradient(to bottom, $btn-primary-gradient);
+	border-color: $btn-primary-border-color;
+
+	&:hover {
+		@include linear-gradient(to bottom, $btn-primary-hover-gradient);
+	}
+
+	&:focus {
+		@include linear-gradient(to bottom, $btn-primary-focus-gradient);
+	}
+}
+
+.btn--secondary, .btn-default {
+	@include linear-gradient(to bottom, $btn-secondary-gradient);
+	border-color: $btn-secondary-border-color;
+	color: $btn-secondary-color;
+
+	&:hover {
+		@include linear-gradient(to bottom, $btn-secondary-hover-gradient);
+		color: $btn-secondary-hover-color;
+	}
+
+	&:focus {
+		@include linear-gradient(to bottom, $btn-secondary-focus-gradient);
+		color: $btn-secondary-hover-color;
+	}
+}
+
+.btn--info {
+	@include linear-gradient(to bottom, $blue-300, $blue-400);
+	border-color: $blue-500;
+
+	&:hover {
+		@include linear-gradient(to bottom, darken($blue-300, 4%), darken($blue-400, 4%));
+	}
+
+	&:focus {
+		@include linear-gradient(to bottom, darken($blue-300, 6%), darken($blue-400, 6%));
+	}
+}
+
+.btn--success, .btn-success {
+	@include linear-gradient(to bottom, $green-300, $green-400);
+	border-color: $green-500;
+
+	&:hover {
+		@include linear-gradient(to bottom, darken($green-300, 4%), darken($green-400, 4%));
+	}
+
+	&:focus {
+		@include linear-gradient(to bottom, darken($green-300, 6%), darken($green-400, 6%));
+	}
+}
+
+.btn--fancy {
+	@include linear-gradient(to bottom, $purple-300, $purple-500);
+	border-color: $purple-500;
+
+	&:hover {
+		@include linear-gradient(to bottom, darken($purple-300, 4%), darken($purple-500, 4%));
+	}
+
+	&:focus {
+		@include linear-gradient(to bottom, darken($purple-300, 6%), darken($purple-500, 6%));
+	}
+}
+
+.btn--warning {
+	@include linear-gradient(to bottom, $orange-300, $orange-500);
+	border-color: $orange-500;
+
+	&:hover {
+		@include linear-gradient(to bottom, darken($orange-300, 4%), darken($orange-500, 4%));
+	}
+
+	&:focus {
+		@include linear-gradient(to bottom, darken($orange-300, 6%), darken($orange-500, 6%));
+	}
+}
+
+.btn--danger, .btn-danger{
+	@include linear-gradient(to bottom, $red-100, $red-300);
+	border-color: $red-300;
+
+	&:hover {
+		@include linear-gradient(to bottom, darken($red-100, 4%), darken($red-300, 4%));
+	}
+
+	&:focus {
+		@include linear-gradient(to bottom, darken($red-100, 6%), darken($red-300, 6%));
+	}
+}
+
+.btn--orange {
+	background-image: linear-gradient(to right, #FF9700 , #BA9501);
+	border-color:#FF9700;
+	transition: all 0.3s;
+}

@@ -1,0 +1,80 @@
+
+.page {
+	position: relative;
+	height: 100%;
+}
+
+.page--center {
+	padding-top: $spacer-xlarge;
+}
+
+
+.sidebar-container {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left:-250px;
+	width: 250px; 
+	transition: all .3s;
+	z-index: $z-index-300; 
+	@include respond-to($breakpoint-desktop) {
+		width: 300px; 
+		transform: translateX(-300px);
+	}
+	@include respond-to($breakpoint-mobile) {
+		left: 0;
+	}
+	&.is-visible {
+		transform: translateX(0);
+	}
+}
+
+
+.page-content {
+	margin-left: 0; 
+	overflow: hidden;
+
+	@include respond-to($breakpoint-desktop) {
+		margin-left: 0;
+	}
+
+	&.is-pushed {
+		margin-left: 250px;
+	}
+}
+
+
+.page-card {
+	width: 450px;
+	margin: 0 auto $spacer-large;
+
+	@include respond-to ($breakpoint-tablet) {
+		width: 95%;
+	}
+}
+
+
+.page-card--horizontal {
+	width: 800px;
+	margin: 0 auto $spacer-large;
+
+	@include respond-to ($breakpoint-desktop) {
+		width: 95%;
+	}
+}
+
+#inner-data {
+	position: relative;
+	left: 30px;
+	transition: all 0.3s;
+	opacity: 0;
+
+	&.is-loaded {
+		left: 0;
+		opacity: 1;
+	}
+}
+
+.inner-page-nav {	
+	transition: all 0.3s;	
+}
