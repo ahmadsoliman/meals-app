@@ -1,0 +1,193 @@
+<div class="page account-page">
+  <div class="mask"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 account-page__form">
+        <a class="" href="#!">
+          <img src="assets/img/logo-lg.png" alt="Calories Tracker" width="130" />
+        </a>
+        <h1 class="h3 mv-small">Create New Account</h1>
+        <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+          <div *ngIf="errorMsg" class="error-msg">
+            <label>{{ errorMsg }}</label>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="field mb-small">
+                <label class="field__label" for="firstName">First Name*</label>
+                <input
+                  class="input"
+                  type="text"
+                  id="firstName"
+                  maxlength="50"
+                  formControlName="firstName"
+                  class="input form-control"
+                  [ngClass]="{
+                    'is-invalid': f.firstName.touched && f.firstName.errors
+                  }"
+                  placeholder="Your first name"
+                />
+                <div
+                  *ngIf="f.firstName.touched && f.firstName.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f.firstName.errors.required">
+                    First Name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field mb-small">
+                <label class="field__label" for="lastName">Last Name*</label>
+                <input
+                  class="input"
+                  type="text"
+                  id="lastName"
+                  maxlength="50"
+                  formControlName="lastName"
+                  class="input form-control"
+                  [ngClass]="{
+                    'is-invalid': f.lastName.touched && f.lastName.errors
+                  }"
+                  placeholder="Your last name"
+                />
+                <div
+                  *ngIf="f.lastName.touched && f.lastName.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f.lastName.errors.required">
+                    Last Name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field mb-small">
+            <label class="field__label" for="email">Work Email*</label>
+            <input
+              type="email"
+              id="email"
+              maxlength="50"
+              formControlName="email"
+              class="input form-control"
+              [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }"
+              placeholder="Enter your email"
+            />
+            <div
+              *ngIf="f.email.touched && f.email.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email is not valid</div>
+            </div>
+          </div>
+
+          <div class="field mb-small">
+            <label class="field__label" for="password">Password*</label>
+            <input
+              type="password"
+              id="password"
+              maxlength="50"
+              formControlName="password"
+              class="input form-control"
+              placeholder="Enter your password"
+              [ngClass]="{
+                'is-invalid': f.password.touched && f.password.errors
+              }"
+            />
+            <div
+              *ngIf="f.password.touched && f.password.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div
+                *ngIf="
+                  f.password.errors.password && !f.password.errors.required
+                "
+              >
+                Password must not be less than 6 characters and contains at
+                least 1 alphabetic letter
+              </div>
+            </div>
+          </div>
+          <div class="field mb-small">
+            <label class="field__label" for="passwordConfirmation"
+              >Confirm Password*</label
+            >
+            <input
+              type="password"
+              id="passwordConfirmation"
+              maxlength="50"
+              formControlName="passwordConfirmation"
+              class="input form-control"
+              placeholder="Re-enter your password"
+              [ngClass]="{
+                'is-invalid':
+                  f.passwordConfirmation.touched &&
+                  f.passwordConfirmation.errors
+              }"
+            />
+            <div
+              *ngIf="
+                f.passwordConfirmation.touched && f.passwordConfirmation.errors
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.passwordConfirmation.errors.mustMatch">
+                Password is not matched
+              </div>
+            </div>
+          </div>
+
+          <div class="field mb-small">
+            <label class="field__label" for="company">Company*</label>
+            <input
+              type="text"
+              id="company"
+              maxlength="50"
+              formControlName="company"
+              class="input form-control"
+              placeholder="Enter your company name"
+              [ngClass]="{
+                'is-invalid': f.company.touched && f.company.errors
+              }"
+            />
+            <div
+              *ngIf="f.company.touched && f.company.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.company.errors.required">
+                Company name is required
+              </div>
+            </div>
+          </div>
+
+          <div class="field mb-small">
+            <label class="field__label" for="position">Position</label>
+            <input
+              type="text"
+              id="position"
+              maxlength="50"
+              formControlName="position"
+              class="input form-control"
+              placeholder="Enter your current position in the company"
+            />
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="!detailsForm.valid"
+            class="btn btn--round btn--warning btn--orange btn--fullwidth mt-medium"
+          >
+            Create Account
+          </button>
+        </form>
+      </div>
+      <div class="col-md-7">
+        <div class="polygon"></div>
+      </div>
+    </div>
+  </div>
+</div>

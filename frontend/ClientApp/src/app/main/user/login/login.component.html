@@ -1,0 +1,87 @@
+<div class="page account-page">
+  <div class="mask"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 account-page__form">
+        <a class="" href="#!">
+          <img src="assets/img/logo-lg.png" alt="Calories Tracker" width="130" />
+        </a>
+        <h1 class="h3 mv-small">Sign in.</h1>
+        <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+          <div *ngIf="errorMsg" class="error-msg">
+            <label>{{ errorMsg }}</label>
+          </div>
+          <div class="field mb-small">
+            <label class="field__label" for="email"
+              >Log in with your e-mail address</label
+            >
+            <input
+              class="input"
+              type="email"
+              id="email"
+              placeholder="Your email"
+              formControlName="email"
+            />
+            <div
+              *ngIf="f.email.touched && f.email.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email is not valid</div>
+            </div>
+          </div>
+
+          <div class="field mb-small">
+            <label class="field__label" for="password">Password</label>
+            <input
+              class="input"
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              formControlName="password"
+            />
+            <div
+              *ngIf="f.password.touched && f.password.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+          </div>
+
+          <div class="mt-medium">
+            <div class="float-left">
+              <div class="choice choice--checkbox">
+                <input
+                  class="choice__input"
+                  id="checkbox1"
+                  name="checkboxes"
+                  type="checkbox"
+                />
+                <label class="choice__label" for="checkbox1">Remember me</label>
+              </div>
+            </div>
+            <div class="float-right">
+              <a [routerLink]="'/forget-password'">Forget password?</a>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="!detailsForm.valid"
+            class="btn btn--round btn--warning btn--orange btn--fullwidth mt-medium"
+          >
+            Login
+          </button>
+          <div class="mt-medium text-mute">
+            Don't have an account?
+            <a [routerLink]="'/signup'">Sign up here</a>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-7">
+        <div class="polygon"></div>
+      </div>
+    </div>
+  </div>
+</div>
