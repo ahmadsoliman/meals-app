@@ -52,14 +52,12 @@ export class UserState implements NgxsOnInit {
           ctx.patchState({
             user
           });
-          ctx.dispatch(new Navigate(['/']));
         });
       }),
       catchError((error) => {
         ctx.patchState({
           user: undefined
         });
-        ctx.dispatch(new LoginRedirect());
         return throwError(error);
       })
     );
@@ -77,7 +75,6 @@ export class UserState implements NgxsOnInit {
         )
       ),
       catchError((error) => {
-        ctx.dispatch(new LoginRedirect());
         return throwError(error);
       })
     );
