@@ -54,14 +54,5 @@ export class LoginComponent implements OnInit {
           }
         );
     }
-    /*
-     this.auth.login(this.detailsForm.controls.email.value, this.detailsForm.controls.password.value).subscribe((data) => {
-       this.auth.setSession(data);
-       this.router.navigate(['/dashboard]']);
-     },
-       (error) => {
-         console.error(error.code);
-         this.errorMsg = error.description;
-       });*/
   }
 }

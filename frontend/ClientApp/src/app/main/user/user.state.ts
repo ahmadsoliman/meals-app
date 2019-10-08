@@ -3,13 +3,12 @@ import {
   NgxsOnInit,
   Selector,
   State,
-  StateContext,
-  Store
+  StateContext
 } from '@ngxs/store';
 
 import { Navigate } from '@ngxs/router-plugin';
 
-import { catchError, map, take, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { AuthService } from '@app/core/auth';
 import { UserInfo, UserRegistration } from '@app/core/models';
@@ -31,7 +30,6 @@ import { UserAuthInfoStateModel } from './user.model';
 })
 export class UserState implements NgxsOnInit {
   constructor(
-    private readonly store: Store,
     private readonly auth: AuthService
   ) {}
 
@@ -50,7 +48,12 @@ export class UserState implements NgxsOnInit {
     return this.auth.login(action.email, action.password).pipe(
       // tslint:disable-next-line
       map((data: any) => {
-        ctx.dispatch(new LoginSuccess(data));
+        this.auth.userloggedIn(data).subscribe((user) => {
+          ctx.patchState({
+            user
+          });
+          ctx.dispatch(new Navigate(['/']));
+        });
       }),
       catchError((error) => {
         ctx.patchState({
@@ -80,13 +83,4 @@ export class UserState implements NgxsOnInit {
     );
   }
 
-  @Action(LoginSuccess)
-  onLoginSuccess(
-    ctx: StateContext<UserAuthInfoStateModel>,
-    action: LoginSuccess
-  ) {
-    this.auth.userloggedIn(action.authToken).subscribe(() => {
-      ctx.dispatch(new Navigate(['/']));
-    });
-  }
 }

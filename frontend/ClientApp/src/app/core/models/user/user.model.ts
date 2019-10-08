@@ -16,12 +16,11 @@ export class UserInfo {
 export class AuthToken {
   private constructor(
     public accessToken: string,
-    public idToken: string,
-    public expiresIn: number
+    public refreshToken: string
   ) {}
 
   public static createNew(): AuthToken {
-    return new AuthToken('', '', 0);
+    return new AuthToken('', '');
   }
 }
 

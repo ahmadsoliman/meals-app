@@ -1,23 +1,26 @@
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpParams
+  HttpParams,
+  HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map } from 'rxjs/operators';
+import { apiUrlsConfig } from './api.config';
+import { AuthToken } from '../models';
 
 @Injectable()
 export class UserApiService {
   private readonly registrationUrl = '/dbconnections/signup';
-  private readonly loginUrl = '/login';
+  private readonly loginUrl = apiUrlsConfig.loginUrl;
 
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router
-  ) {}
+  ) { }
 
   // tslint:disable-next-line: no-any
   public register(data: any): Observable<any> {
@@ -28,17 +31,10 @@ export class UserApiService {
   }
 
   // tslint:disable-next-line: no-any
-  public login(email: string, password: string): Observable<any> {
-    const params: HttpParams = new HttpParams();
-    params.set('email', email);
-    params.set('password', password);
-    const obs = this.http
-      .get(this.loginUrl, { params })
+  public login(email: string, password: string): Observable<AuthToken> {
+    return this.http
+      .post<AuthToken>(this.loginUrl, { 'email': email, 'password': password })
       .pipe(catchError(this.handleError));
-    obs.subscribe(() => {
-      return Observable.of(this.router.navigate(['/callback']));
-    });
-    return obs;
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -1,35 +1,68 @@
 // src/app/auth/auth.service.ts
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { UserApiService } from '../api/user-api.service';
+import { AuthToken } from '../models';
+import { Router } from '@angular/router';
 
 @Injectable()
-export abstract class AuthService {
-  // tslint:disable-next-line
-  public abstract forgetPassword(email: string): Observable<any>;
+export class AuthService {
+
+  constructor(private userApi: UserApiService, private router: Router) {}
+
+  private setSession(authResult: AuthToken): void {
+    // Set the time that the access token will expire at
+    // const expiresAt = JSON.stringify(
+    //   authResult.expiresIn * 1000 + new Date().getTime()
+    // );
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('refresh_token', authResult.refreshToken);
+    // localStorage.setItem('expires_at', expiresAt);
+  }
+
+  public login(email, password): Observable<AuthToken> {
+    const obs = this.userApi.login(email, password);
+    obs.subscribe(authToken => {
+      this.setSession(authToken);
+      this.router.navigate(['/']);
+    });
+    return obs;
+  }
+
+  public logout(): void {
+    // Remove tokens and expiry time from localStorage
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    // localStorage.removeItem('expires_at');
+    // Go back to the login route
+    this.router.navigate(['/login']);
+  }
+
+  public isAuthenticated(): boolean {
+    const accessToken = localStorage.getItem('access_token');
+    return accessToken != null && accessToken.length > 0;
+  }
 
   // tslint:disable-next-line
-  public abstract login(email, password): Observable<any>;
+  public register(data: any): Observable<any> {
 
-  public handleAuthentication(): void {}
-
-  // tslint:disable-next-line
-  public setSession(authResult: any): void {}
-
-  public logout(): void {}
-
-  public abstract isAuthenticated(): boolean;
-
-  public abstract isVerified(): boolean;
+    return of();
+  }
 
   // tslint:disable-next-line
-  public abstract resendActivation(): Observable<any>;
+  public userloggedIn(authResult): Observable<any> {
 
-  // tslint:disable-next-line
-  public abstract register(data: any): Observable<any>;
-
-  // tslint:disable-next-line
-  public abstract userloggedIn(authResult): Observable<any>;
+    return of();
+  }
   
-  public abstract getToken(): string;
+  public getToken(): string {
+
+    return '';
+  }
+
+  public isAccessAllowed(screenId: number): boolean {
+
+    return true;
+  }
 }

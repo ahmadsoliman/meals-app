@@ -5,14 +5,14 @@ import {
   Router,
   RouterStateSnapshot
 } from '@angular/router';
-
-import { AuthorizationService } from '@app/core/auth/';
 import { Observable } from 'rxjs/Observable';
 
+import { AuthService } from '@app/core/auth/';
+
 @Injectable()
-export class WriteAccessGuard implements CanActivate {
+export class AccessGuard implements CanActivate {
   constructor(
-    private readonly authorizationService: AuthorizationService,
+    private readonly auth: AuthService,
     private readonly router: Router
   ) {}
 
@@ -21,7 +21,7 @@ export class WriteAccessGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     const screenId: number = route.data['access'];
-    if (!this.authorizationService.isWriteAllowed(screenId)) {
+    if (!this.auth.isAccessAllowed(screenId)) {
 
       return false;
     }
