@@ -20,7 +20,7 @@ export class BearerInterceptor implements HttpInterceptor {
     const authReq = req.clone({
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.auth.getToken()
+        Authorization: 'Bearer ' + this.auth.getToken()
       })
     });
 

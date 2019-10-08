@@ -1,15 +1,20 @@
 import {
-  Component,
+  Component, OnInit
 } from '@angular/core';
 import { AuthService } from '@app/core/auth';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { Router } from '@angular/router';
+import { AppState } from '@app/app.state';
+import { Observable } from 'rxjs';
+import { UserInfo } from '@app/core/models';
 
 @Component({
   selector: 'app-main-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+
+  @Select((state: AppState) => state.user.user) user!: Observable<UserInfo>; 
 
   items: any[] = [
     {
@@ -32,6 +37,12 @@ export class HeaderComponent {
     private readonly router: Router
   ){ }
 
+  ngOnInit() {
+    this.user.subscribe(userInfo => {
+      console.log(userInfo);
+      this.items[0].text = userInfo.firstName;
+    });
+  }
 
   public onSelect({ item }): void {
     if (item.path === '/logout') {

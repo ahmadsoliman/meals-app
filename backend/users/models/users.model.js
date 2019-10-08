@@ -31,6 +31,7 @@ exports.findById = (id) => {
     result = result.toJSON();
     delete result._id;
     delete result.__v;
+    delete result.meals;
     return result;
   });
 };
@@ -40,6 +41,7 @@ exports.findByEmail = (email) => {
     .then((result) => {
       result = result.toJSON();
       delete result.__v;
+      delete result.meals;
       return result;
     })
     .catch((err) => {

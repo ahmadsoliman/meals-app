@@ -11,21 +11,21 @@ import { Navigate } from '@ngxs/router-plugin';
 import { catchError, map } from 'rxjs/operators';
 
 import { AuthService } from '@app/core/auth';
-import { UserInfo, UserRegistration } from '@app/core/models';
+import { UserInfo, UserRegistration, AuthToken } from '@app/core/models';
 import { throwError } from 'rxjs';
 import {
-  LoginRedirect,
-  LoginSuccess,
   LoginWithEmailAndPassword,
   Signup
 } from './user.actions';
-import { UserAuthInfoStateModel } from './user.model';
 
-@State<UserAuthInfoStateModel>({
+export interface UserStateModel {
+  user: UserInfo
+}
+
+@State<UserStateModel>({
   name: 'user',
   defaults: {
-    initialized: false,
-    user: undefined
+    user: UserInfo.createNew()
   }
 })
 export class UserState implements NgxsOnInit {
@@ -33,22 +33,27 @@ export class UserState implements NgxsOnInit {
     private readonly auth: AuthService
   ) {}
 
-  @Selector()
-  static getUser(state: UserAuthInfoStateModel) {
-    return state.user;
+  ngxsOnInit(ctx: StateContext<UserStateModel>) {
+    console.log("user logg in");
+    if(this.auth.isAuthenticated) {
+      
+      this.auth.userloggedIn().subscribe((user: UserInfo) => {
+        ctx.patchState({
+          user
+        });
+      });
+    }
   }
-
-  ngxsOnInit(ctx: StateContext<UserAuthInfoStateModel>) {}
 
   @Action(LoginWithEmailAndPassword)
   loginWithEmailAndPassword(
-    ctx: StateContext<UserAuthInfoStateModel>,
+    ctx: StateContext<UserStateModel>,
     action: LoginWithEmailAndPassword
   ) {
     return this.auth.login(action.email, action.password).pipe(
       // tslint:disable-next-line
-      map((data: any) => {
-        this.auth.userloggedIn(data).subscribe((user) => {
+      map((data: AuthToken) => {
+        this.auth.userloggedIn().subscribe((user: UserInfo) => {
           ctx.patchState({
             user
           });

@@ -21,8 +21,12 @@ module.exports = function (app) {
 
   app.get('/users/:userId', [
     ValidationMiddleware.validJWTNeeded,
-    PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER),
     PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
+    UsersController.getById
+  ]);
+
+  app.get('/myuser', [
+    ValidationMiddleware.validJWTNeeded,
     UsersController.getById
   ]);
 

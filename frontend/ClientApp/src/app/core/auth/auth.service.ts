@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { UserApiService } from '../api/user-api.service';
-import { AuthToken, UserRegistration } from '../models';
+import { AuthToken, UserRegistration, UserInfo } from '../models';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -50,14 +50,12 @@ export class AuthService {
   }
 
   // tslint:disable-next-line
-  public userloggedIn(authResult): Observable<any> {
-
-    return of();
+  public userloggedIn(): Observable<UserInfo> {
+    return this.userApi.getCurrentUser();
   }
   
   public getToken(): string {
-
-    return '';
+    return localStorage.getItem('access_token');
   }
 
   public isAccessAllowed(screenId: number): boolean {

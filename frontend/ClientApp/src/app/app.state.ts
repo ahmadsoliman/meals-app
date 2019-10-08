@@ -1,4 +1,5 @@
 import { State } from '@ngxs/store';
+import { UserState, UserStateModel } from './main/user/user.state';
 
 export interface LayoutStateModel {
   
@@ -15,8 +16,10 @@ export class LayoutState {
 }
 
 export const appStates = [
-  LayoutState
+  LayoutState,
+  UserState
 ];
 export interface AppState {
   layout: LayoutStateModel;
+  user: UserStateModel;
 }
