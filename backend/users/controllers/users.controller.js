@@ -7,7 +7,6 @@ exports.insert = (req, res) => {
     .update(req.body.password)
     .digest("base64");
   req.body.password = salt + "$" + hash;
-  req.body.permissionLevel = 1;
   UserModel.createUser(req.body)
     .then((result) => {
       res.status(201).send({ id: result._id });
@@ -16,7 +15,7 @@ exports.insert = (req, res) => {
 
 exports.getById = (req, res) => {
   UserModel.findById(req.params.userId || req.jwt.userId).then((result) => {
-    
+
     res.status(200).send(result);
   }).catch(err => {
     res.status(404).send('User doesnt exist!');

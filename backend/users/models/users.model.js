@@ -11,8 +11,15 @@ const userSchema = new mongoose.Schema({
     lowercase: true
   },
   password: String,
-  permissionLevel: Number,
-  expectedNumberOfCalories: Number,
+  permissionLevel: {
+    type: Number,
+    required: true,
+    default: 1
+  },
+  expectedNumberOfCalories: {
+    type: Number,
+    default: 2000
+  },
   meals: [MealSchema]
 });
 
@@ -32,6 +39,7 @@ exports.findById = (id) => {
     delete result._id;
     delete result.__v;
     delete result.meals;
+    result.id = id;
     return result;
   });
 };
@@ -40,6 +48,8 @@ exports.findByEmail = (email) => {
   return User.findOne({ email: email })
     .then((result) => {
       result = result.toJSON();
+      result.id = result._id;
+      delete result._id;
       delete result.__v;
       delete result.meals;
       return result;
