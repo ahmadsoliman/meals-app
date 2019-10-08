@@ -1,15 +1,13 @@
 export class UserInfo {
   private constructor(
     public email: string,
-    public emailVerified: boolean,
-    public name: string,
-    public nickname: string,
-    public picture: string,
-    public sub: string,
-    public updatedAt: Date
+    public firstName: string,
+    public lastName: string,
+    public permissionLevel: Number,
+    public expectedNumberOfCalories: Number
   ) {}
   public static createNew(): UserInfo {
-    return new UserInfo('', false, '', '', '', '', undefined);
+    return new UserInfo('', '', '', 1, 2000);
   }
 }
 
@@ -29,11 +27,9 @@ export class UserRegistration {
     public firstName: string,
     public lastName: string,
     public email: string,
-    public company: string,
-    public position: string,
     public password: string
   ) {}
   public static createNew(): UserRegistration {
-    return new UserRegistration('', '', '', '', '', '');
+    return new UserRegistration('', '', '', '');
   }
 }

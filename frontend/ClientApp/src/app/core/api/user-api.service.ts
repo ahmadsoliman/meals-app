@@ -10,23 +10,22 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map } from 'rxjs/operators';
 import { apiUrlsConfig } from './api.config';
-import { AuthToken } from '../models';
+import { AuthToken, UserRegistration } from '../models';
 
 @Injectable()
 export class UserApiService {
-  private readonly registrationUrl = '/dbconnections/signup';
+  private readonly usersUrl = apiUrlsConfig.usersUrl;
   private readonly loginUrl = apiUrlsConfig.loginUrl;
 
   constructor(
-    private readonly http: HttpClient,
-    private readonly router: Router
+    private readonly http: HttpClient
   ) { }
 
   // tslint:disable-next-line: no-any
-  public register(data: any): Observable<any> {
-    const params: HttpParams = new HttpParams();
+  public createUser(data: UserRegistration): Observable<any> {
     return this.http
-      .post(this.registrationUrl, data, { params })
+      .post<{id: string}>(this.usersUrl, data)
+      .pipe(map(data => data.id))
       .pipe(catchError(this.handleError));
   }
 

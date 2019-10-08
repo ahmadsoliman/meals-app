@@ -19,23 +19,20 @@ import { Store } from '@ngxs/store';
 export class RegistrationComponent implements OnInit {
   constructor(
     public auth: AuthService,
-    private readonly router: Router,
     public formBuilder: FormBuilder,
-    private readonly store: Store
+    private readonly store: Store,
+    private router: Router
   ) {}
 
   errorMsg: string;
   detailsForm: FormGroup;
 
   ngOnInit() {
-    this.buildForm();
-    // todo uncomment when logout function is ready
-    /*
     if (!this.auth.isAuthenticated()) {
       this.buildForm();
     } else {
       this.router.navigate(['/dashboard']);
-    }*/
+    }
   }
 
   buildForm() {
@@ -50,11 +47,6 @@ export class RegistrationComponent implements OnInit {
           Validators.maxLength(30)
         ]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        company: new FormControl('', [
-          Validators.required,
-          Validators.maxLength(30)
-        ]),
-        position: new FormControl('', [Validators.maxLength(30)]),
         password: new FormControl('', [Validators.required, PasswordValidator]),
         passwordConfirmation: new FormControl('', [])
       },
@@ -76,8 +68,6 @@ export class RegistrationComponent implements OnInit {
         lastName: this.detailsForm.controls.lastName.value,
         email: this.detailsForm.controls.email.value,
         password: this.detailsForm.controls.password.value,
-        position: this.detailsForm.controls.position.value,
-        company: this.detailsForm.controls.company.value
       };
       this.store.dispatch(new Signup(userRegistration)).subscribe(
         (x) => {},
@@ -86,16 +76,6 @@ export class RegistrationComponent implements OnInit {
           this.errorMsg = err.description;
         }
       );
-
-      /*
-    this.auth.register(this.detailsForm.value).subscribe((data) => {
-      this.router.navigate(['/dashboard]']);
-    },
-      (error) => {
-        console.log(error.code);
-        this.errorMsg = error.description;
-      });
-      */
     }
   }
 }

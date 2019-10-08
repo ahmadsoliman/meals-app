@@ -141,41 +141,6 @@
             </div>
           </div>
 
-          <div class="field mb-small">
-            <label class="field__label" for="company">Company*</label>
-            <input
-              type="text"
-              id="company"
-              maxlength="50"
-              formControlName="company"
-              class="input form-control"
-              placeholder="Enter your company name"
-              [ngClass]="{
-                'is-invalid': f.company.touched && f.company.errors
-              }"
-            />
-            <div
-              *ngIf="f.company.touched && f.company.errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.company.errors.required">
-                Company name is required
-              </div>
-            </div>
-          </div>
-
-          <div class="field mb-small">
-            <label class="field__label" for="position">Position</label>
-            <input
-              type="text"
-              id="position"
-              maxlength="50"
-              formControlName="position"
-              class="input form-control"
-              placeholder="Enter your current position in the company"
-            />
-          </div>
-
           <button
             type="submit"
             [disabled]="!detailsForm.valid"

@@ -68,7 +68,7 @@ export class UserState implements NgxsOnInit {
   @Action(Signup)
   signup(ctx: StateContext<UserRegistration>, action: Signup) {
     return this.auth.register(action.userRegistration).pipe(
-      map((data: UserInfo) =>
+      map((userId: string) =>
         ctx.dispatch(
           new LoginWithEmailAndPassword(
             action.userRegistration.email,

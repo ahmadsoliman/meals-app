@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { UserApiService } from '../api/user-api.service';
-import { AuthToken } from '../models';
+import { AuthToken, UserRegistration } from '../models';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -45,9 +45,8 @@ export class AuthService {
   }
 
   // tslint:disable-next-line
-  public register(data: any): Observable<any> {
-
-    return of();
+  public register(data: UserRegistration): Observable<string> {
+    return this.userApi.createUser(data);
   }
 
   // tslint:disable-next-line

@@ -21,7 +21,11 @@ export class LoginComponent implements OnInit {
   errorMsg: string;
 
   ngOnInit() {
-    this.buildForm();
+    if (!this.auth.isAuthenticated()) {
+      this.buildForm();
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   get f() {
