@@ -3742,9 +3742,14 @@
 /* Footer */
 
 	#footer {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+	
 		background-color: #e5474b;
 		color: #f2a3a5;
-		padding: 4em 0 2em 0;
+		padding: 2em 0 1em 0;
 		background: #e5474b;
 	}
 

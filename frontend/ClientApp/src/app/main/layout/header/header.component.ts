@@ -14,7 +14,7 @@ import { UserInfo } from '@app/core/models';
 })
 export class HeaderComponent implements OnInit {
 
-  @Select((state: AppState) => state.user.user) user!: Observable<UserInfo>; 
+  @Select((state: AppState) => state.user.loggedInUser) user!: Observable<UserInfo>; 
 
   items: any[] = [
     {

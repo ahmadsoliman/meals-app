@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { GridModule } from '@progress/kendo-angular-grid';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { routing } from './user.routing';
+import { UserListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    UserListComponent
   ],
-  imports: [routing, SharedModule],
+  imports: [
+    SharedModule,
+    RouterModule,
+    GridModule
+  ],
   exports: []
 })
 export class UserModule {}

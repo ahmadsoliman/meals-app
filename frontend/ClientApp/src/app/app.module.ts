@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GridModule, SharedModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainModule } from './main/main.module';
 import { CoreModule } from './core/core.module';
 import { NgxsModule } from '@ngxs/store';
 import { appStates } from './app.state';
 import { environment } from '@env/environment';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import { environment } from '@env/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GridModule,
     BrowserAnimationsModule,
     MainModule,
     SharedModule,

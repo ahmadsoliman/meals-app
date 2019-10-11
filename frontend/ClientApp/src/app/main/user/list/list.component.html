@@ -1,0 +1,64 @@
+<div class="toolbar mb-medium">
+  <h5 class="">Users List</h5>
+
+  <div class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn">
+    <i class="fa fa-plus"></i> New User
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="ml-medium mr-medium">
+      <kendo-grid [data]="usersGridData$ | async" height="500">
+        <kendo-grid-column title="Email" width="250">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <a [routerLink]="['/users', dataItem.id]">
+              {{ dataItem.email }}
+            </a>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column title="Name" width="200">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            {{ dataItem.firstName + ' ' + dataItem.lastName }}
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column title="User Level" width="150">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <span class="badge badge--danger mr-xsmall field-type" *ngIf="dataItem.permissionLevel >= 4">
+              Admin
+            </span>
+            <span class="badge badge--warning mr-xsmall field-type"
+              *ngIf="dataItem.permissionLevel < 4 && dataItem.permissionLevel >= 2">
+              User Manager
+            </span>
+            <span class="badge badge--success mr-xsmall field-type" *ngIf="dataItem.permissionLevel === 1">
+              User
+            </span>
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="expectedNumberOfCalories" title="Daily Calories" width="150">
+        </kendo-grid-column>
+
+        <kendo-grid-column title="Actions">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div kendoTooltip>
+              <a title="View Details" class="btn--sm" [routerLink]="['/users', dataItem.id]">
+                <i class="fa fa-eye"></i>
+              </a>
+              <a title="View Meals" class="btn--sm" [routerLink]="['/meals', dataItem.id]">
+                <i class="fa fa-heartbeat"></i>
+              </a>
+              <a title="Edit" class="btn--sm">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a title="Delete" class="btn--sm">
+                <i class="fa fa-trash"></i>
+              </a>
+            </div>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+    </div>
+  </div>
+</div>

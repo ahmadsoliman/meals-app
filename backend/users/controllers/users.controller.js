@@ -15,9 +15,9 @@ exports.insert = (req, res) => {
 
 exports.getById = (req, res) => {
   let userId = '';
-  if(req.params['userId'] && req.params['userId'].length) {
+  if (req.params['userId'] && req.params['userId'].length) {
     userId = req.params['userId'];
-  } else if(req.jwt.userId) {
+  } else if (req.jwt.userId) {
     userId = req.jwt.userId;
   }
   UserModel.findById(userId).then((result) => {
@@ -39,17 +39,17 @@ exports.patchById = (req, res) => {
 };
 
 exports.list = (req, res) => {
-  let limit = req.query.limit && req.query.limit <= 100 ? parseInt(req.query.limit) : 10;
-  let page = 0;
+  let take = req.query.take && req.query.take <= 100 && req.query.take > 0 ? parseInt(req.query.take) : 10;
+  let skip = 0;
   if (req.query) {
-    if (req.query.page) {
-      req.query.page = parseInt(req.query.page);
-      page = Number.isInteger(req.query.page) ? req.query.page : 0;
+    if (req.query.skip) {
+      req.query.skip = parseInt(req.query.skip);
+      skip = Number.isInteger(req.query.skip) ? req.query.skip : 0;
     }
   }
-  UserModel.list(limit, page).then((result) => {
+  UserModel.list(take, skip).then((result) => {
     res.status(200).send(result);
-  })
+  });
 };
 
 exports.removeById = (req, res) => {

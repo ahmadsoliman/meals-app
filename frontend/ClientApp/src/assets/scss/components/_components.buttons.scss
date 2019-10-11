@@ -172,15 +172,15 @@
 }
 
 .btn--fancy {
-	@include linear-gradient(to bottom, $purple-300, $purple-500);
-	border-color: $purple-500;
+	@include linear-gradient(to bottom, black, lighten(black, 10%));
+	border-color: black;
 
 	&:hover {
-		@include linear-gradient(to bottom, darken($purple-300, 4%), darken($purple-500, 4%));
+		@include linear-gradient(to bottom, lighten(black, 4%), lighten(black, 14%));
 	}
 
 	&:focus {
-		@include linear-gradient(to bottom, darken($purple-300, 6%), darken($purple-500, 6%));
+		@include linear-gradient(to bottom, lighten(black, 6%), lighten(black, 16%));
 	}
 }
 

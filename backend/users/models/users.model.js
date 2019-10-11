@@ -74,18 +74,28 @@ exports.patchUser = (id, userData) => {
   })
 };
 
-exports.list = (perPage, page) => {
+exports.list = (take, skip) => {
   return new Promise((resolve, reject) => {
-    User.find()
-      .limit(perPage)
-      .skip(perPage * page)
-      .exec(function (err, users) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(users);
-        }
-      })
+    User.countDocuments({}, (err, count) => {
+      User.find()
+        .limit(take)
+        .skip(skip)
+        .exec(function (err, users) {
+          if (err) {
+            reject(err);
+          } else {
+            users = users.map((user) => {
+              user = user.toJSON();
+              user.id = user._id;
+              delete user._id;
+              delete user.__v;
+              delete user.meals;
+              return user;
+            });
+            resolve({ users: users, total: count });
+          }
+        })
+    });
   });
 };
 

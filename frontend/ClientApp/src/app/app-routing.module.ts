@@ -5,6 +5,7 @@ import { LoginComponent } from './main/user/login/login.component';
 import { MainLayoutComponent } from './main/layout/main-layout/main-layout.component';
 import { LoggedInGuard } from './core/guards';
 import { RegistrationComponent } from './main/user/registration/registration.component';
+import { UserListComponent } from './main/user/list/list.component';
 
 
 const routes: Routes = [
@@ -20,18 +21,13 @@ const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [ LoggedInGuard ],
     children: [
-      // {
-      //   path: 'dashboard',
-      //   component: DashboardComponent
-      // },
-      // {
-      //   path: 'user',
-      //   loadChildren: './main/user/user.module#UserModule'
-      // },
-
+      {
+        path: 'users',
+        component: UserListComponent
+      },
       {
         path: '',
-        redirectTo: 'user',
+        redirectTo: 'users',
         pathMatch: 'full'
       }
     ]

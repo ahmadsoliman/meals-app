@@ -10,7 +10,7 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map } from 'rxjs/operators';
 import { apiUrlsConfig } from './api.config';
-import { AuthToken, UserRegistration, UserInfo } from '../models';
+import { AuthToken, UserRegistration, UserInfo, UsersList } from '../models';
 
 @Injectable()
 export class UserApiService {
@@ -38,6 +38,12 @@ export class UserApiService {
   public getCurrentUser(): Observable<UserInfo> {
     return this.http
       .get<UserInfo>(this.currentUserUrl)
+      .pipe(catchError(this.handleError));
+  }
+  
+  public getUsers(): Observable<UsersList> {
+    return this.http
+      .get<UsersList>(this.usersUrl)
       .pipe(catchError(this.handleError));
   }
 
