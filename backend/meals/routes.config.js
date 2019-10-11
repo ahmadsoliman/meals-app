@@ -3,25 +3,25 @@ const PermissionMiddleware = require('../common/middlewares/permission.middlewar
 const MealsController = require('./controllers/meals.controller');
 
 module.exports = function (app) {
-  app.post('/users/:userId/meals', [
+  app.post('/api/users/:userId/meals', [
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
     MealsController.insert
   ]);
 
-  app.get('/users/:userId/meals', [
+  app.get('/api/users/:userId/meals', [
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
     MealsController.list
   ]);
 
-  app.patch('/users/:userId/meals/:mealId', [
+  app.patch('/api/users/:userId/meals/:mealId', [
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
     MealsController.patchById
   ]);
 
-  app.delete('/users/:userId/meals/:mealId', [
+  app.delete('/api/users/:userId/meals/:mealId', [
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
     MealsController.removeById

@@ -3,7 +3,7 @@ const AuthorizationController = require('./controllers/auth.controller');
 
 module.exports = function(app) {
 
-  app.post('/auth', [
+  app.post('/api/auth', [
     VerifyUserMiddleware.hasAuthValidFields,
     VerifyUserMiddleware.isPasswordAndUserMatch,
     AuthorizationController.login

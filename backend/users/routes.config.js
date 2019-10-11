@@ -3,34 +3,34 @@ const PermissionMiddleware = require('../common/middlewares/permission.middlewar
 const UsersController = require('./controllers/users.controller');
 
 module.exports = function (app) {
-  app.post('/users', [
+  app.post('/api/users', [
     UsersController.insert
   ]);
 
-  app.get('/users', [
+  app.get('/api/users', [
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER_MANAGER),
     UsersController.list
   ]);
 
-  app.patch('/users/:userId', [
+  app.patch('/api/users/:userId', [
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER_MANAGER),
     UsersController.patchById
   ]);
 
-  app.get('/users/:userId', [
+  app.get('/api/users/:userId', [
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
     UsersController.getById
   ]);
 
-  app.get('/myuser', [
+  app.get('/api/myuser', [
     ValidationMiddleware.validJWTNeeded,
     UsersController.getById
   ]);
 
-  app.delete('/users/:userId', [
+  app.delete('/api/users/:userId', [
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER_MANAGER),
     UsersController.removeById
