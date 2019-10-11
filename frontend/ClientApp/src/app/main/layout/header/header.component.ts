@@ -39,7 +39,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user.subscribe(userInfo => {
-      console.log(userInfo);
       this.items[0].text = userInfo.firstName;
     });
   }

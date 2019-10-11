@@ -14,8 +14,13 @@ exports.insert = (req, res) => {
 };
 
 exports.getById = (req, res) => {
-  UserModel.findById(req.params.userId || req.jwt.userId).then((result) => {
-
+  let userId = '';
+  if(req.params['userId'] && req.params['userId'].length) {
+    userId = req.params['userId'];
+  } else if(req.jwt.userId) {
+    userId = req.jwt.userId;
+  }
+  UserModel.findById(userId).then((result) => {
     res.status(200).send(result);
   }).catch(err => {
     res.status(404).send('User doesnt exist!');

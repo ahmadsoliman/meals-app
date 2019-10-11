@@ -34,9 +34,7 @@ export class UserState implements NgxsOnInit {
   ) {}
 
   ngxsOnInit(ctx: StateContext<UserStateModel>) {
-    console.log("user logg in");
-    if(this.auth.isAuthenticated) {
-      
+    if(this.auth.isAuthenticated()) {
       this.auth.userloggedIn().subscribe((user: UserInfo) => {
         ctx.patchState({
           user
