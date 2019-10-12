@@ -46,13 +46,10 @@
               <a title="View Details" class="btn--sm" [routerLink]="['/users', dataItem.id]">
                 <i class="fa fa-eye"></i>
               </a>
-              <a title="View Meals" class="btn--sm" [routerLink]="['/meals', dataItem.id]">
+              <a title="View Meals" class="btn--sm" [routerLink]="['/meals', dataItem.id]" *ngIf="auth.isAdmin()">
                 <i class="fa fa-heartbeat"></i>
               </a>
-              <a title="Edit" class="btn--sm">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a title="Delete" class="btn--sm">
+              <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)">
                 <i class="fa fa-trash"></i>
               </a>
             </div>
@@ -62,3 +59,10 @@
     </div>
   </div>
 </div>
+<kendo-dialog title="Please confirm" *ngIf="deleteDialogOpened" (close)="closeDeleteDialog()" [minWidth]="250">
+  <p style="margin: 30px; text-align: center;">Are you sure you want to delete the user named "{{ userBeingDeleted.firstName }}"?</p>
+  <kendo-dialog-actions>
+    <button kendoButton (click)="closeDeleteDialog()">No</button>
+    <button kendoButton (click)="deleteUser()" primary="true">Yes</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

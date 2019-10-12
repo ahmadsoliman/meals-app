@@ -19,3 +19,8 @@ export class Logout {
 export class FetchUsers {
   static type = '[User] FetchUsers';
 }
+
+export class DeleteUser {
+  static type = '[User] DeleteUser';
+  constructor(public userId: string) {}
+}

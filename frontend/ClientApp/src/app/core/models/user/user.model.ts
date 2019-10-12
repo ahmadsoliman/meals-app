@@ -6,6 +6,7 @@ export const permissionLevels = {
 
 export class UserInfo {
   private constructor(
+    public id: string,
     public email: string,
     public firstName: string,
     public lastName: string,
@@ -13,7 +14,7 @@ export class UserInfo {
     public expectedNumberOfCalories: Number
   ) {}
   public static createNew(): UserInfo {
-    return new UserInfo('', '', '', 1, 2000);
+    return new UserInfo('', '', '', '', 1, 2000);
   }
   public getFullName(): string {
     return this.firstName + ' ' + this.lastName;

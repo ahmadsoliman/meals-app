@@ -16,7 +16,8 @@ import { throwError } from 'rxjs';
 import {
   LoginWithEmailAndPassword,
   Signup,
-  FetchUsers
+  FetchUsers,
+  DeleteUser
 } from './user.actions';
 import { UserApiService } from '@app/core/api/user-api.service';
 
@@ -102,6 +103,13 @@ export class UserState implements NgxsOnInit {
         usersGridData: { data: usersList.users, total: usersList.total },
         usersLoading: false
       }) 
+    );
+  }
+
+  @Action(DeleteUser)
+  deleteUser(ctx: StateContext<UserStateModel>, action: DeleteUser) {
+    return this.userApi.deleteUser(action.userId).subscribe(() =>
+      ctx.dispatch(new FetchUsers())
     );
   }
 

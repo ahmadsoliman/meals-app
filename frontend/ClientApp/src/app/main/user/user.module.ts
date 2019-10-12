@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { LoginComponent } from './login/login.component';
@@ -16,7 +17,8 @@ import { UserListComponent } from './list/list.component';
   imports: [
     SharedModule,
     RouterModule,
-    GridModule
+    GridModule,
+    DialogsModule
   ],
   exports: []
 })
