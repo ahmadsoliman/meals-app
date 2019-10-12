@@ -2,8 +2,8 @@
   <div class="inner">
     <a href="index.html" class="logo">calories tracker</a>
     <nav id="nav">
-      <a href="meals.html">Meals</a>
-      <a href="users.html">Users</a>
+      <a routerLink="/meals" routerLinkActive="active">Meals</a>
+      <a routerLink="/users" routerLinkActive="active" *ngIf="auth.isUserManager()">Users</a>
 
       <kendo-menu [items]="items" style="display: inline-block;" (select)="onSelect($event)">
       </kendo-menu>

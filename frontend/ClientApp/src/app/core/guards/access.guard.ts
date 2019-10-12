@@ -14,17 +14,17 @@ export class AccessGuard implements CanActivate {
   constructor(
     private readonly auth: AuthService,
     private readonly router: Router
-  ) {}
+  ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    const screenId: number = route.data['access'];
-    if (!this.auth.isAccessAllowed(screenId)) {
-
-      return false;
+  ): boolean {
+    const accessLevel: number = route.data['access'] || 7;
+    if (!this.auth.isAccessAllowed(accessLevel)) {
+      this.router.navigate(['/']);
     }
-    return true;
+
+    return this.auth.isAccessAllowed(accessLevel);
   }
 }

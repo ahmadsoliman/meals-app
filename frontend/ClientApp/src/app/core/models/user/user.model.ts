@@ -1,3 +1,9 @@
+export const permissionLevels = {
+  ADMIN: 4,
+  USER_MANAGER: 2,
+  USER: 1
+};
+
 export class UserInfo {
   private constructor(
     public email: string,
@@ -24,11 +30,12 @@ export class UsersList {
 export class AuthToken {
   private constructor(
     public accessToken: string,
-    public refreshToken: string
+    public refreshToken: string,
+    public permissionLevel: number
   ) {}
 
   public static createNew(): AuthToken {
-    return new AuthToken('', '');
+    return new AuthToken('', '', 0);
   }
 }
 

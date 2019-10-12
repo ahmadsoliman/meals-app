@@ -14,18 +14,15 @@ export class LoggedInGuard implements CanActivate {
   constructor(
     private readonly auth: AuthService,
     private readonly router: Router
-  ) {}
+  ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> {
-    return Observable.create((observer) => {
-      if (!this.auth.isAuthenticated()) {
-        this.router.navigate(['/login']);
-      }
-      observer.next(true);
-      return () => {};
-    });
+  ): boolean {
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
+    return this.auth.isAuthenticated();
   }
 }

@@ -3,9 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { NF404Component } from './shared/components/404/404.component';
 import { LoginComponent } from './main/user/login/login.component';
 import { MainLayoutComponent } from './main/layout/main-layout/main-layout.component';
-import { LoggedInGuard } from './core/guards';
+import { LoggedInGuard, AccessGuard } from './core/guards';
 import { RegistrationComponent } from './main/user/registration/registration.component';
 import { UserListComponent } from './main/user/list/list.component';
+import { permissionLevels } from './core/models';
+import { EmptyComponent } from './shared/components/empty/empty.component';
 
 
 const routes: Routes = [
@@ -23,11 +25,22 @@ const routes: Routes = [
     children: [
       {
         path: 'users',
-        component: UserListComponent
+        component: UserListComponent,
+        canActivate: [ AccessGuard ],
+        data: {
+          access: permissionLevels.USER_MANAGER
+        }
+      },
+      {
+        path: 'meals',
+        component: EmptyComponent,
+        data: {
+          access: permissionLevels.USER
+        }
       },
       {
         path: '',
-        redirectTo: 'users',
+        redirectTo: 'meals',
         pathMatch: 'full'
       }
     ]

@@ -1,7 +1,6 @@
 import {
   Action,
   NgxsOnInit,
-  Selector,
   State,
   StateContext
 } from '@ngxs/store';
@@ -11,7 +10,7 @@ import { Navigate } from '@ngxs/router-plugin';
 import { catchError, map } from 'rxjs/operators';
 
 import { AuthService } from '@app/core/auth';
-import { UserInfo, UserRegistration, AuthToken, UsersList } from '@app/core/models';
+import { UserInfo, AuthToken, UsersList } from '@app/core/models';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { throwError } from 'rxjs';
 import {
@@ -59,12 +58,12 @@ export class UserState implements NgxsOnInit {
     action: LoginWithEmailAndPassword
   ) {
     return this.auth.login(action.email, action.password).pipe(
-      // tslint:disable-next-line
       map((data: AuthToken) => {
         this.auth.userloggedIn().subscribe((user: UserInfo) => {
           ctx.patchState({
             loggedInUser: user
           });
+          ctx.dispatch(new Navigate(['/']));
         });
       }),
       catchError((error) => {

@@ -1,9 +1,9 @@
 // src/app/auth/auth.service.ts
 
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UserApiService } from '../api/user-api.service';
-import { AuthToken, UserRegistration, UserInfo } from '../models';
+import { AuthToken, UserRegistration, UserInfo, permissionLevels } from '../models';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -18,6 +18,7 @@ export class AuthService {
     // );
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('refresh_token', authResult.refreshToken);
+    localStorage.setItem('permission_level', '' + authResult.permissionLevel);
     // localStorage.setItem('expires_at', expiresAt);
   }
 
@@ -25,7 +26,6 @@ export class AuthService {
     const obs = this.userApi.login(email, password);
     obs.subscribe(authToken => {
       this.setSession(authToken);
-      this.router.navigate(['/']);
     });
     return obs;
   }
@@ -58,8 +58,23 @@ export class AuthService {
     return localStorage.getItem('access_token');
   }
 
-  public isAccessAllowed(screenId: number): boolean {
+  public isAccessAllowed(level: number) {
+    if(this.isAuthenticated()) {
+      const permissionLevel = parseInt(localStorage.getItem('permission_level'));
+      return permissionLevel >= level;
+    }
+    return false;
+  }
+  
+  public isAdmin(): boolean {
+    return this.isAccessAllowed(permissionLevels.ADMIN);
+  }
 
-    return true;
+  public isUserManager(): boolean {
+    return this.isAccessAllowed(permissionLevels.USER_MANAGER);
+  }
+  
+  public isUser(): boolean {
+    return this.isAccessAllowed(permissionLevels.USER);
   }
 }
