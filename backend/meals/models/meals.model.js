@@ -24,7 +24,12 @@ exports.createMeal = (userId, mealData) => {
 exports.list = (userId, take, skip) => {
   return UserModel.User.findById(userId).then((result) => {
     const meals = result.meals.sort((a, b) => a.date > b.date);
-    const mealsPage = meals.slice(skip, skip + take);
+    const mealsPage = meals.slice(skip, skip + take).map(meal => {
+      meal = meal.toJSON();
+      meal.id = meal._id;
+      delete meal._id;
+      return meal;
+    });
     return { meals: mealsPage, total: meals.length };
   });
 };
@@ -32,9 +37,9 @@ exports.list = (userId, take, skip) => {
 exports.patchMeal = (userId, mealId, mealData) => {
   return new Promise((resolve, reject) => {
     UserModel.User.findById(userId).then((user) => {
-      const meal = user.meals.find(meal => meal._id === mealId);
+      const meal = user.meals.find(meal => meal._id == mealId);
       if (!meal) reject('Meal not found!');
-      
+
       for (let i in mealData) {
         meal[i] = mealData[i];
       }
@@ -49,9 +54,11 @@ exports.patchMeal = (userId, mealId, mealData) => {
 exports.removeById = (userId, mealId) => {
   return new Promise((resolve, reject) => {
     UserModel.User.findById(userId).then((user) => {
-      const mealIndex = user.meals.findIndex(meal => meal._id === mealId);
-      if (mealIndex === -1) reject('Meal not found!');
-
+      const mealIndex = user.meals.findIndex(meal => meal._id == mealId );
+      if (mealIndex === -1) {
+        reject('Meal not found!');
+        return;
+      }
       user.meals.splice(mealIndex, 1);
       user.save(function (err) {
         if (err) return reject(err);
