@@ -16,9 +16,6 @@ export class UserInfo {
   public static createNew(): UserInfo {
     return new UserInfo('', '', '', '', 1, 2000);
   }
-  public getFullName(): string {
-    return this.firstName + ' ' + this.lastName;
-  }
 }
 
 export class UsersList {

@@ -4,7 +4,6 @@ const UserModel = require('../../users/models/users.model');
 const mealSchema = new mongoose.Schema({
   text: String,
   date: Date,
-  time: Date,
   calories: Number
 });
 exports.MealSchema = mealSchema;
@@ -22,10 +21,11 @@ exports.createMeal = (userId, mealData) => {
   });
 };
 
-exports.list = (userId, perPage, page) => {
+exports.list = (userId, take, skip) => {
   return UserModel.User.findById(userId).then((result) => {
-    const mealsPage = result.meals.slice(perPage * page, perPage * page + perPage);
-    return mealsPage;
+    const meals = result.meals.sort((a, b) => a.date > b.date);
+    const mealsPage = meals.slice(skip, skip + take);
+    return { meals: mealsPage, total: meals.length };
   });
 };
 

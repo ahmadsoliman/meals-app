@@ -1,0 +1,54 @@
+<div class="toolbar mb-medium">
+  <span *ngIf="!isForCurrentUser" class="title-sub ml-small">{{ (loggedInUser$ | async)?.firstName }}'s</span>
+  <h5 class="ml-xsmall">Meals List</h5>
+
+  <div class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn">
+    <i class="fa fa-plus"></i> New Meal
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="ml-medium mr-medium">
+      <kendo-grid [data]="mealsGridData$ | async" [loading]="mealsLoading$ | async" height="500">
+        <kendo-grid-column field="text" title="Description" width="350">
+        </kendo-grid-column>
+
+        <kendo-grid-column title="Date" width="350">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            {{dataItem.date | date: 'fullDate'}}
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column title="Time" width="150">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            {{dataItem.date | date: 'shortTime'}}
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column field="calories" title="Meal Calories" width="150">
+        </kendo-grid-column>
+
+        <kendo-grid-column title="Actions">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div kendoTooltip>
+              <a title="Edit Meal" class="btn--sm">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </div>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+    </div>
+  </div>
+</div>
+<kendo-dialog title="Please confirm" *ngIf="deleteDialogOpened" (close)="closeDeleteDialog()" [minWidth]="250">
+  <p style="margin: 30px; text-align: center;">Are you sure you want to delete this meal?</p>
+  <kendo-dialog-actions>
+    <button kendoButton (click)="closeDeleteDialog()">No</button>
+    <button kendoButton (click)="deleteUser()" primary="true">Yes</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

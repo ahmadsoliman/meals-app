@@ -17,15 +17,15 @@ exports.patchById = (req, res) => {
 };
 
 exports.list = (req, res) => {
-  let limit = req.query.limit && req.query.limit <= 100 ? parseInt(req.query.limit) : 10;
-  let page = 0;
+  let take = req.query.take && req.query.take <= 100 ? parseInt(req.query.take) : 10;
+  let skip = 0;
   if (req.query) {
-    if (req.query.page) {
-      req.query.page = parseInt(req.query.page);
-      page = Number.isInteger(req.query.page) ? req.query.page : 0;
+    if (req.query.skip) {
+      req.query.skip = parseInt(req.query.skip);
+      skip = Number.isInteger(req.query.skip) ? req.query.skip : 0;
     }
   }
-  MealModel.list(req.params.userId, limit, page).then((result) => {
+  MealModel.list(req.params.userId, take, skip).then((result) => {
     res.status(200).send(result);
   })
 };

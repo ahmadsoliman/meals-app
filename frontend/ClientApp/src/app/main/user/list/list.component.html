@@ -9,7 +9,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="ml-medium mr-medium">
-      <kendo-grid [data]="usersGridData$ | async" height="500">
+      <kendo-grid [data]="usersGridData$ | async" [loading]="usersLoading$ | async" height="500">
         <kendo-grid-column title="Email" width="250">
           <ng-template kendoGridCellTemplate let-dataItem>
             <a [routerLink]="['/users', dataItem.id]">

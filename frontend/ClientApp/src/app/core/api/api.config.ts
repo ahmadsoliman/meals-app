@@ -4,4 +4,5 @@ export const apiUrlsConfig = {
   loginUrl: `${apiUrl}/auth`,
   usersUrl: `${apiUrl}/users`,
   currentUserUrl: `${apiUrl}/myuser`,
+  mealsUrl: `${apiUrl}/users/:userId/meals`
 };

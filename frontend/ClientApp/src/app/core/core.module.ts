@@ -10,6 +10,7 @@ import {
 } from './guards/';
 import { BearerInterceptor } from './http-interceptors/bearer-interceptor';
 import { UnAuthorizedRequestsInterceptor } from './http-interceptors/unauthorized-requests-interceptor';
+import { MealsApiService } from './api/meals-api.service';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import { UnAuthorizedRequestsInterceptor } from './http-interceptors/unauthorize
       multi: true
     },
     { provide: HTTP_INTERCEPTORS, useClass: BearerInterceptor, multi: true },
-    UserApiService
+    UserApiService,
+    MealsApiService
   ]
 })
 export class CoreModule { }

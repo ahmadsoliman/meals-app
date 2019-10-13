@@ -9,6 +9,7 @@ import { UserListComponent } from './main/user/list/list.component';
 import { permissionLevels } from './core/models';
 import { EmptyComponent } from './shared/components/empty/empty.component';
 import { ProfileComponent } from './main/user/profile/profile.component';
+import { MealsListComponent } from './main/meals/list/list.component';
 
 
 const routes: Routes = [
@@ -49,9 +50,17 @@ const routes: Routes = [
       },
       {
         path: 'meals',
-        component: EmptyComponent,
+        component: MealsListComponent,
         data: {
           access: permissionLevels.USER
+        }
+      },
+      {
+        path: 'meals/:userId',
+        component: MealsListComponent,
+        canActivate: [ AccessGuard ],
+        data: {
+          access: permissionLevels.ADMIN
         }
       },
       {

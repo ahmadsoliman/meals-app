@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
 import { UserModule } from './user/user.module';
+import { MealsModule } from './meals/meals.module';
 
 @NgModule({
   declarations: [],
@@ -17,7 +18,8 @@ import { UserModule } from './user/user.module';
     LayoutModule,
     RouterModule,
     SharedModule,
-    UserModule
+    UserModule,
+    MealsModule
   ],
   exports: []
 })
