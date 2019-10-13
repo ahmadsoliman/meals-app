@@ -45,7 +45,9 @@ export class UserRegistration {
     public firstName: string,
     public lastName: string,
     public email: string,
-    public password: string
+    public password: string,
+    public permissionLevel?: number,
+    public expectedNumberOfCalories?: number
   ) {}
   public static createNew(): UserRegistration {
     return new UserRegistration('', '', '', '');

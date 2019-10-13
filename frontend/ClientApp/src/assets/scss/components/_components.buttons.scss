@@ -59,15 +59,15 @@
 	&.is-disabled,
 	&:disabled {
 		/* [4] */
-		border-color: $btn-disabled-border-color;
-		background: $btn-disabled-background-color;
-		color: $btn-disabled-color;
+		// border-color: $btn-disabled-border-color;
+		// background: $btn-disabled-background-color;
+		// color: $btn-disabled-color;
 
 		&:hover,
 		&:focus {
-			border-color: $btn-disabled-border-color;
-			background: $btn-disabled-background-color;
-			color: $btn-disabled-color;
+			// border-color: $btn-disabled-border-color;
+			// background: $btn-disabled-background-color;
+			// color: $btn-disabled-color;
 			cursor: not-allowed;
 		}
 	}

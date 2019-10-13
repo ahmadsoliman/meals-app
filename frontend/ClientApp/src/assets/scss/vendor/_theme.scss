@@ -2252,6 +2252,7 @@ label {
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="number"],
 select,
 textarea {
   -moz-appearance: none;
@@ -2286,7 +2287,7 @@ textarea:invalid {
 .select-wrapper:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
+  font-family: LineAwesome;
   font-style: normal;
   font-weight: normal;
   text-transform: none !important;
@@ -2312,8 +2313,12 @@ textarea:invalid {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-select {
+input[type="number"] {
   height: 2.75em;
+}
+
+select {
+  height: 2.25em;
 }
 
 textarea {
@@ -2350,7 +2355,7 @@ input[type="checkbox"] + label:before,
 input[type="radio"] + label:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
+  font-family: LineAwesome;
   font-style: normal;
   font-weight: normal;
   text-transform: none !important;
@@ -2362,18 +2367,19 @@ input[type="radio"] + label:before {
   border: solid 1px;
   content: "";
   display: inline-block;
-  height: 1.65em;
+  height: 1.35em;
   left: 0;
-  line-height: 1.58125em;
+  line-height: 1.25em;
   position: absolute;
   text-align: center;
   top: 0;
-  width: 1.65em;
+  width: 1.35em;
+  margin-top: 5px;
 }
 
 input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before {
-  content: "\f00c";
+  content: "\f17b";
 }
 
 input[type="checkbox"] + label:before {
@@ -2411,6 +2417,7 @@ label {
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="number"],
 select,
 textarea {
   background: none;
@@ -2423,7 +2430,7 @@ input[type="email"]:focus,
 select:focus,
 textarea:focus {
   border-color: #e5474b;
-  box-shadow: 0 0 0 1px #e5474b;
+  // box-shadow: 0 0 0 1px #e5474b;
 }
 
 .select-wrapper:before {
@@ -2485,7 +2492,7 @@ input[type="radio"]:focus + label:before {
 .icon:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
+  font-family: LineAwesome;
   font-style: normal;
   font-weight: normal;
   text-transform: none !important;
@@ -3391,7 +3398,7 @@ body {
 .navPanelToggle:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
+  font-family: LineAwesome;
   font-style: normal;
   font-weight: normal;
   text-transform: none !important;
@@ -3504,7 +3511,7 @@ body {
 #navPanel .close:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
+  font-family: LineAwesome;
   font-style: normal;
   font-weight: normal;
   text-transform: none !important;
@@ -3903,8 +3910,12 @@ body.is-loading #banner:after {
 
   background-color: #e5474b;
   color: #f2a3a5;
-  padding: 2em 0 1em 0;
   background: #e5474b;
+
+  .text-center {
+    margin-top: 10px;
+    margin-bottom: -15px;
+  }
 }
 
 #footer input,

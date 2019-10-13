@@ -47,6 +47,18 @@ export class UserApiService {
       .pipe(catchError(this.handleError));
   }
 
+  public getUser(userId: string): Observable<UserInfo> {
+    return this.http
+      .get<UserInfo>(this.usersUrl + '/' + userId)
+      .pipe(catchError(this.handleError));
+  }
+
+  public updateUser(user: UserRegistration, userId: string | undefined): Observable<Object> {
+    return this.http
+      .patch(userId ? this.usersUrl + '/' + userId : this.currentUserUrl, user)
+      .pipe(catchError(this.handleError));
+  }
+
   public deleteUser(userId: string): Observable<Object> {
     return this.http
       .delete(this.usersUrl + '/' + userId)

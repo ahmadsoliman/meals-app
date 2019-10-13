@@ -1,299 +1,128 @@
 <div class="mb-medium"></div>
 <div class="container-fluid ">
   <div class="row">
-    <div class="col-xl-7">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8" *ngIf="form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="card p-medium mb-medium">
 
-      <ul class="tabs__list nav nav-tabs" id="myTab" role="tablist">
-        <li><a class="tabs__link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
-            aria-selected="true">Activity</a></li>
-
-        <li><a class="tabs__link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
-            aria-selected="false">Tasks</a></li>
-
-        <li><a class="tabs__link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact"
-            aria-selected="false">Info</a></li>
-
-      </ul>
-
-      <div class="tabs__content tab-content mb-large" id="nav-tabContent">
-        <div class="tabs__pane active pb-medium" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-          <p class="text-mute text-uppercase text-small mb-xsmall">Today</p>
-
-          <div class="news-feed-group">
-            <div class="news-feed news-feed--fancy">
-              <p>Fix the card issue <strong>SmartAsset</strong></p>
-
-              <p class="news-feed__comment">Yes fixed and works fine now Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Optio quibusdam minus magnam voluptatibus
-                debitis ipsam, nobis earum esse pariatur quaerat laboriosam libero assumenda
-                excepturi totam. Ipsa ut non esse maiores.</p>
-
-              <span class="news-feed__meta">25 minutes ago</span>
-            </div>
-
-            <div class="news-feed news-feed--success">
-              <p> <i>Start</i> Design the home page <strong>EzyMed</strong></p>
-
-              <span class="text-mute text-small">Today 5:20PM</span>
-            </div>
-
-            <div class="news-feed news-feed--fancy">
-              <p>Update the login form <strong>DD</strong></p>
-
-              <span class="news-feed__meta">Today 3:30 PM</span>
-            </div>
+          <div *ngIf="errorMsg" class="error-msg">
+            <label>{{ errorMsg }}</label>
           </div>
-
-          <p class="text-mute text-uppercase text-small mb-xsmall">Yesterday</p>
-
-          <div class="news-feed-group">
-            <div class="news-feed news-feed--info">
-              <p> <i>Start</i> Design the home page and upload to invision <strong>EzyMed</strong></p>
-
-              <div class="news-feed__gallery">
-
-                <div class="news-feed__gallery-item">
-                  <img src="assets/img/feed1.jpg" alt="">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="field mb-small">
+                <label class="field__label" for="firstName">First Name*</label>
+                <input class="input" type="text" id="firstName" maxlength="50" formControlName="firstName"
+                  class="input form-control" [ngClass]="{
+                    'is-invalid': f.firstName.touched && f.firstName.errors
+                  }" placeholder="Your first name" />
+                <div *ngIf="f.firstName.touched && f.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="f.firstName.errors.required">
+                    First Name is required
+                  </div>
                 </div>
-
-                <div class="news-feed__gallery-item">
-                  <img src="assets/img/feed2.jpg" alt="">
-                </div>
-
-                <div class="news-feed__gallery-item">
-                  <img src="assets/img/feed3.jpg" alt="">
-                </div>
-
-                <div class="news-feed__gallery-item">
-                  <img src="assets/img/feed4.jpg" alt="">
-                </div>
-
-                <div class="news-feed__gallery-item">
-                  <img src="assets/img/feed5.jpg" alt="">
-                </div>
-
               </div>
-
-              <span class="news-feed__meta"> 6:20 AM</span>
             </div>
-
-            <div class="news-feed news-feed--success">
-              <p> <i>Start</i> Design the home page <strong>EzyMed</strong></p>
-
-              <span class="text-mute text-small">Today 5:20PM</span>
-            </div>
-
-            <div class="news-feed news-feed--fancy">
-              <p>Update the login form <strong>DD</strong></p>
-
-              <span class="news-feed__meta">Today 3:30 PM</span>
-            </div>
-          </div>
-
-          <p class="text-mute text-uppercase text-small mb-xsmall">25 Sep</p>
-
-          <div class="feed mb-zero">
-            <div class="news-feed-group">
-              <div class="news-feed news-feed--info">
-                <p> <i>Start</i> Design the home page and upload to invision <strong>EzyMed</strong></p>
-
-                <div class="news-feed__gallery">
-
-                  <div class="news-feed__gallery-item">
-                    <img src="assets/img/feed1.jpg" alt="">
+            <div class="col-md-6">
+              <div class="field mb-small">
+                <label class="field__label" for="lastName">Last Name*</label>
+                <input class="input" type="text" id="lastName" maxlength="50" formControlName="lastName"
+                  class="input form-control" [ngClass]="{
+                    'is-invalid': f.lastName.touched && f.lastName.errors
+                  }" placeholder="Your last name" />
+                <div *ngIf="f.lastName.touched && f.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastName.errors.required">
+                    Last Name is required
                   </div>
-
-                  <div class="news-feed__gallery-item">
-                    <img src="assets/img/feed2.jpg" alt="">
-                  </div>
-
-                  <div class="news-feed__gallery-item">
-                    <img src="assets/img/feed3.jpg" alt="">
-                  </div>
-
-                  <div class="news-feed__gallery-item">
-                    <img src="assets/img/feed4.jpg" alt="">
-                  </div>
-
-                  <div class="news-feed__gallery-item">
-                    <img src="assets/img/feed5.jpg" alt="">
-                  </div>
-
                 </div>
-
-                <span class="news-feed__meta">25 Sep 6:20 AM</span>
-              </div>
-
-              <div class="news-feed news-feed--success">
-                <p> <i>Start</i> Design the home page <strong>EzyMed</strong></p>
-
-                <span class="text-mute text-small">25 Sep 5:20PM</span>
-              </div>
-
-              <div class="news-feed news-feed--fancy">
-                <p>Update the login form <strong>DD</strong></p>
-
-                <span class="news-feed__meta">25 Sep 3:30 PM</span>
               </div>
             </div>
           </div>
-          <div class="text-center border-top pt-small">
-            <div class="btn btn--info">Load more</div>
+
+          <div class="field mb-small">
+            <label class="field__label" for="email">Email*</label>
+            <input type="email" id="email" maxlength="50" formControlName="email" class="input form-control"
+              [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }" placeholder="Enter your email" />
+            <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email is not valid</div>
+            </div>
           </div>
 
+          <div class="6u 12u$(small) mt-medium">
+            <input type="checkbox" id="changePassword" name="changePassword" [(ngModel)]="changePassword"
+              [ngModelOptions]="{standalone: true}" (change)="changePasswordToggled($event)">
+            <label for="changePassword">Change Password ?</label>
+          </div>
+
+          <div *ngIf="changePassword">
+            <div class="field mb-small">
+              <label class="field__label" for="password">Password*</label>
+              <input type="password" id="password" maxlength="50" formControlName="password" class="input form-control"
+                placeholder="Enter your password" [ngClass]="{
+                'is-invalid': f.password.touched && f.password.errors
+              }" />
+              <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="
+                  f.password.errors.password && !f.password.errors.required
+                ">
+                  Password must not be less than 6 characters and contains at
+                  least 1 alphabetic letter
+                </div>
+              </div>
+            </div>
+            <div class="field mb-small">
+              <label class="field__label" for="passwordConfirmation">Confirm Password*</label>
+              <input type="password" id="passwordConfirmation" maxlength="50" formControlName="passwordConfirmation"
+                class="input form-control" placeholder="Re-enter your password" [ngClass]="{
+                'is-invalid':
+                  f.passwordConfirmation.touched &&
+                  f.passwordConfirmation.errors
+              }" />
+              <div *ngIf="
+                f.passwordConfirmation.touched && f.passwordConfirmation.errors
+              " class="invalid-feedback">
+                <div *ngIf="f.passwordConfirmation.errors.mustMatch">
+                  Password is not matched
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="tabs__pane pb-medium" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <p class="mb-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quidem
-            modi atque at aliquid expedita nemo incidunt exercitationem nihil sit. Laudantium
-            suscipit id amet saepe ratione, accusamus. Voluptatum in, nam.</p>
+        <div class="card p-medium mb-medium">
+          <h5 class="mb-medium">User Settings</h5>
 
-          <p class="mb-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A voluptate
-            nobis tenetur mollitia incidunt quod, est veniam, earum nemo! Alias rerum saepe aut
-            sapiente minus sunt doloribus tempora corrupti in!</p>
+          <div class="field mb-small">
+            <label class="field__label" for="email">Expected Daily Calories*</label>
+            <input type="number" id="calories" formControlName="expectedNumberOfCalories" class="input form-control"
+              [ngClass]="{ 'is-invalid': f.expectedNumberOfCalories.touched && f.expectedNumberOfCalories.errors }" />
+            <div *ngIf="f.expectedNumberOfCalories.touched && f.expectedNumberOfCalories.errors"
+              class="invalid-feedback">
+              <div *ngIf="f.expectedNumberOfCalories.errors.required">Calories is required</div>
+              <div *ngIf="f.expectedNumberOfCalories.errors.min">Calories must be more than 500.</div>
+              <div *ngIf="f.expectedNumberOfCalories.errors.max">Calories must be less than 5000.</div>
+            </div>
+          </div>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea distinctio nostrum
-            molestias assumenda, repudiandae consequuntur quae pariatur aut incidunt placeat
-            doloremque doloribus! Recusandae nostrum dolore repudiandae libero mollitia, rem
-            eveniet.</p>
+          <div class="field mb-small" *ngIf="userId">
+            <label class="field__label" for="email">User Type*</label>
+            <select id="userType" formControlName="permissionLevel" class="">
+              <option value="1">User</option>
+              <option value="3">User Manager</option>
+              <option value="7">Admin</option>
+            </select>
+          </div>
         </div>
 
-        <div class="tabs__pane pb-medium" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-          <p class="mb-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quidem
-            modi atque at aliquid expedita nemo incidunt exercitationem nihil sit. Laudantium
-            suscipit id amet saepe ratione, accusamus. Voluptatum in, nam.</p>
-
-          <p class="mb-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A voluptate
-            nobis tenetur mollitia incidunt quod, est veniam, earum nemo! Alias rerum saepe aut
-            sapiente minus sunt doloribus tempora corrupti in!</p>
-        </div>
-
-        <div class="tabs__pane pb-medium" id="nav-customer" role="tabpanel" aria-labelledby="nav-customer-tab">
-          <p class="mb-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quidem
-            modi atque at aliquid expedita nemo incidunt exercitationem nihil sit. Laudantium
-            suscipit id amet saepe ratione, accusamus. Voluptatum in, nam.</p>
-
-          <p class="mb-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A voluptate
-            nobis tenetur mollitia incidunt quod, est veniam, earum nemo! Alias rerum saepe aut
-            sapiente minus sunt doloribus tempora corrupti in!</p>
-
-          <p class="mb-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A voluptate
-            nobis tenetur mollitia incidunt quod, est veniam, earum nemo! Alias rerum saepe aut
-            sapiente minus sunt doloribus tempora corrupti in!</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quidem modi atque at
-            aliquid expedita nemo incidunt exercitationem nihil sit. Laudantium suscipit id amet
-            saepe ratione, accusamus. Voluptatum in, nam.</p>
-        </div>
-      </div>
-
+        <button type="submit" class="btn btn--round btn--fullwidth mt-small mb-large" [disabled]="!form.valid">
+          Save
+        </button>
+      </form>
     </div>
-
-    <div class="col-xl-5">
-      <div class="card p-medium mb-medium">
-
-        <div class="text-center">
-          <div class=" avatar--large mb-small inline-flex">
-            <img class="avatar__img" src="assets/img/team/medhat.jpg">
-          </div>
-
-          <h3 class="h5">Medhat Isaac</h3>
-          <p>UI/UX Developer, Web Desinger :)</p>
-          <span class="text-mute text-small">Cairo, Egypt</span>
-        </div>
-
-        <div class="display--flex justify-center mt-medium ">
-          <a class="btn btn--danger" href="#">Deactivate</a>
-        </div>
-
-        <table class="table text-center pv-small mt-medium border-right-zero border-left-zero">
-          <thead>
-            <tr>
-
-              <th class="pt-small color-primary">38</th>
-              <th class="pt-small color-primary">54</th>
-              <th class="pt-small color-primary">93</th>
-              <th class="pt-small color-primary">93</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-
-              <td class="text-mute text-xsmall pb-small text-uppercase">Project</td>
-              <td class="text-mute text-xsmall pb-small text-uppercase">Tasks</td>
-              <td class="text-mute text-xsmall pb-small text-uppercase">Finished Tasks</td>
-              <td class="text-mute text-xsmall pb-small text-uppercase">Finished Tasks</td>
-
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="news-feed has-icons mt-medium">
-          <div class="news-feed has-icon">
-            <i class="news-feed-icon bg-info fa fa-linkedin"></i>
-            <p>LinkedIn Profile</p>
-            <p class="news-feed__meta">
-              <a href="https://www.linkedin.com/in/medhat-isaac-5151a139/">www.linkedin/medhatisaac</a>
-            </p>
-          </div>
-
-          <div class="news-feed has-icon">
-            <i class="news-feed-icon bg-fancy fa fa-behance"></i>
-            <p>Behance</p>
-            <p class="news-feed__meta">
-              <a href="https://www.behance.net/">https://www.behance.net/</a>
-            </p>
-          </div>
-        </div>
-
-        <div class="pt-medium border-top text-center">
-          <a class="text-mute text-small" href="http://thoughtdesign.com.au/">
-            <i class="fa fa-globe mr-xsmall"></i>http://thoughtdesign.com.au/
-          </a>
-        </div>
-      </div>
-
-      <div class="card p-medium mb-medium">
-        <h5 class="mb-medium">Billing information</h5>
-
-        <table class="table border-zero">
-          <thead class="table__head border-bottom">
-            <tr>
-              <th class="table__cell text-left p-zero pb-medium display--flex align-items-center">
-                <img class="mr-xsmall" src="assets/img/visa.png" alt="Credit Card">Ending **** 1234
-              </th>
-              <th class="table__cell text-right p-zero pb-medium">09 / 20</th>
-              <th class="table__cell text-right p-zero pb-medium">
-                <span class="text-mute">Mastercard</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="pt-medium">
-            <tr class="table__row border-zero">
-              <td class="table__cell p-zero pb-xsmall pt-medium">Sep 2018 payment</td>
-              <td class="table__cell p-zero pb-xsmall pt-medium">
-                <span class="text-mute">Standard Payment</span>
-              </td>
-              <td class="table__cell p-zero pb-xsmall pt-medium text-right">
-                <span class="text-mute">15 Sep 2018</span>
-              </td>
-            </tr>
-            <tr class="table__row border-zero">
-              <td class="table__cell p-zero pb-xsmall">Oct 2018 Payment</td>
-              <td class="table__cell p-zero pb-xsmall">
-                <span class="text-mute">Extra bouns</span>
-              </td>
-              <td class="table__cell p-zero pb-xsmall text-right">
-                <span class="text-mute">14 Oct 2018</span>
-              </td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-
+    <div class="col-xl-2"></div>
   </div>
 
 </div>

@@ -17,12 +17,15 @@ import {
   LoginWithEmailAndPassword,
   Signup,
   FetchUsers,
-  DeleteUser
+  DeleteUser,
+  FetchUser,
+  UpdateUser
 } from './user.actions';
 import { UserApiService } from '@app/core/api/user-api.service';
 
 export interface UserStateModel {
   loggedInUser: UserInfo,
+  selectedUser: UserInfo,
 
   usersGridData: GridDataResult,
   usersLoading: boolean
@@ -32,6 +35,7 @@ export interface UserStateModel {
   name: 'user',
   defaults: {
     loggedInUser: UserInfo.createNew(),
+    selectedUser: UserInfo.createNew(),
 
     usersGridData: { data: [], total: 0 },
     usersLoading: false
@@ -104,6 +108,20 @@ export class UserState implements NgxsOnInit {
         usersLoading: false
       }) 
     );
+  }
+
+  @Action(FetchUser)
+  fetchUser(ctx: StateContext<UserStateModel>, action: FetchUser) {
+    return this.userApi.getUser(action.userId).subscribe((user) =>
+      ctx.patchState({
+        selectedUser: user
+      })
+    );
+  }
+
+  @Action(UpdateUser)
+  updateUser(ctx: StateContext<UserStateModel>, action: UpdateUser) {
+    return this.userApi.updateUser(action.user, action.userId);
   }
 
   @Action(DeleteUser)

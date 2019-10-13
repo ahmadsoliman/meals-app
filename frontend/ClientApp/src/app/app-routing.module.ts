@@ -8,6 +8,7 @@ import { RegistrationComponent } from './main/user/registration/registration.com
 import { UserListComponent } from './main/user/list/list.component';
 import { permissionLevels } from './core/models';
 import { EmptyComponent } from './shared/components/empty/empty.component';
+import { ProfileComponent } from './main/user/profile/profile.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,21 @@ const routes: Routes = [
         canActivate: [ AccessGuard ],
         data: {
           access: permissionLevels.USER_MANAGER
+        }
+      },
+      {
+        path: 'users/:userId',
+        component: ProfileComponent,
+        canActivate: [ AccessGuard ],
+        data: {
+          access: permissionLevels.USER_MANAGER
+        }
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: {
+          access: permissionLevels.USER
         }
       },
       {

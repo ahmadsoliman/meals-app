@@ -28,12 +28,18 @@ exports.getById = (req, res) => {
 };
 
 exports.patchById = (req, res) => {
+  let userId = '';
+  if (req.params['userId'] && req.params['userId'].length) {
+    userId = req.params['userId'];
+  } else if (req.jwt.userId) {
+    userId = req.jwt.userId;
+  }
   if (req.body.password) {
     let salt = crypto.randomBytes(16).toString('base64');
     let hash = crypto.createHmac('sha512', salt).update(req.body.password).digest("base64");
     req.body.password = salt + "$" + hash;
   }
-  UserModel.patchUser(req.params.userId, req.body).then((result) => {
+  UserModel.patchUser(userId, req.body).then((result) => {
     res.status(204).send({});
   });
 };
@@ -47,7 +53,7 @@ exports.list = (req, res) => {
       skip = Number.isInteger(req.query.skip) ? req.query.skip : 0;
     }
   }
-  UserModel.list(take, skip).then((result) => {
+  UserModel.list(take, skip, req.jwt.userId).then((result) => {
     res.status(200).send(result);
   });
 };

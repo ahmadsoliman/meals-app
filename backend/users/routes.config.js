@@ -13,6 +13,7 @@ module.exports = function (app) {
     UsersController.list
   ]);
 
+
   app.patch('/api/users/:userId', [
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER_MANAGER),
@@ -21,13 +22,18 @@ module.exports = function (app) {
 
   app.get('/api/users/:userId', [
     ValidationMiddleware.validJWTNeeded,
-    PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
+    PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER_MANAGER),
     UsersController.getById
   ]);
 
   app.get('/api/myuser', [
     ValidationMiddleware.validJWTNeeded,
     UsersController.getById
+  ]);
+
+  app.patch('/api/myuser', [
+    ValidationMiddleware.validJWTNeeded,
+    UsersController.patchById
   ]);
 
   app.delete('/api/users/:userId', [
