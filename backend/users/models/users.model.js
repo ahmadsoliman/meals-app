@@ -74,10 +74,10 @@ exports.patchUser = (id, userData) => {
   })
 };
 
-exports.list = (take, skip) => {
+exports.list = (take, skip, filteredUser) => {
   return new Promise((resolve, reject) => {
     User.countDocuments({}, (err, count) => {
-      User.find()
+      User.find({ _id: { $ne: filteredUser} })
         .limit(take)
         .skip(skip)
         .exec(function (err, users) {
@@ -92,7 +92,7 @@ exports.list = (take, skip) => {
               delete user.meals;
               return user;
             });
-            resolve({ users: users, total: count });
+            resolve({ users: users, total: count-1 });
           }
         })
     });
