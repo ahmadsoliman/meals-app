@@ -3,8 +3,14 @@ const PermissionMiddleware = require('../common/middlewares/permission.middlewar
 const UsersController = require('./controllers/users.controller');
 
 module.exports = function (app) {
+  app.post('/api/register', [
+    UsersController.insert(true)
+  ]);
+
   app.post('/api/users', [
-    UsersController.insert
+    ValidationMiddleware.validJWTNeeded,
+    PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER_MANAGER),
+    UsersController.insert(false)
   ]);
 
   app.get('/api/users', [

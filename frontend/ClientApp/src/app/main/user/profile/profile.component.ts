@@ -5,8 +5,8 @@ import { AuthService } from '@app/core/auth';
 import { Select, Store } from '@ngxs/store';
 import { AppState } from '@app/app.state';
 import { UserInfo, UserRegistration } from '@app/core/models';
-import { Observable } from 'rxjs';
-import { FetchUser, UpdateUser } from '../user.actions';
+import { Observable, of } from 'rxjs';
+import { FetchUser, UpdateUser, CreateUser } from '../user.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator, MustMatch } from '@app/core/validators';
 
@@ -16,8 +16,10 @@ import { PasswordValidator, MustMatch } from '@app/core/validators';
 })
 export class ProfileComponent implements OnInit {
 
+  createUser = false;
+  currentUser = false;
   userId: string;
-  user$!: Observable<UserInfo>;
+  user$ = of(UserInfo.createNew());
   @Select((state: AppState) => state.user.loggedInUser) loggedInUser$!: Observable<UserInfo>;
   @Select((state: AppState) => state.user.selectedUser) selectedUser$!: Observable<UserInfo>;
 
@@ -34,13 +36,25 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      if (params['userId']) {
-        this.store.dispatch(new FetchUser(params['userId']));
-        this.user$ = this.selectedUser$;
-        this.userId = params['userId'];
-      } else {
-        this.user$ = this.loggedInUser$;
-      }
+      this.route.data.subscribe(data => {
+        if(data.createUser) {
+          this.createUser = true;
+          this.currentUser = false;
+          this.changePassword = true;
+          this.user$ = of(UserInfo.createNew());
+        } else {
+          this.createUser = false;
+          if (params['userId']) {
+            this.store.dispatch(new FetchUser(params['userId']));
+            this.user$ = this.selectedUser$;
+            this.userId = params['userId'];
+            this.currentUser = false;
+          } else {
+            this.currentUser = true;
+            this.user$ = this.loggedInUser$;
+          }
+        }
+      })
     });
 
     this.user$.subscribe(user => this.buildForm(user));
@@ -63,10 +77,13 @@ export class ProfileComponent implements OnInit {
         validator: MustMatch('password', 'passwordConfirmation')
       }
     );
+    if(this.changePassword) {
+      this.changePasswordToggled();
+    }
   }
 
-  changePasswordToggled(flag) {
-    if (flag) {
+  changePasswordToggled() {
+    if (this.changePassword) {
       this.form.addControl('password', this.fb.control('', [Validators.required, PasswordValidator]));
       this.form.addControl('passwordConfirmation', this.fb.control(''));
       this.form.updateValueAndValidity();
@@ -86,15 +103,26 @@ export class ProfileComponent implements OnInit {
         email: this.f.email.value,
         password: this.changePassword ? this.f.password.value : undefined,
         expectedNumberOfCalories: this.f.expectedNumberOfCalories.value,
-        permissionLevel: this.userId ? this.f.permissionLevel.value : undefined
+        permissionLevel: (this.userId || this.createUser) ? this.f.permissionLevel.value : undefined
       };
-      this.store.dispatch(new UpdateUser(user, this.userId)).subscribe(
-        (x) => { },
-        (err) => {
-          console.error(err.code);
-          this.errorMsg = err.description;
-        }
-      );
+
+      if(this.createUser) {
+        this.store.dispatch(new CreateUser(user)).subscribe(
+          (x) => { },
+          (err) => {
+            console.error(err.code);
+            this.errorMsg = err.description;
+          }
+        );
+      } else {
+        this.store.dispatch(new UpdateUser(user, this.userId)).subscribe(
+          (x) => { },
+          (err) => {
+            console.error(err.code);
+            this.errorMsg = err.description;
+          }
+        );
+      }
     }
   }
 }

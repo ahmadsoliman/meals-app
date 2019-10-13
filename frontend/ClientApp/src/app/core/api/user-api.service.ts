@@ -17,10 +17,18 @@ export class UserApiService {
   private readonly usersUrl = apiUrlsConfig.usersUrl;
   private readonly currentUserUrl = apiUrlsConfig.currentUserUrl;
   private readonly loginUrl = apiUrlsConfig.loginUrl;
+  private readonly registerUrl = apiUrlsConfig.registerUrl;
 
   constructor(
     private readonly http: HttpClient
   ) { }
+
+  public register(data: UserRegistration): Observable<string> {
+    return this.http
+      .post<{id: string}>(this.registerUrl, data)
+      .pipe(map(data => data.id))
+      .pipe(catchError(this.handleError));
+  }
 
   public createUser(data: UserRegistration): Observable<string> {
     return this.http

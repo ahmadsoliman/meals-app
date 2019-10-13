@@ -50,7 +50,7 @@
             </div>
           </div>
 
-          <div class="6u 12u$(small) mt-medium">
+          <div class="6u 12u$(small) mt-medium" *ngIf="!createUser">
             <input type="checkbox" id="changePassword" name="changePassword" [(ngModel)]="changePassword"
               [ngModelOptions]="{standalone: true}" (change)="changePasswordToggled($event)">
             <label for="changePassword">Change Password ?</label>
@@ -81,9 +81,7 @@
                   f.passwordConfirmation.touched &&
                   f.passwordConfirmation.errors
               }" />
-              <div *ngIf="
-                f.passwordConfirmation.touched && f.passwordConfirmation.errors
-              " class="invalid-feedback">
+              <div *ngIf="f.passwordConfirmation.touched && f.passwordConfirmation.errors" class="invalid-feedback">
                 <div *ngIf="f.passwordConfirmation.errors.mustMatch">
                   Password is not matched
                 </div>
@@ -107,7 +105,7 @@
             </div>
           </div>
 
-          <div class="field mb-small" *ngIf="userId">
+          <div class="field mb-small" *ngIf="userId || createUser">
             <label class="field__label" for="email">User Type*</label>
             <select id="userType" formControlName="permissionLevel" class="">
               <option value="1">User</option>

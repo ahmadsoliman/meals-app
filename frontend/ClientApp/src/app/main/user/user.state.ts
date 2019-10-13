@@ -19,7 +19,8 @@ import {
   FetchUsers,
   DeleteUser,
   FetchUser,
-  UpdateUser
+  UpdateUser,
+  CreateUser
 } from './user.actions';
 import { UserApiService } from '@app/core/api/user-api.service';
 
@@ -117,6 +118,13 @@ export class UserState implements NgxsOnInit {
         selectedUser: user
       })
     );
+  }
+
+  @Action(CreateUser)
+  createUser(ctx: StateContext<UserStateModel>, action: CreateUser) {
+    return this.userApi.createUser(action.user).subscribe(() => {
+      ctx.dispatch(new Navigate(['/users']));
+    });
   }
 
   @Action(UpdateUser)

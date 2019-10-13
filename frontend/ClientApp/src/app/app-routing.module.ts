@@ -42,6 +42,14 @@ const routes: Routes = [
         }
       },
       {
+        path: 'create-user',
+        component: ProfileComponent,
+        data: {
+          access: permissionLevels.USER,
+          createUser: true
+        }
+      },
+      {
         path: 'profile',
         component: ProfileComponent,
         data: {

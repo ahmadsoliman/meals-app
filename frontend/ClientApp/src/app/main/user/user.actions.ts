@@ -25,6 +25,11 @@ export class FetchUser {
   constructor(public userId: string) {}
 }
 
+export class CreateUser {
+  static type = '[User] CreateUser';
+  constructor(public user: UserRegistration) {}
+}
+
 export class UpdateUser {
   static type = '[User] UpdateUser';
   constructor(public user: UserRegistration, public userId?: string) {}
