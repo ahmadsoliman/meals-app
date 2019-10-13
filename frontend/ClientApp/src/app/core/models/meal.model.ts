@@ -1,5 +1,5 @@
 export class Meal {
-  private constructor(
+  public constructor(
     public id: string,
     public text: string,
     public date: Date,

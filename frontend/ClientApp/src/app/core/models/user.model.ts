@@ -5,7 +5,7 @@ export const permissionLevels = {
 };
 
 export class UserInfo {
-  private constructor(
+  public constructor(
     public id: string,
     public email: string,
     public firstName: string,
@@ -26,7 +26,7 @@ export class UsersList {
 }
 
 export class AuthToken {
-  private constructor(
+  public constructor(
     public accessToken: string,
     public refreshToken: string,
     public permissionLevel: number
@@ -38,7 +38,7 @@ export class AuthToken {
 }
 
 export class UserRegistration {
-  private constructor(
+  public constructor(
     public firstName: string,
     public lastName: string,
     public email: string,

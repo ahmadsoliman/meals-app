@@ -11,6 +11,8 @@ import { MainModule } from './main/main.module';
 import { CoreModule } from './core/core.module';
 import { appStates } from './app.state';
 import { SharedModule } from './shared/shared.module';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     CoreModule,
     NgxsModule.forRoot(appStates, { developmentMode: !environment.production }),
-    NgxsRouterPluginModule.forRoot()
+    NgxsRouterPluginModule.forRoot(),
+    DateInputsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -37,11 +37,12 @@ exports.list = (userId, take, skip) => {
 exports.patchMeal = (userId, mealId, mealData) => {
   return new Promise((resolve, reject) => {
     UserModel.User.findById(userId).then((user) => {
-      const meal = user.meals.find(meal => meal._id == mealId);
-      if (!meal) reject('Meal not found!');
-
+      const mealIndex = user.meals.findIndex(meal => meal._id == mealId);
+      if (mealIndex === -1) {
+        return reject('Meal not found!');
+      }
       for (let i in mealData) {
-        meal[i] = mealData[i];
+        user.meals[mealIndex][i] = mealData[i];
       }
       user.save(function (err) {
         if (err) return reject(err);

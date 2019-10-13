@@ -30,6 +30,13 @@ export class MealsApiService {
   public getMeals(userId: string): Observable<MealsList> {
     return this.http
       .get<MealsList>(this.mealsUrl.replace(':userId', userId))
+      .pipe(map((mealsList) => {
+        mealsList.meals = mealsList.meals.map(meal => {
+          meal.date = new Date(meal.date);
+          return meal;
+        });
+        return mealsList;
+      }))
       .pipe(catchError(this.handleError));
   }
 

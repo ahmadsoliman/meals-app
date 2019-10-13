@@ -10,6 +10,11 @@ export class FetchMeal {
   constructor(public userId: string, public mealId: string) {}
 }
 
+export class CreateMeal {
+  static type = '[Meal] CreateMeal';
+  constructor(public userId: string, public meal: Meal) {}
+}
+
 export class UpdateMeal {
   static type = '[Meal] UpdateMeal';
   constructor(public userId: string, public meal: Meal) {}

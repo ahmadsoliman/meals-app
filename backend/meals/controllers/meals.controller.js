@@ -9,7 +9,7 @@ exports.insert = (req, res) => {
 };
 
 exports.patchById = (req, res) => {
-  MealModel.patchMeal(req.params.mealId, req.body).then((result) => {
+  MealModel.patchMeal(req.params.userId, req.params.mealId, req.body).then((result) => {
     res.status(204).send({});
   }).catch(err => {
     res.status(404).send('Meal doesnt exist!');

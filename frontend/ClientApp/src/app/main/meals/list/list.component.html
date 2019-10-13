@@ -2,7 +2,7 @@
   <span *ngIf="!isForCurrentUser" class="title-sub ml-small">{{ (loggedInUser$ | async)?.firstName }}'s</span>
   <h5 class="ml-xsmall">Meals List</h5>
 
-  <div class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn">
+  <div class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn" (click)="modal.openModal()">
     <i class="fa fa-plus"></i> New Meal
   </div>
 </div>
@@ -32,7 +32,7 @@
         <kendo-grid-column title="Actions">
           <ng-template kendoGridCellTemplate let-dataItem>
             <div kendoTooltip>
-              <a title="Edit Meal" class="btn--sm">
+              <a title="Edit Meal" class="btn--sm" (click)="modal.editMeal(dataItem)">
                 <i class="fa fa-edit"></i>
               </a>
               <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)">
@@ -52,3 +52,5 @@
     <button kendoButton (click)="deleteMeal()" primary="true">Yes</button>
   </kendo-dialog-actions>
 </kendo-dialog>
+
+<app-meals-details-modal #modal [userId]="userId"></app-meals-details-modal>

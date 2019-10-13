@@ -7,7 +7,7 @@ import {
 import { MealsList } from '@app/core/models';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { MealsApiService } from '@app/core/api/meals-api.service';
-import { FetchMeals, UpdateMeal, DeleteMeal } from './meals.actions';
+import { FetchMeals, UpdateMeal, DeleteMeal, CreateMeal } from './meals.actions';
 
 export interface MealsStateModel {
   mealsGridData: GridDataResult,
@@ -36,6 +36,13 @@ export class MealsState {
         mealsGridData: { data: mealsList.meals, total: mealsList.total },
         mealsLoading: false
       })
+    );
+  }
+
+  @Action(CreateMeal)
+  createMeal(ctx: StateContext<MealsStateModel>, action: CreateMeal) {
+    return this.mealsApi.createMeal(action.userId, action.meal).subscribe(() =>
+      ctx.dispatch(new FetchMeals(action.userId))
     );
   }
 
