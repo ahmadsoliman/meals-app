@@ -16,3 +16,13 @@ export class MealsList {
     public total: number
   ) {}
 }
+
+export class DateRange {
+  public constructor(
+    public start: Date,
+    public end: Date
+  ) {}
+  public static createNew(): DateRange {
+    return new DateRange(new Date(), new Date());
+  }
+}

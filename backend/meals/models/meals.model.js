@@ -11,6 +11,18 @@ exports.MealSchema = mealSchema;
 const MealModel = mongoose.model('Meals', mealSchema);
 exports.MealModel = MealModel;
 
+const inRangePredicate = (date, dateRanges) => {
+  if ((dateRanges.startDate && date < dateRanges.startDate) ||
+    (dateRanges.endDate && date > dateRanges.endDate) ||
+    (dateRanges.startTime && (date.getHours() < dateRanges.startTime.getHours() || 
+      (date.getHours() === dateRanges.startTime.getHours() && date.getMinutes() < dateRanges.startTime.getMinutes()))) ||
+    (dateRanges.endTime && (date.getHours() > dateRanges.endTime.getHours() || 
+      (date.getHours() === dateRanges.endTime.getHours() && date.getMinutes() > dateRanges.endTime.getMinutes())))) {
+    return false;
+  }
+  return true;
+}
+
 exports.createMeal = (userId, mealData) => {
   const meal = new MealModel(mealData);
   return UserModel.User.findById(userId).then((user) => {
@@ -21,9 +33,10 @@ exports.createMeal = (userId, mealData) => {
   });
 };
 
-exports.list = (userId, take, skip) => {
+exports.list = (userId, take, skip, dateRanges) => {
   return UserModel.User.findById(userId).then((result) => {
-    const meals = result.meals.sort((a, b) => a.date > b.date);
+    const meals = result.meals.sort((a, b) => a.date > b.date)
+      .filter(meal => inRangePredicate(meal.date, dateRanges));
     const mealsPage = meals.slice(skip, skip + take).map(meal => {
       meal = meal.toJSON();
       meal.id = meal._id;
@@ -55,7 +68,7 @@ exports.patchMeal = (userId, mealId, mealData) => {
 exports.removeById = (userId, mealId) => {
   return new Promise((resolve, reject) => {
     UserModel.User.findById(userId).then((user) => {
-      const mealIndex = user.meals.findIndex(meal => meal._id == mealId );
+      const mealIndex = user.meals.findIndex(meal => meal._id == mealId);
       if (mealIndex === -1) {
         reject('Meal not found!');
         return;

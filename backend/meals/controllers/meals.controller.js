@@ -19,13 +19,17 @@ exports.patchById = (req, res) => {
 exports.list = (req, res) => {
   let take = req.query.take && req.query.take <= 100 ? parseInt(req.query.take) : 10;
   let skip = 0;
-  if (req.query) {
-    if (req.query.skip) {
-      req.query.skip = parseInt(req.query.skip);
-      skip = Number.isInteger(req.query.skip) ? req.query.skip : 0;
-    }
+  if (req.query.skip) {
+    req.query.skip = parseInt(req.query.skip);
+    skip = Number.isInteger(req.query.skip) ? req.query.skip : 0;
   }
-  MealModel.list(req.params.userId, take, skip).then((result) => {
+
+  const startDate = req.query.startDate ? new Date(req.query.startDate) : undefined;
+  const endDate = req.query.endDate ? new Date(req.query.endDate) : undefined;
+  const startTime = req.query.startTime ? new Date(req.query.startTime) : undefined;
+  const endTime =  req.query.startTime ? new Date(req.query.endTime) : undefined;
+  
+  MealModel.list(req.params.userId, take, skip, { startDate, endDate, startTime, endTime}).then((result) => {
     res.status(200).send(result);
   })
 };

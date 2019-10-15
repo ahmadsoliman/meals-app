@@ -10,7 +10,7 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map } from 'rxjs/operators';
 import { apiUrlsConfig } from './api.config';
-import { AuthToken, Meal, MealsList } from '../models';
+import { AuthToken, Meal, MealsList, DateRange } from '../models';
 
 @Injectable()
 export class MealsApiService {
@@ -27,9 +27,20 @@ export class MealsApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public getMeals(userId: string): Observable<MealsList> {
+  public getMeals(userId: string, dateRange?: DateRange, timeRange?: DateRange): Observable<MealsList> {
+    if(!userId) return;
+    let params = new HttpParams();
+    if(dateRange) {
+      if(dateRange.start) params = params.set('startDate', dateRange.start.toISOString());
+      if(dateRange.end) params = params.set('endDate', dateRange.end.toISOString());
+    }
+    if(timeRange) {
+      if(timeRange.start) params = params.append('startTime', timeRange.start.toISOString());
+      if(timeRange.end) params = params.append('endTime', timeRange.end.toISOString());
+    }
+
     return this.http
-      .get<MealsList>(this.mealsUrl.replace(':userId', userId))
+      .get<MealsList>(this.mealsUrl.replace(':userId', userId), { params })
       .pipe(map((mealsList) => {
         mealsList.meals = mealsList.meals.map(meal => {
           meal.date = new Date(meal.date);

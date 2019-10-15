@@ -2,12 +2,59 @@
   <span *ngIf="!isForCurrentUser" class="title-sub ml-small">{{ (user$ | async)?.firstName }}'s</span>
   <h5 class="ml-xsmall">Meals List</h5>
 
-  <div class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn" (click)="modal.openModal()">
+  <div class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn"
+    (click)="modal.openModal()">
     <i class="fa fa-plus"></i> New Meal
   </div>
 </div>
 
 <div class="container-fluid">
+  <div class="card p-small mb-small mr-medium ml-medium border-top-zero">
+    <div class="row">
+
+      <div class="col-md-5 mb-small">
+        <div class="form-field">
+          <label class="field__label" for="input17">Filter by Date range:</label>
+          <kendo-daterange>
+            <label>
+              <span class="label mr-medium">Start</span>
+              <kendo-dateinput kendoDateRangeStartInput [(value)]="dateRangeFilter.start"></kendo-dateinput>
+            </label>
+            <label>
+              <span class="label mr-medium">End</span>
+              <kendo-dateinput kendoDateRangeEndInput [(value)]="dateRangeFilter.end"></kendo-dateinput>
+            </label>
+          </kendo-daterange>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="form-field">
+          <label class="field__label" for="input17">Filter by Time range:</label>
+          <div>
+            <label>
+              <span class="label mr-medium">Start</span>
+              <kendo-timepicker name="rangeStart" [(ngModel)]="timeRangeFilter.start"></kendo-timepicker>
+            </label>
+            <label>
+              <span class="label mr-medium">End</span>
+              <kendo-timepicker name="rangeEnd" [(ngModel)]="timeRangeFilter.end"></kendo-timepicker>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="btn btn--fancy mt-small" id="panel-newAssetType-btn" (click)="search()">
+          <i class="fa fa-search"></i> Search
+        </div>
+        <div class="btn mt-small" id="panel-newAssetType-btn" (click)="resetRanges()">
+          <i class="fa fa-refresh"></i> Reset
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="ml-medium mr-medium">
       <kendo-grid [data]="mealsGridData$ | async" [loading]="mealsLoading$ | async" height="500">

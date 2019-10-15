@@ -4,7 +4,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { MealsListComponent } from './list/list.component';
 import { DetailsModalComponent } from './details-modal/details-modal.component';
-import { DateTimePickerModule } from '@progress/kendo-angular-dateinputs';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { SharedModule } from '@app/shared/shared.module';
     RouterModule,
     GridModule,
     DialogsModule,
-    DateTimePickerModule
+    DateInputsModule
   ],
   exports: []
 })
