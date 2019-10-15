@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { UserInfo, Meal } from '@app/core/models';
 import { FetchMeals, DeleteMeal } from '../meals.actions';
 import { ActivatedRoute } from '@angular/router';
+import { FetchUser } from '@app/main/user/user.actions';
 
 @Component({
   selector: 'app-meals-list',
@@ -18,6 +19,7 @@ export class MealsListComponent implements OnInit {
   public deleteDialogOpened = false;
   public mealBeingDeleted: Meal;
 
+  @Select((state: AppState) => state.user.selectedUser) user$!: Observable<UserInfo>;
   @Select((state: AppState) => state.user.loggedInUser) loggedInUser$!: Observable<UserInfo>;
 
   @Select((state: AppState) => state.meals.mealsGridData) mealsGridData$!: Observable<GridDataResult>;
@@ -26,7 +28,7 @@ export class MealsListComponent implements OnInit {
   constructor(
     private readonly store: Store,
     private readonly route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -34,10 +36,12 @@ export class MealsListComponent implements OnInit {
         this.isForCurrentUser = false;
         this.userId = params['userId'];
         this.store.dispatch(new FetchMeals(this.userId));
+        this.store.dispatch(new FetchUser(this.userId));
       } else {
         this.isForCurrentUser = true;
         this.loggedInUser$.subscribe(user => {
-          if(user.id.length){
+          if (user.id.length) {
+            this.userId = user.id;
             this.store.dispatch(new FetchMeals(user.id));
           }
         });

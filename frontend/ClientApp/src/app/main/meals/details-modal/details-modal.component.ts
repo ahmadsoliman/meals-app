@@ -19,9 +19,11 @@ export class DetailsModalComponent implements OnInit {
   form: FormGroup;
 
   @Input() userId!: string;
+
   constructor(private readonly store: Store, private readonly fb: FormBuilder) { }
 
   ngOnInit() {
+    
   }
 
   editMeal(meal: Meal) {
