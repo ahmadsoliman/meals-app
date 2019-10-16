@@ -80,7 +80,6 @@ export class UserState implements NgxsOnInit {
     );
   }
 
-
   @Action(Logout)
   logout(
     ctx: StateContext<UserStateModel>,

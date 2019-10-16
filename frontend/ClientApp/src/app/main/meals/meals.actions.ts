@@ -10,6 +10,11 @@ export class SetDateRanges {
   constructor(public dateRange: DateRange, public timeRange: DateRange) { }
 }
 
+export class ChangeMealsPage {
+  static type = '[Meal] ChangeMealsPage';
+  constructor(public skip: number) { }
+}
+
 export class FetchMeal {
   static type = '[Meal] FetchMeal';
   constructor(public userId: string, public mealId: string) { }

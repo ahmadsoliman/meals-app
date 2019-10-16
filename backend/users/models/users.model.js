@@ -84,6 +84,7 @@ exports.list = (take, skip, filteredUser, userLevel) => {
         if (err) {
           reject(err);
         } else {
+          const count = users.length;
           users = users.map((user) => {
             user = user.toJSON();
             user.id = user._id;
@@ -95,7 +96,7 @@ exports.list = (take, skip, filteredUser, userLevel) => {
           if(userLevel < permissionLevels.ADMIN) {
             users = users.filter(user => user.permissionLevel === permissionLevels.USER);
           }
-          resolve({ users: users, total: users.length });
+          resolve({ users: users, total: count });
         }
       })
   });

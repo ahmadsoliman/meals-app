@@ -22,28 +22,26 @@ export class MealsApiService {
 
   public createMeal(userId: string, meal: Meal): Observable<string> {
     return this.http
-      .post<{id: string}>(this.mealsUrl.replace(':userId', userId), meal)
+      .post<{ id: string }>(this.mealsUrl.replace(':userId', userId), meal)
       .pipe(map(data => data.id))
       .pipe(catchError(this.handleError));
   }
 
-  public getMeals(userId: string, dateRange?: DateRange, timeRange?: DateRange): Observable<MealsList> {
-    let params = new HttpParams();
-    if(dateRange) {
-      if(dateRange.start) params = params.set('startDate', dateRange.start.toLocaleDateString());
-      if(dateRange.end) params = params.set('endDate', dateRange.end.toLocaleDateString());
-    }
-    if(timeRange) {
-      if(timeRange.start) params = params.append('startTime', timeRange.start.toISOString());
-      if(timeRange.end) params = params.append('endTime', timeRange.end.toISOString());
-    }
-
+  public getMeals(userId: string, dateRange?: DateRange, timeRange?: DateRange, skip = 0): Observable<MealsList> {
+    let params = MealsApiService.setMealsParams(dateRange, timeRange, skip);
     return this.http
       .get<MealsList>(this.mealsUrl.replace(':userId', userId), { params })
       .pipe(map((mealsList) => {
         mealsList.meals = mealsList.meals.map(meal => {
           meal.date = new Date(meal.date);
           return meal;
+        });
+        mealsList.meals = mealsList.meals.sort((a,b) => {
+          if(a.date < b.date) {
+            return -1;
+          } else {
+            return 1;
+          }
         });
         return mealsList;
       }))
@@ -60,6 +58,22 @@ export class MealsApiService {
     return this.http
       .delete(this.mealsUrl.replace(':userId', userId) + '/' + mealId)
       .pipe(catchError(this.handleError));
+  }
+
+  private static setMealsParams(dateRange?: DateRange, timeRange?: DateRange, skip = 0) {
+    let params = new HttpParams();
+    if (dateRange) {
+      if (dateRange.start) params = params.set('startDate', dateRange.start.toLocaleDateString());
+      if (dateRange.end) params = params.set('endDate', dateRange.end.toLocaleDateString());
+    }
+    if (timeRange) {
+      if (timeRange.start) params = params.append('startTime', timeRange.start.toISOString());
+      if (timeRange.end) params = params.append('endTime', timeRange.end.toISOString());
+    }
+    if (skip) {
+      params = params.append('skip', '' + skip);
+    }
+    return params;
   }
 
   private handleError(error: HttpErrorResponse) {

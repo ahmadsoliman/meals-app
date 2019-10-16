@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { GridDataResult, RowClassArgs } from '@progress/kendo-angular-grid';
+import { GridDataResult, RowClassArgs, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { AppState } from '@app/app.state';
 import { Observable } from 'rxjs';
 import { UserInfo, Meal, DateRange } from '@app/core/models';
-import { FetchMeals, DeleteMeal, SetDateRanges } from '../meals.actions';
+import { FetchMeals, DeleteMeal, SetDateRanges, ChangeMealsPage } from '../meals.actions';
 import { ActivatedRoute } from '@angular/router';
 import { FetchUser } from '@app/main/user/user.actions';
 import { first } from 'rxjs/operators';
@@ -30,7 +30,8 @@ export class MealsListComponent implements OnInit {
 
   @Select((state: AppState) => state.user.selectedUser) user$!: Observable<UserInfo>;
   @Select((state: AppState) => state.user.loggedInUser) loggedInUser$!: Observable<UserInfo>;
-
+  
+  @Select((state: AppState) => state.meals.skip) skip$!: Observable<number>;
   @Select((state: AppState) => state.meals.mealsGridData) mealsGridData$!: Observable<GridDataResult>;
   @Select((state: AppState) => state.meals.mealsLoading) mealsLoading$!: Observable<boolean>;
 
@@ -91,5 +92,10 @@ export class MealsListComponent implements OnInit {
       valid: !context.dataItem.exceedsDailyLimit,
       invalid: context.dataItem.exceedsDailyLimit
     };
+  }
+
+  public changePage({ skip }: PageChangeEvent) {
+    this.store.dispatch(new ChangeMealsPage(skip));
+    this.store.dispatch(new FetchMeals(this.userId));
   }
 }

@@ -7,11 +7,12 @@ import {
 import { MealsList, DateRange } from '@app/core/models';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { MealsApiService } from '@app/core/api/meals-api.service';
-import { FetchMeals, UpdateMeal, DeleteMeal, CreateMeal, SetDateRanges } from './meals.actions';
+import { FetchMeals, UpdateMeal, DeleteMeal, CreateMeal, SetDateRanges, ChangeMealsPage } from './meals.actions';
 
 export interface MealsStateModel {
   mealsGridData: GridDataResult,
   mealsLoading: boolean,
+  skip: number,
 
   dateRange: DateRange,
   timeRange: DateRange
@@ -22,6 +23,7 @@ export interface MealsStateModel {
   defaults: {
     mealsGridData: { data: [], total: 0 },
     mealsLoading: false,
+    skip: 0,
 
     dateRange: undefined,
     timeRange: undefined
@@ -32,32 +34,41 @@ export class MealsState {
     private readonly mealsApi: MealsApiService
   ) { }
 
-  
+
   @Action(FetchMeals)
   fetchMeals(ctx: StateContext<MealsStateModel>, action: FetchMeals) {
-    if(!action.userId) {
+    if (!action.userId) {
       return;
     }
     const state = ctx.getState();
     ctx.patchState({
       mealsLoading: true
     });
-    return this.mealsApi.getMeals(action.userId, state.dateRange, state.timeRange).subscribe((mealsList: MealsList) =>
-      ctx.patchState({
-        mealsGridData: { data: mealsList.meals, total: mealsList.total },
-        mealsLoading: false
-      })
-    );
+    return this.mealsApi.getMeals(action.userId, state.dateRange, state.timeRange, state.skip)
+      .subscribe((mealsList: MealsList) =>
+        ctx.patchState({
+          mealsGridData: { data: mealsList.meals, total: mealsList.total },
+          mealsLoading: false
+        })
+      );
   }
 
   @Action(SetDateRanges)
   setDateRanges(ctx: StateContext<MealsStateModel>, action: SetDateRanges) {
     ctx.patchState({
       dateRange: { ...action.dateRange },
-      timeRange: { ...action.timeRange }
+      timeRange: { ...action.timeRange },
+      skip: 0
     });
   }
-  
+
+  @Action(ChangeMealsPage)
+  changeMealsPage(ctx: StateContext<MealsStateModel>, action: ChangeMealsPage) {
+    ctx.patchState({
+      skip: action.skip
+    });
+  }
+
   @Action(CreateMeal)
   createMeal(ctx: StateContext<MealsStateModel>, action: CreateMeal) {
     return this.mealsApi.createMeal(action.userId, action.meal).subscribe(() =>

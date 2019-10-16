@@ -58,7 +58,8 @@
   <div class="row">
     <div class="ml-medium mr-medium">
       <kendo-grid [data]="mealsGridData$ | async" [loading]="mealsLoading$ | async" height="470"
-        [rowClass]="rowCallback">
+        [rowClass]="rowCallback" [pageable]="true" [pageSize]="10" [skip]="skip$ | async"
+        (pageChange)="changePage($event)">
         <kendo-grid-column field="text" title="Description" width="350">
         </kendo-grid-column>
 
