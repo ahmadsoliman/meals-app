@@ -35,6 +35,9 @@ export class MealsState {
   
   @Action(FetchMeals)
   fetchMeals(ctx: StateContext<MealsStateModel>, action: FetchMeals) {
+    if(!action.userId) {
+      return;
+    }
     const state = ctx.getState();
     ctx.patchState({
       mealsLoading: true

@@ -12,8 +12,9 @@ const MealModel = mongoose.model('Meals', mealSchema);
 exports.MealModel = MealModel;
 
 const inRangePredicate = (date, dateRanges) => {
-  if ((dateRanges.startDate && date < dateRanges.startDate) ||
-    (dateRanges.endDate && date > dateRanges.endDate) ||
+  forDate = new Date(date.toLocaleDateString());
+  if ((dateRanges.startDate && forDate < dateRanges.startDate) ||
+    (dateRanges.endDate && forDate > dateRanges.endDate) ||
     (dateRanges.startTime && (date.getHours() < dateRanges.startTime.getHours() || 
       (date.getHours() === dateRanges.startTime.getHours() && date.getMinutes() < dateRanges.startTime.getMinutes()))) ||
     (dateRanges.endTime && (date.getHours() > dateRanges.endTime.getHours() || 

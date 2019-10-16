@@ -28,11 +28,10 @@ export class MealsApiService {
   }
 
   public getMeals(userId: string, dateRange?: DateRange, timeRange?: DateRange): Observable<MealsList> {
-    if(!userId) return;
     let params = new HttpParams();
     if(dateRange) {
-      if(dateRange.start) params = params.set('startDate', dateRange.start.toISOString());
-      if(dateRange.end) params = params.set('endDate', dateRange.end.toISOString());
+      if(dateRange.start) params = params.set('startDate', dateRange.start.toLocaleDateString());
+      if(dateRange.end) params = params.set('endDate', dateRange.end.toLocaleDateString());
     }
     if(timeRange) {
       if(timeRange.start) params = params.append('startTime', timeRange.start.toISOString());
