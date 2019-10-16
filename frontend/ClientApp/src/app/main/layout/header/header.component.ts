@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { AppState } from '@app/app.state';
 import { Observable } from 'rxjs';
 import { UserInfo } from '@app/core/models';
+import { Logout } from '@app/main/user/user.actions';
 
 @Component({
   selector: 'app-main-header',
@@ -45,7 +46,7 @@ export class HeaderComponent implements OnInit {
 
   public onSelect({ item }): void {
     if (item.path === '/logout') {
-      this.auth.logout();
+      this.store.dispatch(new Logout());
     } else if(item.path) {
       this.router.navigate([item.path]);
     }

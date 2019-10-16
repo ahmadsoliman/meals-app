@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { UserApiService } from '../api/user-api.service';
 import { AuthToken, UserRegistration, UserInfo, permissionLevels } from '../models';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private userApi: UserApiService, private router: Router) {}
+  constructor(private userApi: UserApiService, private router: Router) { }
 
   private setSession(authResult: AuthToken): void {
     // Set the time that the access token will expire at
@@ -23,20 +24,16 @@ export class AuthService {
   }
 
   public login(email, password): Observable<AuthToken> {
-    const obs = this.userApi.login(email, password);
-    obs.subscribe(authToken => {
+    return this.userApi.login(email, password).pipe(tap(authToken => {
       this.setSession(authToken);
-    });
-    return obs;
+    }));
   }
 
   public logout(): void {
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
-    // localStorage.removeItem('expires_at');
-    // Go back to the login route
-    this.router.navigate(['/login']);
+    localStorage.removeItem('permission_level');
   }
 
   public isAuthenticated(): boolean {
@@ -46,26 +43,26 @@ export class AuthService {
 
   // tslint:disable-next-line
   public register(data: UserRegistration): Observable<string> {
-    return this.userApi.createUser(data);
+    return this.userApi.register(data);
   }
 
   // tslint:disable-next-line
   public userloggedIn(): Observable<UserInfo> {
     return this.userApi.getCurrentUser();
   }
-  
+
   public getToken(): string {
     return localStorage.getItem('access_token');
   }
 
   public isAccessAllowed(level: number) {
-    if(this.isAuthenticated()) {
+    if (this.isAuthenticated()) {
       const permissionLevel = parseInt(localStorage.getItem('permission_level'));
       return permissionLevel >= level;
     }
     return false;
   }
-  
+
   public isAdmin(): boolean {
     return this.isAccessAllowed(permissionLevels.ADMIN);
   }
@@ -73,7 +70,7 @@ export class AuthService {
   public isUserManager(): boolean {
     return this.isAccessAllowed(permissionLevels.USER_MANAGER);
   }
-  
+
   public isUser(): boolean {
     return this.isAccessAllowed(permissionLevels.USER);
   }

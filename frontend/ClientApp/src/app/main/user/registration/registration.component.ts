@@ -71,9 +71,8 @@ export class RegistrationComponent implements OnInit {
       };
       this.store.dispatch(new Signup(userRegistration)).subscribe(
         (x) => {},
-        (err) => {
-          console.error(err.code);
-          this.errorMsg = err.description;
+        (errors) => {
+          this.errorMsg = errors[0];
         }
       );
     }

@@ -48,16 +48,16 @@ exports.findById = (id) => {
 exports.findByEmail = (email) => {
   return User.findOne({ email: email })
     .then((result) => {
+      if(!result) {
+        throw 'User does not exist!';
+      }
       result = result.toJSON();
       result.id = result._id;
       delete result._id;
       delete result.__v;
       delete result.meals;
       return result;
-    })
-    .catch((err) => {
-      return err;
-    })
+    });
 };
 
 exports.patchUser = (id, userData) => {

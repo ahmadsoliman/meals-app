@@ -6,7 +6,7 @@ import { Select, Store } from '@ngxs/store';
 import { AppState } from '@app/app.state';
 import { UserInfo, UserRegistration } from '@app/core/models';
 import { Observable, of } from 'rxjs';
-import { FetchUser, UpdateUser, CreateUser } from '../user.actions';
+import { FetchUser, UpdateUser, CreateUser, DeleteUser, DeleteUserFromProfile } from '../user.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator, MustMatch } from '@app/core/validators';
 
@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
 
   createUser = false;
   currentUser = false;
+  deleteDialogOpened = false;
   userId: string;
   user$ = of(UserInfo.createNew());
   @Select((state: AppState) => state.user.loggedInUser) loggedInUser$!: Observable<UserInfo>;
@@ -109,20 +110,23 @@ export class ProfileComponent implements OnInit {
       if(this.createUser) {
         this.store.dispatch(new CreateUser(user)).subscribe(
           (x) => { },
-          (err) => {
-            console.error(err.code);
-            this.errorMsg = err.description;
+          (errors) => {
+            this.errorMsg = errors[0];
           }
         );
       } else {
         this.store.dispatch(new UpdateUser(user, this.userId)).subscribe(
           (x) => { },
-          (err) => {
-            console.error(err.code);
-            this.errorMsg = err.description;
+          (errors) => {
+            this.errorMsg = errors[0];
           }
         );
       }
     }
+  }
+
+  deleteAccount() {
+    this.deleteDialogOpened = false;
+    this.store.dispatch(new DeleteUserFromProfile(this.userId, this.currentUser));
   }
 }

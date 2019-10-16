@@ -115,12 +115,24 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn--round btn--fullwidth mt-small mb-large" [disabled]="!form.valid">
+        <button type="submit" class="btn btn--fancy btn--round btn--fullwidth mt-small mb-small"
+          [disabled]="!form.valid">
           Save
+        </button>
+
+        <button type="button" (click)="deleteDialogOpened=true" class="btn btn--primary btn--round btn--fullwidth mt-small mb-large">
+          Delete Account
         </button>
       </form>
     </div>
     <div class="col-xl-2"></div>
   </div>
-
 </div>
+
+<kendo-dialog title="Please confirm" *ngIf="deleteDialogOpened" (close)="deleteDialogOpened=false" [minWidth]="250">
+  <p style="margin: 30px; text-align: center;">Are you sure you want to delete the account forever?</p>
+  <kendo-dialog-actions>
+    <button kendoButton (click)="deleteDialogOpened=false">No</button>
+    <button kendoButton (click)="deleteAccount()" primary="true">Yes</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

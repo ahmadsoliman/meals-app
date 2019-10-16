@@ -44,5 +44,7 @@ exports.isPasswordAndUserMatch = (req, res, next) => {
           return res.status(400).send({ errors: ['Invalid email or password'] });
         }
       }
+    }).catch((err) => {
+      res.status(404).send({ errors: [err] });
     });
 };

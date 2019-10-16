@@ -7,6 +7,7 @@ import { UserInfo, Meal, DateRange } from '@app/core/models';
 import { FetchMeals, DeleteMeal, SetDateRanges } from '../meals.actions';
 import { ActivatedRoute } from '@angular/router';
 import { FetchUser } from '@app/main/user/user.actions';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-meals-list',
@@ -53,7 +54,7 @@ export class MealsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.params.pipe(first()).subscribe(params => {
       if (params['userId']) {
         this.isForCurrentUser = false;
         this.userId = params['userId'];

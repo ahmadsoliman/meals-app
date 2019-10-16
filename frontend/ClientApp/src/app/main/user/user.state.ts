@@ -20,7 +20,9 @@ import {
   DeleteUser,
   FetchUser,
   UpdateUser,
-  CreateUser
+  CreateUser,
+  DeleteUserFromProfile,
+  Logout
 } from './user.actions';
 import { UserApiService } from '@app/core/api/user-api.service';
 
@@ -72,13 +74,20 @@ export class UserState implements NgxsOnInit {
           ctx.dispatch(new Navigate(['/']));
         });
       }),
-      catchError((error) => {
-        ctx.patchState({
-          loggedInUser: UserInfo.createNew()
-        });
-        return throwError(error);
+      catchError((errors) => {
+        return throwError(errors.errors);
       })
     );
+  }
+
+
+  @Action(Logout)
+  logout(
+    ctx: StateContext<UserStateModel>,
+    action: Logout
+  ) {
+    this.auth.logout();
+    ctx.dispatch(new Navigate(['/login']));
   }
 
   @Action(Signup)
@@ -92,8 +101,8 @@ export class UserState implements NgxsOnInit {
           )
         )
       ),
-      catchError((error) => {
-        return throwError(error);
+      catchError((errors) => {
+        return throwError(errors.errors);
       })
     );
   }
@@ -107,7 +116,7 @@ export class UserState implements NgxsOnInit {
       ctx.patchState({
         usersGridData: { data: usersList.users, total: usersList.total },
         usersLoading: false
-      }) 
+      })
     );
   }
 
@@ -137,6 +146,18 @@ export class UserState implements NgxsOnInit {
     return this.userApi.deleteUser(action.userId).subscribe(() =>
       ctx.dispatch(new FetchUsers())
     );
+  }
+
+  @Action(DeleteUserFromProfile)
+  deleteUserFromProfile(ctx: StateContext<UserStateModel>, action: DeleteUserFromProfile) {
+    return this.userApi.deleteUser(action.userId, action.myUser).subscribe(() => {
+      if (action.myUser) {
+        ctx.dispatch(new Logout());
+      } else {
+        ctx.dispatch(new FetchUsers());
+        ctx.dispatch(new Navigate(['/users']));
+      }
+    });
   }
 
 }

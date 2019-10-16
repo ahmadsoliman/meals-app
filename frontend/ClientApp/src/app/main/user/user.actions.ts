@@ -13,7 +13,7 @@ export class Signup {
 
 export class Logout {
   static type = '[User] Logout';
-  constructor(public user: UserInfo) {}
+  constructor() {}
 }
 
 export class FetchUsers {
@@ -38,4 +38,9 @@ export class UpdateUser {
 export class DeleteUser {
   static type = '[User] DeleteUser';
   constructor(public userId: string) {}
+}
+
+export class DeleteUserFromProfile {
+  static type = '[User] DeleteUserFromProfile';
+  constructor(public userId: string, public myUser: boolean) {}
 }

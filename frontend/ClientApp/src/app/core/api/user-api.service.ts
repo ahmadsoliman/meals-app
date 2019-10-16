@@ -67,9 +67,13 @@ export class UserApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public deleteUser(userId: string): Observable<Object> {
+  public deleteUser(userId: string, myUser = false): Observable<Object> {
+    let url = this.usersUrl + '/' + userId;
+    if(myUser) {
+      url = this.currentUserUrl;
+    }
     return this.http
-      .delete(this.usersUrl + '/' + userId)
+      .delete(url)
       .pipe(catchError(this.handleError));
   }
 

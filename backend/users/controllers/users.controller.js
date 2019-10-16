@@ -67,3 +67,10 @@ exports.removeById = (req, res) => {
       res.status(204).send({});
     });
 };
+
+exports.removeMyUser = (req, res) => {
+  UserModel.removeById(req.jwt.userId)
+    .then((result) => {
+      res.status(204).send({});
+    });
+};
