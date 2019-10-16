@@ -105,7 +105,7 @@
             </div>
           </div>
 
-          <div class="field mb-small" *ngIf="userId || createUser">
+          <div class="field mb-small" *ngIf="auth.isAdmin()">
             <label class="field__label" for="email">User Type*</label>
             <select id="userType" formControlName="permissionLevel" class="">
               <option value="1">User</option>
