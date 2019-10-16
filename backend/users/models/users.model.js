@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const MealSchema = require('../../meals/models/meals.model').MealSchema;
+const permissionLevels = require('../../common/middlewares/permission.middleware').permissionLevels;
 
 const userSchema = new mongoose.Schema({
   firstName: String,
@@ -74,28 +75,29 @@ exports.patchUser = (id, userData) => {
   })
 };
 
-exports.list = (take, skip, filteredUser) => {
+exports.list = (take, skip, filteredUser, userLevel) => {
   return new Promise((resolve, reject) => {
-    User.countDocuments({}, (err, count) => {
-      User.find({ _id: { $ne: filteredUser} })
-        .limit(take)
-        .skip(skip)
-        .exec(function (err, users) {
-          if (err) {
-            reject(err);
-          } else {
-            users = users.map((user) => {
-              user = user.toJSON();
-              user.id = user._id;
-              delete user._id;
-              delete user.__v;
-              delete user.meals;
-              return user;
-            });
-            resolve({ users: users, total: count-1 });
+    User.find({ _id: { $ne: filteredUser } })
+      .limit(take)
+      .skip(skip)
+      .exec(function (err, users) {
+        if (err) {
+          reject(err);
+        } else {
+          users = users.map((user) => {
+            user = user.toJSON();
+            user.id = user._id;
+            delete user._id;
+            delete user.__v;
+            delete user.meals;
+            return user;
+          });
+          if(userLevel < permissionLevels.ADMIN) {
+            users = users.filter(user => user.permissionLevel === permissionLevels.USER);
           }
-        })
-    });
+          resolve({ users: users, total: users.length });
+        }
+      })
   });
 };
 

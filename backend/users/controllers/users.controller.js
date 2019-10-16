@@ -56,7 +56,7 @@ exports.list = (req, res) => {
       skip = Number.isInteger(req.query.skip) ? req.query.skip : 0;
     }
   }
-  UserModel.list(take, skip, req.jwt.userId).then((result) => {
+  UserModel.list(take, skip, req.jwt.userId, req.jwt.permissionLevel).then((result) => {
     res.status(200).send(result);
   });
 };
