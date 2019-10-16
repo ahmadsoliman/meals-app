@@ -22,7 +22,8 @@ import {
   UpdateUser,
   CreateUser,
   DeleteUserFromProfile,
-  Logout
+  Logout,
+  ChangeUsersPage
 } from './user.actions';
 import { UserApiService } from '@app/core/api/user-api.service';
 
@@ -31,7 +32,8 @@ export interface UserStateModel {
   selectedUser: UserInfo,
 
   usersGridData: GridDataResult,
-  usersLoading: boolean
+  usersLoading: boolean,
+  skip: number
 }
 
 @State<UserStateModel>({
@@ -41,7 +43,8 @@ export interface UserStateModel {
     selectedUser: UserInfo.createNew(),
 
     usersGridData: { data: [], total: 0 },
-    usersLoading: false
+    usersLoading: false,
+    skip: 0
   }
 })
 export class UserState implements NgxsOnInit {
@@ -111,12 +114,20 @@ export class UserState implements NgxsOnInit {
     ctx.patchState({
       usersLoading: true
     });
-    return this.userApi.getUsers().subscribe((usersList: UsersList) =>
+    return this.userApi.getUsers(ctx.getState().skip).subscribe((usersList: UsersList) =>
       ctx.patchState({
         usersGridData: { data: usersList.users, total: usersList.total },
         usersLoading: false
       })
     );
+  }
+
+  @Action(ChangeUsersPage)
+  changeUsersPage(ctx: StateContext<UserStateModel>, action: ChangeUsersPage) {
+    ctx.patchState({
+      skip: action.skip
+    });
+    return ctx.dispatch(new FetchUsers());
   }
 
   @Action(FetchUser)

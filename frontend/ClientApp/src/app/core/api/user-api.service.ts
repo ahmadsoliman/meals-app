@@ -49,9 +49,13 @@ export class UserApiService {
       .pipe(catchError(this.handleError));
   }
   
-  public getUsers(): Observable<UsersList> {
+  public getUsers(skip = 0): Observable<UsersList> {
+    let params = new HttpParams();
+    if (skip) {
+      params = params.append('skip', '' + skip);
+    }
     return this.http
-      .get<UsersList>(this.usersUrl)
+      .get<UsersList>(this.usersUrl, { params })
       .pipe(catchError(this.handleError));
   }
 

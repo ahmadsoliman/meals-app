@@ -20,6 +20,11 @@ export class FetchUsers {
   static type = '[User] FetchUsers';
 }
 
+export class ChangeUsersPage {
+  static type = '[User] FetchUser';
+  constructor(public skip: number) {}
+}
+
 export class FetchUser {
   static type = '[User] FetchUser';
   constructor(public userId: string) {}

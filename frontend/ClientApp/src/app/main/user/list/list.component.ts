@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { FetchUsers, DeleteUser } from '../user.actions';
-import { GridDataResult } from '@progress/kendo-angular-grid';
+import { FetchUsers, DeleteUser, ChangeUsersPage } from '../user.actions';
+import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { AppState } from '@app/app.state';
 import { Observable } from 'rxjs';
 import { AuthService } from '@app/core/auth';
@@ -16,6 +16,7 @@ export class UserListComponent implements OnInit {
   public deleteDialogOpened = false;
   public userBeingDeleted: UserInfo;
 
+  @Select((state: AppState) => state.user.skip) skip$!: Observable<number>;
   @Select((state: AppState) => state.user.usersGridData) usersGridData$!: Observable<GridDataResult>;
   @Select((state: AppState) => state.user.usersLoading) usersLoading$!: Observable<boolean>;
   
@@ -40,5 +41,9 @@ export class UserListComponent implements OnInit {
   public deleteUser() {
     this.store.dispatch(new DeleteUser(this.userBeingDeleted.id))
     this.deleteDialogOpened = false;
+  }
+  
+  public changePage({ skip }: PageChangeEvent) {
+    this.store.dispatch(new ChangeUsersPage(skip));
   }
 }
