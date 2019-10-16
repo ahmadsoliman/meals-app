@@ -46,7 +46,7 @@
               <i class="fa fa-eye"></i>
             </a>
             <a title="View Meals" class="btn--sm" [routerLink]="['/meals', dataItem.id]" *ngIf="auth.isAdmin()">
-              <i class="fa fa-heartbeat"></i>
+              <i class="fa fa-cutlery"></i>
             </a>
             <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)">
               <i class="fa fa-trash"></i>
