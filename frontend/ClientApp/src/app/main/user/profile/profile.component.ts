@@ -9,6 +9,7 @@ import { Observable, of } from 'rxjs';
 import { FetchUser, UpdateUser, CreateUser, DeleteUser, DeleteUserFromProfile } from '../user.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator, MustMatch } from '@app/core/validators';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'app-profile',
@@ -38,7 +39,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.route.data.subscribe(data => {
-        if(data.createUser) {
+        if (data.createUser) {
           this.createUser = true;
           this.currentUser = false;
           this.changePassword = true;
@@ -78,7 +79,7 @@ export class ProfileComponent implements OnInit {
         validator: MustMatch('password', 'passwordConfirmation')
       }
     );
-    if(this.changePassword) {
+    if (this.changePassword) {
       this.changePasswordToggled();
     }
   }
@@ -107,7 +108,7 @@ export class ProfileComponent implements OnInit {
         permissionLevel: (this.userId || this.createUser) ? this.f.permissionLevel.value : undefined
       };
 
-      if(this.createUser) {
+      if (this.createUser) {
         this.store.dispatch(new CreateUser(user)).subscribe(
           (x) => { },
           (errors) => {
@@ -116,7 +117,13 @@ export class ProfileComponent implements OnInit {
         );
       } else {
         this.store.dispatch(new UpdateUser(user, this.userId)).subscribe(
-          (x) => { },
+          (x) => {
+            if (this.currentUser) {
+              this.store.dispatch(new Navigate(['/meals']));
+            } else {
+              this.store.dispatch(new Navigate(['/users']));
+            }
+          },
           (errors) => {
             this.errorMsg = errors[0];
           }
