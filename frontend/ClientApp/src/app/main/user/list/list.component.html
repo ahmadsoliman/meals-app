@@ -1,8 +1,7 @@
 <div class="toolbar mb-medium">
   <h5 class="">Users List</h5>
 
-  <a class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn"
-    routerLink="/create-user">
+  <a class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn" routerLink="/create-user">
     <i class="fa fa-plus"></i> New User
   </a>
 </div>
@@ -43,17 +42,15 @@
 
         <kendo-grid-column title="Actions">
           <ng-template kendoGridCellTemplate let-dataItem>
-            <div kendoTooltip>
-              <a title="View Details" class="btn--sm" [routerLink]="['/users', dataItem.id]">
-                <i class="fa fa-eye"></i>
-              </a>
-              <a title="View Meals" class="btn--sm" [routerLink]="['/meals', dataItem.id]" *ngIf="auth.isAdmin()">
-                <i class="fa fa-heartbeat"></i>
-              </a>
-              <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)">
-                <i class="fa fa-trash"></i>
-              </a>
-            </div>
+            <a title="View Details" class="btn--sm" [routerLink]="['/users', dataItem.id]">
+              <i class="fa fa-eye"></i>
+            </a>
+            <a title="View Meals" class="btn--sm" [routerLink]="['/meals', dataItem.id]" *ngIf="auth.isAdmin()">
+              <i class="fa fa-heartbeat"></i>
+            </a>
+            <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)">
+              <i class="fa fa-trash"></i>
+            </a>
           </ng-template>
         </kendo-grid-column>
       </kendo-grid>
@@ -61,7 +58,8 @@
   </div>
 </div>
 <kendo-dialog title="Please confirm" *ngIf="deleteDialogOpened" (close)="closeDeleteDialog()" [minWidth]="250">
-  <p style="margin: 30px; text-align: center;">Are you sure you want to delete the user named "{{ userBeingDeleted.firstName }}"?</p>
+  <p style="margin: 30px; text-align: center;">Are you sure you want to delete the user named
+    "{{ userBeingDeleted.firstName }}"?</p>
   <kendo-dialog-actions>
     <button kendoButton (click)="closeDeleteDialog()">No</button>
     <button kendoButton (click)="deleteUser()" primary="true">Yes</button>

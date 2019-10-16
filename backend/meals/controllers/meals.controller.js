@@ -1,5 +1,5 @@
 const MealModel = require('../models/meals.model');
-const crypto = require('crypto');
+const UserModel = require('../../users/models/users.model');
 
 exports.insert = (req, res) => {
   MealModel.createMeal(req.params.userId, req.body)
@@ -23,15 +23,21 @@ exports.list = (req, res) => {
     req.query.skip = parseInt(req.query.skip);
     skip = Number.isInteger(req.query.skip) ? req.query.skip : 0;
   }
-
   const startDate = req.query.startDate ? new Date(req.query.startDate) : undefined;
   const endDate = req.query.endDate ? new Date(req.query.endDate) : undefined;
   const startTime = req.query.startTime ? new Date(req.query.startTime) : undefined;
-  const endTime =  req.query.startTime ? new Date(req.query.endTime) : undefined;
-  
-  MealModel.list(req.params.userId, take, skip, { startDate, endDate, startTime, endTime}).then((result) => {
-    res.status(200).send(result);
-  })
+  const endTime = req.query.startTime ? new Date(req.query.endTime) : undefined;
+
+  UserModel.findById(req.params.userId).then(user => {
+    MealModel.list(
+      req.params.userId,
+      take, skip,
+      { startDate, endDate, startTime, endTime },
+      user.expectedNumberOfCalories
+    ).then((result) => {
+      res.status(200).send(result);
+    });
+  });
 };
 
 exports.removeById = (req, res) => {

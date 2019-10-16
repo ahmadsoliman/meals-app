@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { GridDataResult } from '@progress/kendo-angular-grid';
+import { GridDataResult, RowClassArgs } from '@progress/kendo-angular-grid';
 import { AppState } from '@app/app.state';
 import { Observable } from 'rxjs';
 import { UserInfo, Meal, DateRange } from '@app/core/models';
@@ -10,7 +10,12 @@ import { FetchUser } from '@app/main/user/user.actions';
 
 @Component({
   selector: 'app-meals-list',
-  templateUrl: './list.component.html'
+  templateUrl: './list.component.html',
+  encapsulation: ViewEncapsulation.None,
+  styles: [`
+      .k-grid tr.valid { background-color: rgba(75, 229, 71, 0.8); }
+      .k-grid tr.invalid { background-color: rgba(229, 71, 75, 0.8); }
+  `]
 })
 export class MealsListComponent implements OnInit {
 
@@ -78,5 +83,12 @@ export class MealsListComponent implements OnInit {
   public deleteMeal() {
     this.store.dispatch(new DeleteMeal(this.userId, this.mealBeingDeleted.id))
     this.deleteDialogOpened = false;
+  }
+
+  public rowCallback(context: RowClassArgs) {
+    return {
+      valid: !context.dataItem.exceedsDailyLimit,
+      invalid: context.dataItem.exceedsDailyLimit
+    };
   }
 }

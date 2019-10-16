@@ -4,7 +4,11 @@ const UserModel = require('../../users/models/users.model');
 const mealSchema = new mongoose.Schema({
   text: String,
   date: Date,
-  calories: Number
+  calories: Number,
+  exceedsDailyLimit: {
+    type: Boolean,
+    default: false
+  }
 });
 exports.MealSchema = mealSchema;
 
@@ -15,13 +19,35 @@ const inRangePredicate = (date, dateRanges) => {
   forDate = new Date(date.toLocaleDateString());
   if ((dateRanges.startDate && forDate < dateRanges.startDate) ||
     (dateRanges.endDate && forDate > dateRanges.endDate) ||
-    (dateRanges.startTime && (date.getHours() < dateRanges.startTime.getHours() || 
+    (dateRanges.startTime && (date.getHours() < dateRanges.startTime.getHours() ||
       (date.getHours() === dateRanges.startTime.getHours() && date.getMinutes() < dateRanges.startTime.getMinutes()))) ||
-    (dateRanges.endTime && (date.getHours() > dateRanges.endTime.getHours() || 
+    (dateRanges.endTime && (date.getHours() > dateRanges.endTime.getHours() ||
       (date.getHours() === dateRanges.endTime.getHours() && date.getMinutes() > dateRanges.endTime.getMinutes())))) {
     return false;
   }
   return true;
+}
+
+const setExceedsProperty = (meals, maxCalories) => {
+  let resMeals = [], curDay = [], curSum = 0;
+  for (let i = 0; i < meals.length; i++) {
+    if (i == 0 || meals[i].date.toLocaleDateString() === curDay[0].date.toLocaleDateString()) {
+      curSum += meals[i].calories;
+      curDay.push(meals[i]);
+    } else {
+      resMeals.push(...curDay.map(meal => {
+        meal.exceedsDailyLimit = curSum > maxCalories;
+        return meal;
+      }));
+      curSum = meals[i].calories;
+      curDay = [meals[i]];
+    }
+  }
+  resMeals.push(...curDay.map(meal => {
+    meal.exceedsDailyLimit = curSum > maxCalories;
+    return meal;
+  }));
+  return resMeals;
 }
 
 exports.createMeal = (userId, mealData) => {
@@ -34,9 +60,9 @@ exports.createMeal = (userId, mealData) => {
   });
 };
 
-exports.list = (userId, take, skip, dateRanges) => {
+exports.list = (userId, take, skip, dateRanges, userCaloriesSetting) => {
   return UserModel.User.findById(userId).then((result) => {
-    const meals = result.meals.sort((a, b) => a.date > b.date)
+    const meals = setExceedsProperty(result.meals.sort((a, b) => a.date > b.date), userCaloriesSetting)
       .filter(meal => inRangePredicate(meal.date, dateRanges));
     const mealsPage = meals.slice(skip, skip + take).map(meal => {
       meal = meal.toJSON();

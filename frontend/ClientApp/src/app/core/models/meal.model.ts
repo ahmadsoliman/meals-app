@@ -3,7 +3,8 @@ export class Meal {
     public id: string,
     public text: string,
     public date: Date,
-    public calories: Number
+    public calories: Number,
+    public exceedsDailyLimit = false
   ) {}
   public static createNew(): Meal {
     return new Meal('', '', new Date(), 0);

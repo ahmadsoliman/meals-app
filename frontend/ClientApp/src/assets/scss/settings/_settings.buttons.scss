@@ -16,11 +16,11 @@ $btn-large-font-size: $text-large-font-size !default;
 $btn-large-padding: rem(8px) rem(30px) !default;
 
 
-$btn-primary-gradient: $gunmetal-100, $gunmetal-400 !default;
-$btn-primary-border-color: $gunmetal-200 !default;
+$btn-primary-gradient: lighten(#e5474b, 5%), #e5474b !default;
+$btn-primary-border-color: lighten(#e5474b, 5%) !default;
 
-$btn-primary-hover-gradient: darken($gunmetal-100, 4%), darken($gunmetal-500, 4%) !default;
-$btn-primary-focus-gradient: darken($gunmetal-100, 6%), darken($gunmetal-500, 6%) !default;
+$btn-primary-hover-gradient: darken(lighten(#e5474b, 10%), 4%), darken(#e5474b, 4%) !default;
+$btn-primary-focus-gradient: darken(lighten(#e5474b, 10%), 6%), darken(#e5474b, 6%) !default;
 
 
 $btn-secondary-gradient: $white, $grey-200 !default;

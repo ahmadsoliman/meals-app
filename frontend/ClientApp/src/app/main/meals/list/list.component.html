@@ -48,8 +48,8 @@
         <div class="btn btn--fancy mt-small" id="panel-newAssetType-btn" (click)="search()">
           <i class="fa fa-search"></i> Search
         </div>
-        <div class="btn mt-small" id="panel-newAssetType-btn" (click)="resetRanges()">
-          <i class="fa fa-refresh"></i> Reset
+        <div class="btn btn--primary mt-small" id="panel-newAssetType-btn" (click)="resetRanges()">
+          <i class="fa fa-refresh"></i> Reset &nbsp;&nbsp;&nbsp;
         </div>
       </div>
     </div>
@@ -57,7 +57,8 @@
 
   <div class="row">
     <div class="ml-medium mr-medium">
-      <kendo-grid [data]="mealsGridData$ | async" [loading]="mealsLoading$ | async" height="500">
+      <kendo-grid [data]="mealsGridData$ | async" [loading]="mealsLoading$ | async" height="470"
+        [rowClass]="rowCallback">
         <kendo-grid-column field="text" title="Description" width="350">
         </kendo-grid-column>
 
@@ -78,14 +79,12 @@
 
         <kendo-grid-column title="Actions">
           <ng-template kendoGridCellTemplate let-dataItem>
-            <div kendoTooltip>
-              <a title="Edit Meal" class="btn--sm" (click)="modal.editMeal(dataItem)">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)">
-                <i class="fa fa-trash"></i>
-              </a>
-            </div>
+            <a title="Edit Meal" class="btn--sm" (click)="modal.editMeal(dataItem)">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)">
+              <i class="fa fa-trash"></i>
+            </a>
           </ng-template>
         </kendo-grid-column>
       </kendo-grid>
