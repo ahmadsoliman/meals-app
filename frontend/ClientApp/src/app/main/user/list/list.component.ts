@@ -5,7 +5,7 @@ import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { AppState } from '@app/app.state';
 import { Observable } from 'rxjs';
 import { AuthService } from '@app/core/auth';
-import { UserInfo } from '@app/core/models';
+import { UserInfo, permissionLevels } from '@app/core/models';
 
 @Component({
   selector: 'app-user-list',
@@ -13,6 +13,7 @@ import { UserInfo } from '@app/core/models';
 })
 export class UserListComponent implements OnInit {
 
+  public permissionLevels = permissionLevels;
   public deleteDialogOpened = false;
   public userBeingDeleted: UserInfo;
 

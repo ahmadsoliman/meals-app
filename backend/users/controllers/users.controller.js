@@ -1,5 +1,6 @@
-const UserModel = require('../models/users.model');
 const crypto = require('crypto');
+const UserModel = require('../models/users.model');
+const permissionLevels = require('../../common/middlewares/permission.middleware').permissionLevels;
 
 exports.insert = (isRegister) => (req, res) => {
   let salt = crypto.randomBytes(16).toString('base64');
@@ -7,8 +8,12 @@ exports.insert = (isRegister) => (req, res) => {
     .update(req.body.password)
     .digest("base64");
   req.body.password = salt + "$" + hash;
-  if(isRegister) {
+  if (isRegister) {
     req.body.permissionLevel = 1;
+  } else if (req.jwt.permissionLevel < permissionLevels.ADMIN
+    && req.body.permissionLevel & permissionLevels.ADMIN) {
+    res.status(403).send({});
+    return;
   }
   UserModel.createUser(req.body, 'body')
     .then((result) => {
@@ -31,16 +36,24 @@ exports.getById = (req, res) => {
 };
 
 exports.patchById = (req, res) => {
-  let userId = '';
+  let userId = '', sameUser = false;
   if (req.params['userId'] && req.params['userId'].length) {
     userId = req.params['userId'];
   } else if (req.jwt.userId) {
     userId = req.jwt.userId;
+    sameUser = true;
   }
   if (req.body.password) {
     let salt = crypto.randomBytes(16).toString('base64');
     let hash = crypto.createHmac('sha512', salt).update(req.body.password).digest("base64");
     req.body.password = salt + "$" + hash;
+  }
+
+  if ( (sameUser && req.body.permissionLevel > req.jwt.permissionLevel) ||
+    (req.jwt.permissionLevel < permissionLevels.ADMIN
+      && req.body.permissionLevel & permissionLevels.ADMIN)) {
+    res.status(403).send({});
+    return;
   }
   UserModel.patchUser(userId, req.body).then((result) => {
     res.status(204).send({});

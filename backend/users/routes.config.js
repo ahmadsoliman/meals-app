@@ -30,6 +30,13 @@ module.exports = function (app) {
     PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER_MANAGER),
     UsersController.getById
   ]);
+  
+  app.delete('/api/users/:userId', [
+    ValidationMiddleware.validJWTNeeded,
+    PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER_MANAGER),
+    PermissionMiddleware.onlyAdminOrUserManagerForNonAdminCanDoThisAction,
+    UsersController.removeById
+  ]);
 
   app.get('/api/myuser', [
     ValidationMiddleware.validJWTNeeded,
@@ -39,12 +46,6 @@ module.exports = function (app) {
   app.patch('/api/myuser', [
     ValidationMiddleware.validJWTNeeded,
     UsersController.patchById
-  ]);
-
-  app.delete('/api/users/:userId', [
-    ValidationMiddleware.validJWTNeeded,
-    PermissionMiddleware.minimumPermissionLevelRequired(PermissionMiddleware.permissionLevels.USER_MANAGER),
-    UsersController.removeById
   ]);
 
   app.delete('/api/myuser', [

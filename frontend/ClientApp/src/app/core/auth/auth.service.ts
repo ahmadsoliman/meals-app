@@ -48,30 +48,58 @@ export class AuthService {
 
   // tslint:disable-next-line
   public userloggedIn(): Observable<UserInfo> {
-    return this.userApi.getCurrentUser();
+    return this.userApi.getCurrentUser().pipe(tap((user) => {
+      localStorage.setItem('permission_level', '' + user.permissionLevel);
+    }));
   }
 
   public getToken(): string {
     return localStorage.getItem('access_token');
   }
 
-  public isAccessAllowed(level: number) {
+  public isUserAtLeast(accessLevel: number) {
     if (this.isAuthenticated()) {
       const permissionLevel = parseInt(localStorage.getItem('permission_level'));
-      return permissionLevel >= level;
+      return permissionLevel >= accessLevel;
     }
     return false;
   }
 
   public isAdmin(): boolean {
-    return this.isAccessAllowed(permissionLevels.ADMIN);
+    return this.isUserAtLeast(permissionLevels.ADMIN);
   }
 
   public isUserManager(): boolean {
-    return this.isAccessAllowed(permissionLevels.USER_MANAGER);
+    return this.isUserAtLeast(permissionLevels.USER_MANAGER) && !this.isAdmin();
   }
 
   public isUser(): boolean {
-    return this.isAccessAllowed(permissionLevels.USER);
+    return this.isUserAtLeast(permissionLevels.USER) && !this.isUserManager() && !this.isAdmin();
+  }
+
+  public isAccessAllowed(accessLevels: number[]) {
+    for (let i = 0; i < accessLevels.length; i++) {
+      switch (accessLevels[i]) {
+        case permissionLevels.USER: {
+          if (this.isUser()) {
+            return true;
+          };
+          break;
+        }
+        case permissionLevels.USER_MANAGER: {
+          if (this.isUserManager()) {
+            return true;
+          };
+          break;
+        }
+        case permissionLevels.ADMIN: {
+          if (this.isAdmin()) {
+            return true;
+          };
+          break;
+        }
+      }
+    }
+    return false;
   }
 }

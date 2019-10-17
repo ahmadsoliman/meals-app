@@ -23,7 +23,8 @@ import {
   CreateUser,
   DeleteUserFromProfile,
   Logout,
-  ChangeUsersPage
+  ChangeUsersPage,
+  FetchMyUser
 } from './user.actions';
 import { UserApiService } from '@app/core/api/user-api.service';
 
@@ -55,11 +56,7 @@ export class UserState implements NgxsOnInit {
 
   ngxsOnInit(ctx: StateContext<UserStateModel>) {
     if (this.auth.isAuthenticated()) {
-      this.auth.userloggedIn().subscribe((user: UserInfo) => {
-        ctx.patchState({
-          loggedInUser: user
-        });
-      });
+      ctx.dispatch(new FetchMyUser());
     }
   }
 
@@ -138,6 +135,15 @@ export class UserState implements NgxsOnInit {
       })
     );
   }
+  
+  @Action(FetchMyUser)
+  fetchMyUser(ctx: StateContext<UserStateModel>, action: FetchMyUser) {
+    return this.auth.userloggedIn().subscribe((user: UserInfo) => {
+      ctx.patchState({
+        loggedInUser: user
+      });
+    });
+  }
 
   @Action(CreateUser)
   createUser(ctx: StateContext<UserStateModel>, action: CreateUser) {
@@ -148,7 +154,13 @@ export class UserState implements NgxsOnInit {
 
   @Action(UpdateUser)
   updateUser(ctx: StateContext<UserStateModel>, action: UpdateUser) {
-    return this.userApi.updateUser(action.user, action.userId);
+    return this.userApi.updateUser(action.user, action.userId).subscribe(() => {
+      if(!action.userId) {
+        ctx.dispatch(new FetchMyUser());
+      } else {
+        ctx.dispatch(new FetchUsers());
+      }
+    });
   }
 
   @Action(DeleteUser)

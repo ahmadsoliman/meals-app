@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const MealSchema = require('../../meals/models/meals.model').MealSchema;
-const permissionLevels = require('../../common/middlewares/permission.middleware').permissionLevels;
 
 const userSchema = new mongoose.Schema({
   firstName: String,
@@ -93,9 +92,6 @@ exports.list = (take, skip, filteredUser, userLevel) => {
             delete user.meals;
             return user;
           });
-          if(userLevel < permissionLevels.ADMIN) {
-            users = users.filter(user => user.permissionLevel === permissionLevels.USER);
-          }
           resolve({ users: users, total: count });
         }
       })

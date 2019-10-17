@@ -105,12 +105,13 @@
             </div>
           </div>
 
-          <div class="field mb-small" *ngIf="auth.isAdmin()">
+          <div class="field mb-small"
+            *ngIf="auth.isAdmin() || (auth.isUserManager() && (user$ | async)?.permissionLevel < permissionLevels.ADMIN)">
             <label class="field__label" for="email">User Type*</label>
             <select id="userType" formControlName="permissionLevel" class="">
               <option value="1">User</option>
               <option value="3">User Manager</option>
-              <option value="7">Admin</option>
+              <option value="7" *ngIf="auth.isAdmin()">Admin</option>
             </select>
           </div>
         </div>
@@ -120,7 +121,9 @@
           Save
         </button>
 
-        <button type="button" (click)="deleteDialogOpened=true" class="btn btn--primary btn--round btn--fullwidth mt-small mb-large">
+        <button type="button" (click)="deleteDialogOpened=true"
+          *ngIf="!createUser && (currentUser || auth.isAdmin() || (user$ | async)?.permissionLevel < permissionLevels.ADMIN)"
+          class="btn btn--primary btn--round btn--fullwidth mt-small mb-large">
           Delete Account
         </button>
       </form>

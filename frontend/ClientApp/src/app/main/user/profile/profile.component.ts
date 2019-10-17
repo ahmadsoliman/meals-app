@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@app/core/auth';
 import { Select, Store } from '@ngxs/store';
 import { AppState } from '@app/app.state';
-import { UserInfo, UserRegistration } from '@app/core/models';
+import { UserInfo, UserRegistration, permissionLevels } from '@app/core/models';
 import { Observable, of } from 'rxjs';
-import { FetchUser, UpdateUser, CreateUser, DeleteUser, DeleteUserFromProfile } from '../user.actions';
+import { FetchUser, UpdateUser, CreateUser, DeleteUserFromProfile } from '../user.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator, MustMatch } from '@app/core/validators';
 import { Navigate } from '@ngxs/router-plugin';
@@ -17,6 +17,7 @@ import { Navigate } from '@ngxs/router-plugin';
 })
 export class ProfileComponent implements OnInit {
 
+  permissionLevels = permissionLevels;
   createUser = false;
   currentUser = false;
   deleteDialogOpened = false;
@@ -105,7 +106,7 @@ export class ProfileComponent implements OnInit {
         email: this.f.email.value,
         password: this.changePassword ? this.f.password.value : undefined,
         expectedNumberOfCalories: this.f.expectedNumberOfCalories.value,
-        permissionLevel: (this.userId || this.createUser) ? this.f.permissionLevel.value : undefined
+        permissionLevel: this.f.permissionLevel.value
       };
 
       if (this.createUser) {

@@ -47,10 +47,12 @@
             <a title="View Details" class="btn--sm" [routerLink]="['/users', dataItem.id]">
               <i class="fa fa-eye"></i>
             </a>
-            <a title="View Meals" class="btn--sm" [routerLink]="['/meals', dataItem.id]" *ngIf="auth.isAdmin()">
+            <a title="View Meals" class="btn--sm" [routerLink]="['/meals', dataItem.id]"
+              *ngIf="auth.isAdmin() && dataItem.permissionLevel === permissionLevels.USER">
               <i class="fa fa-cutlery"></i>
             </a>
-            <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)">
+            <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)"
+              *ngIf="auth.isAdmin() || dataItem.permissionLevel < permissionLevels.ADMIN">
               <i class="fa fa-trash"></i>
             </a>
           </ng-template>

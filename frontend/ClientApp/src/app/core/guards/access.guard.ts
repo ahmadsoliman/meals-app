@@ -5,7 +5,6 @@ import {
   Router,
   RouterStateSnapshot
 } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from '@app/core/auth/';
 
@@ -20,11 +19,16 @@ export class AccessGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const accessLevel: number = route.data['access'] || 7;
-    if (!this.auth.isAccessAllowed(accessLevel)) {
-      this.router.navigate(['/']);
+    const accessLevels = route.data['access'] || [];
+    const isAllowed = this.auth.isAccessAllowed(accessLevels);
+    if (!isAllowed) {
+      if(this.auth.isUser()) {
+        this.router.navigate(['/meals']);
+      } else {
+        this.router.navigate(['/users']);
+      }
     }
 
-    return this.auth.isAccessAllowed(accessLevel);
+    return isAllowed;
   }
 }

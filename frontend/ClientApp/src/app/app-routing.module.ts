@@ -30,7 +30,7 @@ const routes: Routes = [
         component: UserListComponent,
         canActivate: [ AccessGuard ],
         data: {
-          access: permissionLevels.USER_MANAGER
+          access: [permissionLevels.USER_MANAGER, permissionLevels.ADMIN]
         }
       },
       {
@@ -38,29 +38,26 @@ const routes: Routes = [
         component: ProfileComponent,
         canActivate: [ AccessGuard ],
         data: {
-          access: permissionLevels.USER_MANAGER
+          access: [permissionLevels.USER_MANAGER, permissionLevels.ADMIN]
         }
       },
       {
         path: 'create-user',
         component: ProfileComponent,
         data: {
-          access: permissionLevels.USER,
           createUser: true
         }
       },
       {
         path: 'profile',
-        component: ProfileComponent,
-        data: {
-          access: permissionLevels.USER
-        }
+        component: ProfileComponent
       },
       {
         path: 'meals',
         component: MealsListComponent,
+        canActivate: [ AccessGuard ],
         data: {
-          access: permissionLevels.USER
+          access: [permissionLevels.USER]
         }
       },
       {
@@ -68,7 +65,7 @@ const routes: Routes = [
         component: MealsListComponent,
         canActivate: [ AccessGuard ],
         data: {
-          access: permissionLevels.ADMIN
+          access: [permissionLevels.ADMIN]
         }
       },
       {
