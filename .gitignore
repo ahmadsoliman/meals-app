@@ -47,5 +47,5 @@ Thumbs.db
 
 # backend
 
-/backend/db.settings.js
+# /backend/db.settings.js
 /backend/node_modules
