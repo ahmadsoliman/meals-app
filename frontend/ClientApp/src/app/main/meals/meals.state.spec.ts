@@ -1,12 +1,17 @@
 import { TestBed } from "@angular/core/testing";
-import { Store, NgxsModule, Actions, ofActionDispatched } from "@ngxs/store";
-import { Observable } from "rxjs";
+import { Store, NgxsModule } from "@ngxs/store";
 import "jest";
+import { MealsState } from "./meals.state";
+import { FetchMeals, ChangeMealsPage } from "./meals.actions";
+import { AppState } from "@app/app.state";
+import { GridDataResult } from "@progress/kendo-angular-grid";
 
-describe("FinancialState", () => {
+import { MealsMockApiService } from "@app/core/mock_api/meals-mock-api.service";
+import { MealsApiService } from "@app/core/api/meals-api.service";
+
+describe("MealsState", () => {
   let store: Store;
-  let actions$: Observable<any>;
-  // let financialsMockApiService: FinancialMockApiService;
+  // let actions$: Observable<any>;
 
   function errorWrapper(done: any, body: any) {
     try {
@@ -19,85 +24,45 @@ describe("FinancialState", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([FinancialState])],
-      providers: [FinancialMockApiService, LookupsMockApiService]
+      declarations: [],
+      imports: [NgxsModule.forRoot([MealsState])],
+      providers: [{ provide: MealsApiService, useClass: MealsMockApiService }]
     });
     store = TestBed.get(Store);
-    actions$ = TestBed.get(Actions);
-    // financialsMockApiService = TestBed.get(FinancialMockApiService);
+    // actions$ = TestBed.get(Actions);
   });
 
-  test("ChangeProductsPage should update productsDataSourceRequest", done => {
-    const skip = 15;
-
-    store.dispatch(new ChangeProductsPage(skip));
+  test("FetchMeals should fetch meals list with total", done => {
+    store.dispatch(new FetchMeals("userid"));
     store
-      .selectOnce(state => state.financial.productsDataSourceRequest)
-      .subscribe(productsDataSourceRequest => {
+      .selectOnce((state: AppState) => state.meals.mealsGridData)
+      .subscribe((data: GridDataResult) => {
         errorWrapper(done, () => {
-          expect(productsDataSourceRequest.skip).toEqual(skip);
+          expect(data.data).toEqual(MealsMockApiService.mealsList.slice(0, 10));
+          expect(data.total).toEqual(MealsMockApiService.mealsList.length);
         });
       });
   });
 
-  test("ChangeProductsPage should dispatch FetchFilteredProducts", done => {
-    actions$
-      .pipe(ofActionDispatched(FetchFilteredProducts))
-      .subscribe(actions => {
-        errorWrapper(done, () => {
-          expect(actions).toBeTruthy();
-        });
-      });
-    store.dispatch(new ChangeProductsPage(0));
-  });
-
-  test("FilterProducts should update dataSourceRequest and searchForm", done => {
-    const filter = new SingleFilter("testing", "contains", "value");
-    const value = "search_value";
-
-    store.dispatch(new FilterProducts(filter, value));
+  test("ChangeMealsPage should change page of meals list and fetch meals should get new page", done => {
+    store.dispatch(new ChangeMealsPage(10));
     store
-      .selectOnce(state => state.financial)
-      .subscribe(financial => {
+      .selectOnce((state: AppState) => state.meals.skip)
+      .subscribe((skip: number) => {
         errorWrapper(done, () => {
-          expect(financial.productsDataSourceRequest.filter).toEqual(filter);
-          expect(financial.filteredProductsSearchForm).toEqual(value);
+          expect(skip).toEqual(10);
         });
       });
-  });
-
-  test("FilterProducts dispatch FetchFilteredProducts", done => {
-    actions$
-      .pipe(ofActionDispatched(FetchFilteredProducts))
-      .subscribe(actions => {
-        errorWrapper(done, () => {
-          expect(actions).toBeTruthy();
-        });
-      });
-    store.dispatch(new FilterProducts(null, null));
-  });
-
-  test("SortProducts should update dataSourceRequest", done => {
-    const sort = [new Sort("testing", "asc")];
-
-    store.dispatch(new SortProducts(sort));
+    store.dispatch(new FetchMeals("userid"));
     store
-      .selectOnce(state => state.financial.productsDataSourceRequest)
-      .subscribe(productsDataSourceRequest => {
+      .selectOnce((state: AppState) => state.meals.mealsGridData)
+      .subscribe((data: GridDataResult) => {
         errorWrapper(done, () => {
-          expect(productsDataSourceRequest.sort).toEqual(sort);
+          expect(data.data).toEqual(
+            MealsMockApiService.mealsList.slice(10, 13)
+          );
+          expect(data.total).toEqual(MealsMockApiService.mealsList.length);
         });
       });
-  });
-
-  test("SortProducts should dispatch FetchFilteredProducts", done => {
-    actions$
-      .pipe(ofActionDispatched(FetchFilteredProducts))
-      .subscribe(actions => {
-        errorWrapper(done, () => {
-          expect(actions).toBeTruthy();
-        });
-      });
-    store.dispatch(new SortProducts([]));
   });
 });
