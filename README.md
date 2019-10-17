@@ -12,3 +12,12 @@
 - If it’s a web application, it must be a single-page application. All actions need to be done client side using AJAX, refreshing the page is not acceptable. (If a mobile application, disregard this).
 - Functional UI/UX design is needed. You are not required to create a unique design, however, do follow best practices to make the project as functional as possible.
 - Bonus: unit and e2e tests.
+
+
+# Project Setup
+
+- Go to ./backend, and run 'npm install' then run 'npm run dev'
+- Go to ./frontend/ClientApp, and run 'npm install' then run 'npm start'
+- Open http://localhost:4200/ sign up or log in with admin user:
+-- ahmadadel92@gmail.com
+-- P@ss1234
