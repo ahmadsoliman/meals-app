@@ -93,7 +93,7 @@
         <div class="card p-medium mb-medium">
           <h5 class="mb-medium">User Settings</h5>
 
-          <div class="field mb-small">
+          <div class="field mb-small" *ngIf="form.value.permissionLevel == permissionLevels.USER">
             <label class="field__label" for="email">Expected Daily Calories*</label>
             <input type="number" id="calories" formControlName="expectedNumberOfCalories" class="input form-control"
               [ngClass]="{ 'is-invalid': f.expectedNumberOfCalories.touched && f.expectedNumberOfCalories.errors }" />

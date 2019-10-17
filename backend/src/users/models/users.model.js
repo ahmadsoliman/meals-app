@@ -77,6 +77,7 @@ exports.patchUser = (id, userData) => {
 exports.list = (take, skip, filteredUser, userLevel) => {
   return new Promise((resolve, reject) => {
     User.find({ _id: { $ne: filteredUser } })
+      .sort('permissionLevel')
       .limit(take)
       .skip(skip)
       .exec(function (err, users) {

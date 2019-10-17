@@ -39,7 +39,10 @@
           </ng-template>
         </kendo-grid-column>
 
-        <kendo-grid-column field="expectedNumberOfCalories" title="Daily Calories" width="150">
+        <kendo-grid-column title="Daily Calories" width="150">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            {{ dataItem.permissionLevel ===  permissionLevels.USER ? dataItem.expectedNumberOfCalories : '_' }}
+          </ng-template>
         </kendo-grid-column>
 
         <kendo-grid-column title="Actions">
