@@ -31,7 +31,7 @@
 .datepicker-container::before,
 .datepicker-container::after {
   border: 5px solid transparent;
-  content: " ";
+  content: ' ';
   display: block;
   height: 0;
   position: absolute;
@@ -118,7 +118,7 @@
 
 .datepicker-panel > ul::before,
 .datepicker-panel > ul::after {
-  content: " ";
+  content: ' ';
   display: table;
 }
 
@@ -172,31 +172,31 @@
   background-color: rgb(229, 242, 255);
 }
 
-.datepicker-panel > ul > li[data-view="years prev"],
-.datepicker-panel > ul > li[data-view="year prev"],
-.datepicker-panel > ul > li[data-view="month prev"],
-.datepicker-panel > ul > li[data-view="years next"],
-.datepicker-panel > ul > li[data-view="year next"],
-.datepicker-panel > ul > li[data-view="month next"],
-.datepicker-panel > ul > li[data-view="next"] {
+.datepicker-panel > ul > li[data-view='years prev'],
+.datepicker-panel > ul > li[data-view='year prev'],
+.datepicker-panel > ul > li[data-view='month prev'],
+.datepicker-panel > ul > li[data-view='years next'],
+.datepicker-panel > ul > li[data-view='year next'],
+.datepicker-panel > ul > li[data-view='month next'],
+.datepicker-panel > ul > li[data-view='next'] {
   font-size: 18px;
 }
 
-.datepicker-panel > ul > li[data-view="years current"],
-.datepicker-panel > ul > li[data-view="year current"],
-.datepicker-panel > ul > li[data-view="month current"] {
+.datepicker-panel > ul > li[data-view='years current'],
+.datepicker-panel > ul > li[data-view='year current'],
+.datepicker-panel > ul > li[data-view='month current'] {
   width: 150px;
 }
 
-.datepicker-panel > ul[data-view="years"] > li,
-.datepicker-panel > ul[data-view="months"] > li {
+.datepicker-panel > ul[data-view='years'] > li,
+.datepicker-panel > ul[data-view='months'] > li {
   height: 52.5px;
   line-height: 52.5px;
   width: 52.5px;
 }
 
-.datepicker-panel > ul[data-view="week"] > li,
-.datepicker-panel > ul[data-view="week"] > li:hover {
+.datepicker-panel > ul[data-view='week'] > li,
+.datepicker-panel > ul[data-view='week'] > li:hover {
   background-color: #fff;
   cursor: default;
 }

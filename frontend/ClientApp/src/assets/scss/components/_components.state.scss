@@ -1,69 +1,67 @@
-
 .state {
-	position: relative;
-	margin-bottom: $spacer;
-	padding: $spacer-small;
-	border-radius: $base-border-radius;
+  position: relative;
+  margin-bottom: $spacer;
+  padding: $spacer-small;
+  border-radius: $base-border-radius;
 }
 
 .state__title {
-	margin: $spacer-xsmall 0 0 $spacer-small;
-	color: $white;
-	font-size: $text-small-font-size;
-	text-transform: uppercase;
-	opacity: 0.7;
+  margin: $spacer-xsmall 0 0 $spacer-small;
+  color: $white;
+  font-size: $text-small-font-size;
+  text-transform: uppercase;
+  opacity: 0.7;
 }
 
 .state__number {
-	display: block;
-	margin: 0 0 20px $spacer-small;
-	color: $white;
-	font-size: $h1-font-size;
-	font-weight: $font-weight-normal;
+  display: block;
+  margin: 0 0 20px $spacer-small;
+  color: $white;
+  font-size: $h1-font-size;
+  font-weight: $font-weight-normal;
 }
 
 .state__status {
-	margin: 0;
-	padding: $spacer-xsmall 0 0 $spacer-small;
-	border-top: $base-border-width solid rgba($white, 0.2);
-	color: $white;
-	font-size: $text-small-font-size;
-	font-weight: $font-weight-normal;
-	text-transform: uppercase;
+  margin: 0;
+  padding: $spacer-xsmall 0 0 $spacer-small;
+  border-top: $base-border-width solid rgba($white, 0.2);
+  color: $white;
+  font-size: $text-small-font-size;
+  font-weight: $font-weight-normal;
+  text-transform: uppercase;
 }
 
 .state__indicator {
-	display: inline-block;
-	position: absolute;
-	top: $spacer-small; 
-	right: $spacer-small; 
-	color: $white;
-	font-size: 38px;
-	opacity: 0.2;
+  display: inline-block;
+  position: absolute;
+  top: $spacer-small;
+  right: $spacer-small;
+  color: $white;
+  font-size: 38px;
+  opacity: 0.2;
 
-
-	> i {
-		display: block;
-	}
+  > i {
+    display: block;
+  }
 }
 
 .state,
-.state--info { 
-	$color-info: #3B517C;
-	background-color: $color-info; 
+.state--info {
+  $color-info: #3b517c;
+  background-color: $color-info;
 }
 
 .state--success {
-	$color-success: #66B92E;  
-	background-color: $color-success;
+  $color-success: #66b92e;
+  background-color: $color-success;
 }
 
 .state--warning {
-	$color-warning: #DA932C;  
-	background-color: $color-warning;
+  $color-warning: #da932c;
+  background-color: $color-warning;
 }
 
 .state--danger {
-	$color-danger: #D65B4A;  
-	background-color: $color-danger;
+  $color-danger: #d65b4a;
+  background-color: $color-danger;
 }

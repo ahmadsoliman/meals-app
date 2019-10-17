@@ -1,4 +1,3 @@
-
 $btn-padding: rem(10px) rem(20px) !default;
 $btn-border-width: $base-border-width !default;
 $btn-border-color: $blue-500 !default;
@@ -15,13 +14,13 @@ $btn-small-padding: rem(4px) rem(18px) !default;
 $btn-large-font-size: $text-large-font-size !default;
 $btn-large-padding: rem(8px) rem(30px) !default;
 
-
 $btn-primary-gradient: lighten(#e5474b, 5%), #e5474b !default;
 $btn-primary-border-color: lighten(#e5474b, 5%) !default;
 
-$btn-primary-hover-gradient: darken(lighten(#e5474b, 10%), 4%), darken(#e5474b, 4%) !default;
-$btn-primary-focus-gradient: darken(lighten(#e5474b, 10%), 6%), darken(#e5474b, 6%) !default;
-
+$btn-primary-hover-gradient: darken(lighten(#e5474b, 10%), 4%),
+  darken(#e5474b, 4%) !default;
+$btn-primary-focus-gradient: darken(lighten(#e5474b, 10%), 6%),
+  darken(#e5474b, 6%) !default;
 
 $btn-secondary-gradient: $white, $grey-200 !default;
 $btn-secondary-border-color: $grey-400 !default;
@@ -34,6 +33,6 @@ $btn-secondary-focus-gradient: darken($white, 2%), darken($grey-200, 3%) !defaul
 $btn-secondary-focus-color: $gunmetal-200 !default;
 
 // Disabled State
-$btn-disabled-color: rgba($gunmetal-200, .5) !default;
+$btn-disabled-color: rgba($gunmetal-200, 0.5) !default;
 $btn-disabled-background-color: $grey-100 !default;
 $btn-disabled-border-color: $grey-300 !default;

@@ -1,222 +1,212 @@
 .toolbar-container {
-	background-color: $toolbar-background-color;
-	box-shadow: $toolbar-box-shadow;
-	transition: all 0.3s;
-	&.toolbar-container--mobile {
-		@include respond-to($breakpoint-mobile) {
-			position: absolute;
-			left: 0;
-			width: 100%;
-			&.hide {
-				left: -100%;
-			}
-		}
-	}
+  background-color: $toolbar-background-color;
+  box-shadow: $toolbar-box-shadow;
+  transition: all 0.3s;
+  &.toolbar-container--mobile {
+    @include respond-to($breakpoint-mobile) {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      &.hide {
+        left: -100%;
+      }
+    }
+  }
 }
 
 .toolbar {
-	background-color: #fff;
-	display: flex;
-	align-content: center;
-	align-items: center;
-	padding: $toolbar-padding;
+  background-color: #fff;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  padding: $toolbar-padding;
 
-	margin-left: 20px;
-	margin-right: 0px;
-	
-	@include respond-to($breakpoint-tablet) {
-		padding: 20px 15px;
-	}
+  margin-left: 20px;
+  margin-right: 0px;
 
-	h5 {
+  @include respond-to($breakpoint-tablet) {
+    padding: 20px 15px;
+  }
+
+  h5 {
     margin: 0 45px;
     font-size: 1em;
-	}
+  }
 }
 
 .toolbar--empty {
-	padding: 28px 15px;
+  padding: 28px 15px;
 }
 
 .toolbar__title {
-	display: inline-flex;
-	align-content: center;
-	align-items: center;
-	margin: 0;
-	color: $toolbar-title-color;
-	font-size: $toolbar-title-font-size;
-	&.has-divider::after {
-		display: block;
-		width: $toolbar-divider-width;
-		height: $toolbar-divider-height;
-		margin: $toolbar-divider-margin;
-		background-color: $toolbar-divider-background-color;
-		content: " ";
-	}
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+  margin: 0;
+  color: $toolbar-title-color;
+  font-size: $toolbar-title-font-size;
+  &.has-divider::after {
+    display: block;
+    width: $toolbar-divider-width;
+    height: $toolbar-divider-height;
+    margin: $toolbar-divider-margin;
+    background-color: $toolbar-divider-background-color;
+    content: ' ';
+  }
 }
 
 .toolbar__meta {
-	margin: 0;
-	color: $toolbar-meta-color;
-	font-size: $toolbar-meta-font-size;
-	display: inline;
+  margin: 0;
+  color: $toolbar-meta-color;
+  font-size: $toolbar-meta-font-size;
+  display: inline;
 }
 
 .toolbar__icon {
-	display: block;
-	color: $toolbar-icon-color;
-	font-size: $toolbar-icon-font-size;
-	&.is-active {
-		color: $blue-300;
-	}
-	&.has-divider::after {
-		display: inline-block;
-		position: relative;
-		top: 0;
-		width: $toolbar-divider-width;
-		height: $toolbar-divider-height;
-		margin: $toolbar-divider-margin;
-		background-color: $toolbar-divider-background-color;
-		content: " ";
-	}
+  display: block;
+  color: $toolbar-icon-color;
+  font-size: $toolbar-icon-font-size;
+  &.is-active {
+    color: $blue-300;
+  }
+  &.has-divider::after {
+    display: inline-block;
+    position: relative;
+    top: 0;
+    width: $toolbar-divider-width;
+    height: $toolbar-divider-height;
+    margin: $toolbar-divider-margin;
+    background-color: $toolbar-divider-background-color;
+    content: ' ';
+  }
 }
 
 .toolbar__link {
-	color: $toolbar-link-color;
-	font-size: $toolbar-link-font-size;
-	&.has-dropdown::after {
-		display: inline-block;
-		margin-left: 10px;
-		color: inherit;
-		font-family: $base-icon-font;
-		font-size: 12px;
-		content: "\f3d0";
-	}
+  color: $toolbar-link-color;
+  font-size: $toolbar-link-font-size;
+  &.has-dropdown::after {
+    display: inline-block;
+    margin-left: 10px;
+    color: inherit;
+    font-family: $base-icon-font;
+    font-size: 12px;
+    content: '\f3d0';
+  }
 }
 
 .toolbar__nav {
-	@media only screen and (max-width: $breakpoint-mobile) {
-		margin-right: auto;
-		margin-left: auto;
-	}
+  @media only screen and (max-width: $breakpoint-mobile) {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 .toolbar__nav-item {
-	margin-right: 25px;
-	padding: 0 0 27px;
-	color: $tabs-link-color;
-	font-size: $tabs-link-font-size;
-	&:last-child {
-		margin-right: 0;
-	}
-	&:hover {
-		color: $tabs-link-hover-color;
-		text-decoration: none;
-	}
-	&.is-active {
-		
-		border-bottom: $tabs-link-active-border-width solid $tabs-link-active-border-color;
-		color: $tabs-link-active-color;
-		font-weight: $font-weight-bold;
-	}
-	@media only screen and (max-width: $breakpoint-mobile) {
-		padding-bottom: 20px;
-	}
+  margin-right: 25px;
+  padding: 0 0 27px;
+  color: $tabs-link-color;
+  font-size: $tabs-link-font-size;
+  &:last-child {
+    margin-right: 0;
+  }
+  &:hover {
+    color: $tabs-link-hover-color;
+    text-decoration: none;
+  }
+  &.is-active {
+    border-bottom: $tabs-link-active-border-width solid
+      $tabs-link-active-border-color;
+    color: $tabs-link-active-color;
+    font-weight: $font-weight-bold;
+  }
+  @media only screen and (max-width: $breakpoint-mobile) {
+    padding-bottom: 20px;
+  }
 }
 .toolbar__state {
-	border-right: $base-border-width solid $base-border-color;
-	text-align: center;
+  border-right: $base-border-width solid $base-border-color;
+  text-align: center;
 
-	min-width: 53px;
+  min-width: 53px;
 
-	@include linear-gradient(140deg, #1c93ed, #0064af);
-	padding: 15px 12px;
-	border-radius: 4px;
-	border: 1px solid #eee;
-	margin-bottom: 12px;
-	position: relative;
-	overflow: hidden;
+  @include linear-gradient(140deg, #1c93ed, #0064af);
+  padding: 15px 12px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
 
-	@include respond-to($breakpoint-tablet) {
-		margin-bottom: $spacer;
-		border-right: 0;
+  @include respond-to($breakpoint-tablet) {
+    margin-bottom: $spacer;
+    border-right: 0;
 
-		&:nth-child(3),
-		&:nth-child(4) {
-			margin-bottom: 0;
-		}
-	}
+    &:nth-child(3),
+    &:nth-child(4) {
+      margin-bottom: 0;
+    }
+  }
 
-	&:last-child {
-		border-right: 0;
-	}
+  &:last-child {
+    border-right: 0;
+  }
 
-	&:after {
-		position: absolute;
-		bottom: -50px;
-		right: -50px;
-		color: #fff;
-		content: "\f155";
-		font-size: 100px;
-		opacity: 0.2;
-		font-family: LineAwesome;
-	}
+  &:after {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    color: #fff;
+    content: '\f155';
+    font-size: 100px;
+    opacity: 0.2;
+    font-family: LineAwesome;
+  }
 }
 
 .toolbar__state--2 {
+  @include linear-gradient(140deg, #f7b238, #e6a023);
 
-	@include linear-gradient(140deg, #f7b238, #e6a023);
-
-	&:after {
-
-		content: "\f212";
-
-	}
+  &:after {
+    content: '\f212';
+  }
 }
 
 .toolbar__state--3 {
+  @include linear-gradient(140deg, #8259f3, #a587f7);
 
-	@include linear-gradient(140deg, #8259f3, #a587f7);
-
-	&:after {
-
-		content: "\f200";
-
-	}
+  &:after {
+    content: '\f200';
+  }
 }
 
 .toolbar__state--4 {
+  @include linear-gradient(140deg, #c7cbd3, #c9dafd);
 
-	@include linear-gradient(140deg, #c7cbd3, #c9dafd);
-
-	&:after {
-
-		content: "\f15c";
-
-	}
+  &:after {
+    content: '\f15c';
+  }
 }
 
 .toolbar__state-number {
-	margin-bottom: 0;
-	font-size: $h2-font-size;
-	color: #fff;
+  margin-bottom: 0;
+  font-size: $h2-font-size;
+  color: #fff;
 }
 
 .toolbar__state-title {
-	color: $color-mute;
-	font-size: 12px;
-	text-transform: uppercase;
-	color: #fff;
-
+  color: $color-mute;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #fff;
 }
 
 .asset-header-boxes {
-	margin-right: -6px;
-	margin-left: -6px;
-	padding: 12px;
+  margin-right: -6px;
+  margin-left: -6px;
+  padding: 12px;
 
-	.col-md-6 {
-		padding-right: 6px;
-		padding-left: 6px;
-	}
+  .col-md-6 {
+    padding-right: 6px;
+    padding-left: 6px;
+  }
 }

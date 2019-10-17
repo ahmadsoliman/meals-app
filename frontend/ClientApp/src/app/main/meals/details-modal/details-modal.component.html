@@ -1,6 +1,14 @@
-<div class="mask" [ngStyle]="{ display: opened ? 'block' : 'none' }" (click)="closeModal()"></div>
+<div
+  class="mask"
+  [ngStyle]="{ display: opened ? 'block' : 'none' }"
+  (click)="closeModal()"
+></div>
 
-<div class="side-panel right-panel side-panel--has-footer" [ngClass]="{ open: opened }" id="panel-newmeal-container">
+<div
+  class="side-panel right-panel side-panel--has-footer"
+  [ngClass]="{ open: opened }"
+  id="panel-newmeal-container"
+>
   <div class="side-panel-header">
     <h3 class="side-panel-header__title" *ngIf="isEditing">
       Edit Meal
@@ -9,7 +17,10 @@
       New Meal
     </h3>
 
-    <span class="side-panel-header__close close-panel-btn" (click)="closeModal()">
+    <span
+      class="side-panel-header__close close-panel-btn"
+      (click)="closeModal()"
+    >
       <i class="fa fa-close"></i>
     </span>
   </div>
@@ -20,20 +31,36 @@
         <form [formGroup]="form">
           <div class="form-field mt-medium">
             <label class="field__label" for="text">Meal Description:</label>
-            <input class="input" id="text" type="text" placeholder="ex. eggs, "
-              formControlName="text" />
+            <input
+              class="input"
+              id="text"
+              type="text"
+              placeholder="ex. eggs, "
+              formControlName="text"
+            />
           </div>
 
           <div class="form-field mt-medium">
             <label class="field__label" for="date">Date & Time:</label>
-            <kendo-datetimepicker format="dd/MM/yyyy HH:mm" formControlName="date" class="width-100">
+            <kendo-datetimepicker
+              format="dd/MM/yyyy HH:mm"
+              formControlName="date"
+              class="width-100"
+            >
             </kendo-datetimepicker>
           </div>
 
           <div class="form-field mt-medium">
             <label class="field__label" for="calories">Calories:</label>
-            <input class="input" id="calories" type="number" min="1" max="5000" placeholder="ex. 300"
-              formControlName="calories" />
+            <input
+              class="input"
+              id="calories"
+              type="number"
+              min="1"
+              max="5000"
+              placeholder="ex. 300"
+              formControlName="calories"
+            />
           </div>
         </form>
       </div>
@@ -41,13 +68,33 @@
   </div>
 
   <div class="side-panel-footer pb-small" style="background: #fff">
-    <a class="btn btn--secondary close-panel-btn " (click)="closeModal()">Cancel</a>
+    <a class="btn btn--secondary close-panel-btn " (click)="closeModal()"
+      >Cancel</a
+    >
     <div *ngIf="!isEditing">
-      <button class="btn btn--primary mr-small" (click)="save(false)" [disabled]="form && !form.valid">Add and Add Another</button>
-      <button class="btn btn--fancy" (click)="save(true)" [disabled]="form && !form.valid">Add</button>
+      <button
+        class="btn btn--primary mr-small"
+        (click)="save(false)"
+        [disabled]="form && !form.valid"
+      >
+        Add and Add Another
+      </button>
+      <button
+        class="btn btn--fancy"
+        (click)="save(true)"
+        [disabled]="form && !form.valid"
+      >
+        Add
+      </button>
     </div>
     <div *ngIf="isEditing">
-      <button class="btn btn--fancy" (click)="save(true)" [disabled]="form && !form.valid">Save</button>
+      <button
+        class="btn btn--fancy"
+        (click)="save(true)"
+        [disabled]="form && !form.valid"
+      >
+        Save
+      </button>
     </div>
   </div>
 </div>

@@ -1,77 +1,65 @@
 .numbered-nav {
-	display: flex;
-	align-content: center;
-	align-items: center;
+  display: flex;
+  align-content: center;
+  align-items: center;
 }
 
 .numbered-nav__title {
-	margin-right: $spacer-xsmall;
-	color: $color-mute;
+  margin-right: $spacer-xsmall;
+  color: $color-mute;
 }
 
 .numbered-nav__item {
-	margin-right: rem(20px);
+  margin-right: rem(20px);
 }
 
 .numbered-nav__link {
-	color: $color-mute;
-	font-size: 14px;
+  color: $color-mute;
+  font-size: 14px;
 
-	&:hover {
-		text-decoration: none;
-	}
+  &:hover {
+    text-decoration: none;
+  }
 
-	&.is-active {
-		color: $heading-color;
-	}
+  &.is-active {
+    color: $heading-color;
+  }
 }
 
 .numbered-nav__counter {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 28px;
-	height: 28px;
-	margin-right: 10px;
-	border: $base-border-width solid $base-border-color;
-	border-radius: 100%;
-	background-color: $secondary-background-color;
-	color: $color-mute;
-	text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+  border: $base-border-width solid $base-border-color;
+  border-radius: 100%;
+  background-color: $secondary-background-color;
+  color: $color-mute;
+  text-align: center;
 
-	.numbered-nav__link.is-active & {
-		@include linear-gradient(to bottom, #2EA1F8, #1990EA);
-		border-color: #2EA1F8;
-		color: $white;
-	}
+  .numbered-nav__link.is-active & {
+    @include linear-gradient(to bottom, #2ea1f8, #1990ea);
+    border-color: #2ea1f8;
+    color: $white;
+  }
 }
-
 
 .numbered-nav--inverse {
-	.numbered-nav__counter {
-		border-radius: 100%;
-		border-color: #313C4D;
-		background-color: #313C4D;
-		color: #828A96;
-		text-align: center;
+  .numbered-nav__counter {
+    border-radius: 100%;
+    border-color: #313c4d;
+    background-color: #313c4d;
+    color: #828a96;
+    text-align: center;
 
-		.numbered-nav__link.is-active & {
-			color: $white;
-		}
-	}
+    .numbered-nav__link.is-active & {
+      color: $white;
+    }
+  }
 
-	.numbered-nav__link.is-active {
-		color: $white;
-	}
+  .numbered-nav__link.is-active {
+    color: $white;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-

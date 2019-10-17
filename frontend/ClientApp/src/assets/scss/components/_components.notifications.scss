@@ -1,28 +1,26 @@
-
 .notification {
-	display: inline-block;
-	position: relative; 
-	margin-right: $spacer-xsmall; 
+  display: inline-block;
+  position: relative;
+  margin-right: $spacer-xsmall;
 }
 
 .notification__icon {
-	color: $notification-icon-color;
-	font-size: $notification-icon-font-size;
+  color: $notification-icon-color;
+  font-size: $notification-icon-font-size;
 }
 
-
 .notification__number {
-	display: inline-block;
-	position: absolute;
-	top: -3px; 
-	right: -$spacer-xsmall; 
-	min-width: $notification-number-width;
-	height: $notification-number-height;
-	padding: $notification-number-padding;
-	border-radius: $notification-number-border-radius;
-	background-color: $notification-number-background-color;
-	color: $notification-number-color;
-	font-size: $notification-number-font-size;
-	line-height: $notification-number-line-height;
-	text-align: center;
+  display: inline-block;
+  position: absolute;
+  top: -3px;
+  right: -$spacer-xsmall;
+  min-width: $notification-number-width;
+  height: $notification-number-height;
+  padding: $notification-number-padding;
+  border-radius: $notification-number-border-radius;
+  background-color: $notification-number-background-color;
+  color: $notification-number-color;
+  font-size: $notification-number-font-size;
+  line-height: $notification-number-line-height;
+  text-align: center;
 }

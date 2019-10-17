@@ -1,78 +1,78 @@
 .stage-accordion {
-	margin-bottom: $spacer;
-	border: $base-border-width solid $base-border-color;
-	border-radius: $base-border-radius;
-	background-color: $base-background-color;
+  margin-bottom: $spacer;
+  border: $base-border-width solid $base-border-color;
+  border-radius: $base-border-radius;
+  background-color: $base-background-color;
 }
 
 .stage-accordion__header {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: $spacer-small $spacer;
-	border-bottom: $base-border-width solid $base-border-color;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacer-small $spacer;
+  border-bottom: $base-border-width solid $base-border-color;
+  cursor: pointer;
 
-	&:hover {
-		text-decoration: none;
-	}
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .stage-accordion__header-img {
-	max-width: 60px;
-	margin-right: 20px;
-	border-radius: $base-border-radius;
-	overflow: hidden;
+  max-width: 60px;
+  margin-right: 20px;
+  border-radius: $base-border-radius;
+  overflow: hidden;
 }
 
 .stage-accordion__icon {
-	width: 30px;
-	height: 30px;
-	margin-right: $spacer-xsmall;
-	border: $base-border-color solid $base-border-width;
-	border-radius: 100%;
-	color: $color-mute;
-	font-size: 14px;
-	line-height: 30px;
-	text-align: center;
+  width: 30px;
+  height: 30px;
+  margin-right: $spacer-xsmall;
+  border: $base-border-color solid $base-border-width;
+  border-radius: 100%;
+  color: $color-mute;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: center;
 }
 
 .stage-accordion__panel {
-	border-bottom: $base-border-width solid $base-border-color;
+  border-bottom: $base-border-width solid $base-border-color;
 
-	&.collapse {
-		display: none;
+  &.collapse {
+    display: none;
 
-		&.show {
-			display: block;
-	  	}
-	}
+    &.show {
+      display: block;
+    }
+  }
 
-	&.collapsing {
-		position: relative;
-		height: 0;
-		transition: height 0.3s;
-		overflow: hidden;
-	}
+  &.collapsing {
+    position: relative;
+    height: 0;
+    transition: height 0.3s;
+    overflow: hidden;
+  }
 
-	&--mute {
-		background-color: $secondary-background-color;
-	}
+  &--mute {
+    background-color: $secondary-background-color;
+  }
 }
 
 .stage-accordion__label {
-	display: flex;
-	align-items: center;
-	padding: $spacer-small $spacer;
-	background-color: $color-success;
-	color: $white;
+  display: flex;
+  align-items: center;
+  padding: $spacer-small $spacer;
+  background-color: $color-success;
+  color: $white;
 }
 
 .stage-accordion__label-icon {
-	margin-right: $spacer-xsmall;
-	font-size: $h2-font-size;
+  margin-right: $spacer-xsmall;
+  font-size: $h2-font-size;
 }
 
 .stage-accordion__label-title {
-	color: $white;
+  color: $white;
 }

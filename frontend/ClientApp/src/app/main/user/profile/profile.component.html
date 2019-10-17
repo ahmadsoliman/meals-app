@@ -5,7 +5,6 @@
     <div class="col-xl-8" *ngIf="form">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="card p-medium mb-medium">
-
           <div *ngIf="errorMsg" class="error-msg">
             <label>{{ errorMsg }}</label>
           </div>
@@ -13,11 +12,22 @@
             <div class="col-md-6">
               <div class="field mb-small">
                 <label class="field__label" for="firstName">First Name*</label>
-                <input class="input" type="text" id="firstName" maxlength="50" formControlName="firstName"
-                  class="input form-control" [ngClass]="{
+                <input
+                  class="input"
+                  type="text"
+                  id="firstName"
+                  maxlength="50"
+                  formControlName="firstName"
+                  class="input form-control"
+                  [ngClass]="{
                     'is-invalid': f.firstName.touched && f.firstName.errors
-                  }" placeholder="Your first name" />
-                <div *ngIf="f.firstName.touched && f.firstName.errors" class="invalid-feedback">
+                  }"
+                  placeholder="Your first name"
+                />
+                <div
+                  *ngIf="f.firstName.touched && f.firstName.errors"
+                  class="invalid-feedback"
+                >
                   <div *ngIf="f.firstName.errors.required">
                     First Name is required
                   </div>
@@ -27,11 +37,22 @@
             <div class="col-md-6">
               <div class="field mb-small">
                 <label class="field__label" for="lastName">Last Name*</label>
-                <input class="input" type="text" id="lastName" maxlength="50" formControlName="lastName"
-                  class="input form-control" [ngClass]="{
+                <input
+                  class="input"
+                  type="text"
+                  id="lastName"
+                  maxlength="50"
+                  formControlName="lastName"
+                  class="input form-control"
+                  [ngClass]="{
                     'is-invalid': f.lastName.touched && f.lastName.errors
-                  }" placeholder="Your last name" />
-                <div *ngIf="f.lastName.touched && f.lastName.errors" class="invalid-feedback">
+                  }"
+                  placeholder="Your last name"
+                />
+                <div
+                  *ngIf="f.lastName.touched && f.lastName.errors"
+                  class="invalid-feedback"
+                >
                   <div *ngIf="f.lastName.errors.required">
                     Last Name is required
                   </div>
@@ -42,46 +63,91 @@
 
           <div class="field mb-small">
             <label class="field__label" for="email">Email*</label>
-            <input type="email" id="email" maxlength="50" formControlName="email" class="input form-control"
-              [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }" placeholder="Enter your email" />
-            <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+            <input
+              type="email"
+              id="email"
+              maxlength="50"
+              formControlName="email"
+              class="input form-control"
+              [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }"
+              placeholder="Enter your email"
+            />
+            <div
+              *ngIf="f.email.touched && f.email.errors"
+              class="invalid-feedback"
+            >
               <div *ngIf="f.email.errors.required">Email is required</div>
               <div *ngIf="f.email.errors.email">Email is not valid</div>
             </div>
           </div>
 
           <div class="6u 12u$(small) mt-medium" *ngIf="!createUser">
-            <input type="checkbox" id="changePassword" name="changePassword" [(ngModel)]="changePassword"
-              [ngModelOptions]="{standalone: true}" (change)="changePasswordToggled($event)">
+            <input
+              type="checkbox"
+              id="changePassword"
+              name="changePassword"
+              [(ngModel)]="changePassword"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="changePasswordToggled($event)"
+            />
             <label for="changePassword">Change Password ?</label>
           </div>
 
           <div *ngIf="changePassword">
             <div class="field mb-small">
               <label class="field__label" for="password">Password*</label>
-              <input type="password" id="password" maxlength="50" formControlName="password" class="input form-control"
-                placeholder="Enter your password" [ngClass]="{
-                'is-invalid': f.password.touched && f.password.errors
-              }" />
-              <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="
-                  f.password.errors.password && !f.password.errors.required
-                ">
+              <input
+                type="password"
+                id="password"
+                maxlength="50"
+                formControlName="password"
+                class="input form-control"
+                placeholder="Enter your password"
+                [ngClass]="{
+                  'is-invalid': f.password.touched && f.password.errors
+                }"
+              />
+              <div
+                *ngIf="f.password.touched && f.password.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.password.errors.required">
+                  Password is required
+                </div>
+                <div
+                  *ngIf="
+                    f.password.errors.password && !f.password.errors.required
+                  "
+                >
                   Password must not be less than 6 characters and contains at
                   least 1 alphabetic letter
                 </div>
               </div>
             </div>
             <div class="field mb-small">
-              <label class="field__label" for="passwordConfirmation">Confirm Password*</label>
-              <input type="password" id="passwordConfirmation" maxlength="50" formControlName="passwordConfirmation"
-                class="input form-control" placeholder="Re-enter your password" [ngClass]="{
-                'is-invalid':
+              <label class="field__label" for="passwordConfirmation"
+                >Confirm Password*</label
+              >
+              <input
+                type="password"
+                id="passwordConfirmation"
+                maxlength="50"
+                formControlName="passwordConfirmation"
+                class="input form-control"
+                placeholder="Re-enter your password"
+                [ngClass]="{
+                  'is-invalid':
+                    f.passwordConfirmation.touched &&
+                    f.passwordConfirmation.errors
+                }"
+              />
+              <div
+                *ngIf="
                   f.passwordConfirmation.touched &&
                   f.passwordConfirmation.errors
-              }" />
-              <div *ngIf="f.passwordConfirmation.touched && f.passwordConfirmation.errors" class="invalid-feedback">
+                "
+                class="invalid-feedback"
+              >
                 <div *ngIf="f.passwordConfirmation.errors.mustMatch">
                   Password is not matched
                 </div>
@@ -93,20 +159,51 @@
         <div class="card p-medium mb-medium">
           <h5 class="mb-medium">User Settings</h5>
 
-          <div class="field mb-small" *ngIf="form.value.permissionLevel == permissionLevels.USER">
-            <label class="field__label" for="email">Expected Daily Calories*</label>
-            <input type="number" id="calories" formControlName="expectedNumberOfCalories" class="input form-control"
-              [ngClass]="{ 'is-invalid': f.expectedNumberOfCalories.touched && f.expectedNumberOfCalories.errors }" />
-            <div *ngIf="f.expectedNumberOfCalories.touched && f.expectedNumberOfCalories.errors"
-              class="invalid-feedback">
-              <div *ngIf="f.expectedNumberOfCalories.errors.required">Calories is required</div>
-              <div *ngIf="f.expectedNumberOfCalories.errors.min">Calories must be more than 500.</div>
-              <div *ngIf="f.expectedNumberOfCalories.errors.max">Calories must be less than 5000.</div>
+          <div
+            class="field mb-small"
+            *ngIf="form.value.permissionLevel == permissionLevels.USER"
+          >
+            <label class="field__label" for="email"
+              >Expected Daily Calories*</label
+            >
+            <input
+              type="number"
+              id="calories"
+              formControlName="expectedNumberOfCalories"
+              class="input form-control"
+              [ngClass]="{
+                'is-invalid':
+                  f.expectedNumberOfCalories.touched &&
+                  f.expectedNumberOfCalories.errors
+              }"
+            />
+            <div
+              *ngIf="
+                f.expectedNumberOfCalories.touched &&
+                f.expectedNumberOfCalories.errors
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.expectedNumberOfCalories.errors.required">
+                Calories is required
+              </div>
+              <div *ngIf="f.expectedNumberOfCalories.errors.min">
+                Calories must be more than 500.
+              </div>
+              <div *ngIf="f.expectedNumberOfCalories.errors.max">
+                Calories must be less than 5000.
+              </div>
             </div>
           </div>
 
-          <div class="field mb-small"
-            *ngIf="auth.isAdmin() || (auth.isUserManager() && (user$ | async)?.permissionLevel < permissionLevels.ADMIN)">
+          <div
+            class="field mb-small"
+            *ngIf="
+              auth.isAdmin() ||
+              (auth.isUserManager() &&
+                (user$ | async)?.permissionLevel < permissionLevels.ADMIN)
+            "
+          >
             <label class="field__label" for="email">User Type*</label>
             <select id="userType" formControlName="permissionLevel" class="">
               <option value="1">User</option>
@@ -116,14 +213,25 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn--fancy btn--round btn--fullwidth mt-small mb-small"
-          [disabled]="!form.valid">
+        <button
+          type="submit"
+          class="btn btn--fancy btn--round btn--fullwidth mt-small mb-small"
+          [disabled]="!form.valid"
+        >
           Save
         </button>
 
-        <button type="button" (click)="deleteDialogOpened=true"
-          *ngIf="!createUser && (currentUser || auth.isAdmin() || (user$ | async)?.permissionLevel < permissionLevels.ADMIN)"
-          class="btn btn--primary btn--round btn--fullwidth mt-small mb-large">
+        <button
+          type="button"
+          (click)="deleteDialogOpened = true"
+          *ngIf="
+            !createUser &&
+            (currentUser ||
+              auth.isAdmin() ||
+              (user$ | async)?.permissionLevel < permissionLevels.ADMIN)
+          "
+          class="btn btn--primary btn--round btn--fullwidth mt-small mb-large"
+        >
           Delete Account
         </button>
       </form>
@@ -132,10 +240,17 @@
   </div>
 </div>
 
-<kendo-dialog title="Please confirm" *ngIf="deleteDialogOpened" (close)="deleteDialogOpened=false" [minWidth]="250">
-  <p style="margin: 30px; text-align: center;">Are you sure you want to delete the account forever?</p>
+<kendo-dialog
+  title="Please confirm"
+  *ngIf="deleteDialogOpened"
+  (close)="deleteDialogOpened = false"
+  [minWidth]="250"
+>
+  <p style="margin: 30px; text-align: center;">
+    Are you sure you want to delete the account forever?
+  </p>
   <kendo-dialog-actions>
-    <button kendoButton (click)="deleteDialogOpened=false">No</button>
+    <button kendoButton (click)="deleteDialogOpened = false">No</button>
     <button kendoButton (click)="deleteAccount()" primary="true">Yes</button>
   </kendo-dialog-actions>
 </kendo-dialog>

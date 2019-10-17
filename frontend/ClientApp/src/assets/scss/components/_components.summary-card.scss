@@ -1,19 +1,18 @@
 .summary-card {
-	@media (max-width: $breakpoint-tablet) {
-		.border-right,
-		.border-left {
-			border: 0 !important;
-		}
-	}
+  @media (max-width: $breakpoint-tablet) {
+    .border-right,
+    .border-left {
+      border: 0 !important;
+    }
+  }
 }
 
 .summary-card__section {
-	@media (max-width: $breakpoint-tablet) {
-		margin-bottom: 30px;
+  @media (max-width: $breakpoint-tablet) {
+    margin-bottom: 30px;
 
-		h3 {
-			font-size: $h4-font-size;
-		}
-	}
+    h3 {
+      font-size: $h4-font-size;
+    }
+  }
 }
-

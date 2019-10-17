@@ -1,109 +1,108 @@
 .avatar {
-	display: flex;
-	position: relative;
-	flex-shrink: 0;
-	align-content: center;
-	align-items: center;
-	margin: 0; 
-	padding: 0;
-	overflow: hidden;
-	user-select: none;
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+  align-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  user-select: none;
 
-	&.has-dropdown {
-		cursor: pointer;
-		overflow: visible;
+  &.has-dropdown {
+    cursor: pointer;
+    overflow: visible;
 
-		&::after {
-			display: block;
-			padding-left: 10px;
-			color: $avatar-arrow-color;
-			font-family: $base-icon-font;
-			
-			content: "\f110";
-		}
+    &::after {
+      display: block;
+      padding-left: 10px;
+      color: $avatar-arrow-color;
+      font-family: $base-icon-font;
 
-		&:hover {
-			text-decoration: none;
-		}
-	}
+      content: '\f110';
+    }
 
-	.avatar__img {
-		width: $avatar-img-width;
-		height: $avatar-img-height;
-	}
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .avatar__img {
+    width: $avatar-img-width;
+    height: $avatar-img-height;
+  }
 }
 
 .avatar__img {
-	border-radius: 100%;
-	overflow: hidden;
+  border-radius: 100%;
+  overflow: hidden;
 }
 
-
 .avatar--xsmall {
-	.avatar__img {
-		width: $avatar-img-xsmall-width;
-		height: $avatar-img-xsmall-height;
-	}
+  .avatar__img {
+    width: $avatar-img-xsmall-width;
+    height: $avatar-img-xsmall-height;
+  }
 }
 
 .avatar--small {
-	.avatar__img {
-		width: $avatar-img-small-width;
-		height: $avatar-img-small-height;
-	}
+  .avatar__img {
+    width: $avatar-img-small-width;
+    height: $avatar-img-small-height;
+  }
 }
 
 .avatar--medium {
-	.avatar__img {
-		width: $avatar-img-medium-width;
-		height: $avatar-img-medium-height;
-	}
+  .avatar__img {
+    width: $avatar-img-medium-width;
+    height: $avatar-img-medium-height;
+  }
 }
 
 .avatar--large {
-	.avatar__img {
-		width: $avatar-img-large-width;
-		height: $avatar-img-large-height;
-	}
+  .avatar__img {
+    width: $avatar-img-large-width;
+    height: $avatar-img-large-height;
+  }
 }
 
 .avatar--xlarge {
-	.avatar__img {
-		width: $avatar-img-xlarge-width;
-		height: $avatar-img-xlarge-height;
-	}
+  .avatar__img {
+    width: $avatar-img-xlarge-width;
+    height: $avatar-img-xlarge-height;
+  }
 }
 
 .avatar--super {
-	.avatar__img {
-		width: $avatar-img-super-width;
-		height: $avatar-img-super-height;
-	}
+  .avatar__img {
+    width: $avatar-img-super-width;
+    height: $avatar-img-super-height;
+  }
 }
 
-.avatar--overlay>i {
-	cursor: pointer;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	transition: 0.5s ease;
-	opacity: 0;
-	font-size: 90px;
+.avatar--overlay > i {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  font-size: 90px;
 }
 
-.avatar--overlay>i:hover {
-	opacity: 0.8;
+.avatar--overlay > i:hover {
+  opacity: 0.8;
 }
 
-.avatar--overlay>img {
-	transition: 0.5s ease;
-	opacity: 1;
+.avatar--overlay > img {
+  transition: 0.5s ease;
+  opacity: 1;
 }
 
-.avatar--overlay>img:hover {
-	opacity: 0.3;
+.avatar--overlay > img:hover {
+  opacity: 0.3;
 }

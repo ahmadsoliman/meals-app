@@ -1,24 +1,20 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { environment } from '@env/environment';
-import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
-import { NgxsModule } from '@ngxs/store';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { environment } from "@env/environment";
+import { NgxsRouterPluginModule } from "@ngxs/router-plugin";
+import { NgxsModule } from "@ngxs/store";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MainModule } from './main/main.module';
-import { CoreModule } from './core/core.module';
-import { appStates } from './app.state';
-import { SharedModule } from './shared/shared.module';
-import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
-
-
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { MainModule } from "./main/main.module";
+import { CoreModule } from "./core/core.module";
+import { appStates } from "./app.state";
+import { SharedModule } from "./shared/shared.module";
+import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,4 +29,4 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

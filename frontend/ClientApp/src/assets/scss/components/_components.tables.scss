@@ -1,287 +1,270 @@
 .table {
-	display: table;
-	width: 100%;
-	max-width: 100%;
-	border: $table-border-width solid $table-border-color;
-	border-radius: $table-border-radius;
-	background-color: $table-background-color;
-	border-collapse: collapse;
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  border: $table-border-width solid $table-border-color;
+  border-radius: $table-border-radius;
+  background-color: $table-background-color;
+  border-collapse: collapse;
 }
 
-
-
 .table-responsive {
-	display: block;
-	width: 100%;
-	overflow-x: auto;
-	-webkit-overflow-scrolling: touch;
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
-	.table {
-		display: block;
-		overflow-y: hidden;
-	}
+  .table {
+    display: block;
+    overflow-y: hidden;
+  }
 }
 
 @media (max-width: $breakpoint-mobile) {
-	.table-responsive\@mobile {
-		display: block;
-		width: 100%;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
+  .table-responsive\@mobile {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 
-		.table {
-			display: block;
-			overflow-y: hidden;
-		}
-	}
+    .table {
+      display: block;
+      overflow-y: hidden;
+    }
+  }
 }
 
 @media (max-width: $breakpoint-tablet) {
-	.table-responsive\@tablet {
-		display: block;
-		width: 100%;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
+  .table-responsive\@tablet {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 
-		.table {
-			display: block;
-			overflow-y: hidden;
-		}
-	}
+    .table {
+      display: block;
+      overflow-y: hidden;
+    }
+  }
 }
 
 @media (max-width: $breakpoint-desktop) {
-	.table-responsive\@desktop {
-		display: block;
-		width: 100%;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
+  .table-responsive\@desktop {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 
-		.table {
-			display: block;
-			overflow-y: hidden;
-		}
-	}
+    .table {
+      display: block;
+      overflow-y: hidden;
+    }
+  }
 }
 
 @media (max-width: $breakpoint-wide) {
-	.table-responsive\@wide {
-		display: block;
-		width: 100%;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
+  .table-responsive\@wide {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 
-		.table {
-			display: block;
-			overflow-y: hidden;
-		}
-	}
+    .table {
+      display: block;
+      overflow-y: hidden;
+    }
+  }
 }
 
 .table--plain {
-	width: 100%;
-	tr {
-		background: none !important;
-	}
+  width: 100%;
+  tr {
+    background: none !important;
+  }
 }
 .table--zebra {
-	tbody tr:nth-of-type(odd) {
-		background-color: $table-zebra-row-background-color;
-	}
+  tbody tr:nth-of-type(odd) {
+    background-color: $table-zebra-row-background-color;
+  }
 }
-
-
 
 .table--highlight {
-	tbody tr:hover {
-		background-color: $table-highlight-row-background-color;
-	}
+  tbody tr:hover {
+    background-color: $table-highlight-row-background-color;
+  }
 }
-
 
 .table--fixed {
-	table-layout: fixed;
+  table-layout: fixed;
 }
-
 
 .table__title {
-	position: relative;
-	padding: 25px 30px;
-	border: $base-border-width solid $base-border-color;
-	border-bottom: 0;
-	border-radius: 4px 4px 0 0;
-	background-color: $table-title-background-color;
-	color: $table-title-color;
-	font-size: 24px;
-	text-align: left;
+  position: relative;
+  padding: 25px 30px;
+  border: $base-border-width solid $base-border-color;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  background-color: $table-title-background-color;
+  color: $table-title-color;
+  font-size: 24px;
+  text-align: left;
 
-	small {
-		display: inline-block;
-		margin-left: 10px;
-		color: $color-mute;
-		font-size: 14px;
+  small {
+    display: inline-block;
+    margin-left: 10px;
+    color: $color-mute;
+    font-size: 14px;
 
-
-		&::before {
-			display: inline-block;
-			position: relative;
-			bottom: -2px;
-			width: 1px;
-			height: 14px;
-			margin-right: 12px;
-			background-color: #DFE3E9;
-			content: "";
-		}
-	}
+    &::before {
+      display: inline-block;
+      position: relative;
+      bottom: -2px;
+      width: 1px;
+      height: 14px;
+      margin-right: 12px;
+      background-color: #dfe3e9;
+      content: '';
+    }
+  }
 }
 
-
-
 .table__title-action {
-	position: absolute;
-	top: 30px;
-	right: 30px;
-	color: #AFB4BB;
-	font-size: 22px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  color: #afb4bb;
+  font-size: 22px;
 }
 
 .table__head--slim {
-	padding: 0;
-	background-color: $table-head-slim-background-color;
+  padding: 0;
+  background-color: $table-head-slim-background-color;
 
-	.table__cell {
-		padding: $table-head-cell-padding;
-	}
+  .table__cell {
+    padding: $table-head-cell-padding;
+  }
 
-	.table__cell--merged-head {
-		padding: 10px 7px;
-		font-size: .7em;
-	}
+  .table__cell--merged-head {
+    padding: 10px 7px;
+    font-size: 0.7em;
+  }
 }
 
-
 .table__row {
-	border-top: $table-border-width solid $table-border-color;
-	border-bottom: $table-border-width solid $table-border-color;
+  border-top: $table-border-width solid $table-border-color;
+  border-bottom: $table-border-width solid $table-border-color;
 
-	&:last-child {
-		border-bottom: 0;
-	}
+  &:last-child {
+    border-bottom: 0;
+  }
 }
 
 .table__row--success,
 .table__row--danger,
 .table__row--info,
 .table__row--warning {
-	border-left: 3px solid;
+  border-left: 3px solid;
 }
 
 .table__row--success {
-	border-left-color: $color-success;
+  border-left-color: $color-success;
 }
 
 .table__row--danger {
-	border-left-color: $color-danger;
+  border-left-color: $color-danger;
 }
 
 .table__row--info {
-	border-left-color: $color-info;
+  border-left-color: $color-info;
 }
 
 .table__row--warning {
-	border-left-color: $color-warning;
+  border-left-color: $color-warning;
 }
-
 
 .table__cell {
-	padding: $table-cell-padding;
-	color: $table-cell-color;
-	font-size: $table-cell-font-size;
-	font-weight: $table-cell-font-weight;
-	text-align: left;
-	white-space: nowrap;
-	vertical-align: middle;
+  padding: $table-cell-padding;
+  color: $table-cell-color;
+  font-size: $table-cell-font-size;
+  font-weight: $table-cell-font-weight;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
 
-	&:last-child {
-		padding-right: $spacer;
-	}
+  &:last-child {
+    padding-right: $spacer;
+  }
 }
 .table--sm {
-	.table__cell {
-		padding: 10px 0 10px 30px;
-	}	
+  .table__cell {
+    padding: 10px 0 10px 30px;
+  }
 }
 .table__cell--head {
-	color: $color-mute;
-	font-size: $text-font-size;
-	font-weight: $font-weight-semibold;
+  color: $color-mute;
+  font-size: $text-font-size;
+  font-weight: $font-weight-semibold;
 }
 
-
-
 .table__cell--img {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .table-sticky-footer {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	padding: 20px 0;
-	width: 100%;
-	transition: all 0.3s;
-	text-align: center;
-	border: $card-border-width solid $card-border-color;
-	border-radius: $card-border-radius;
-	background-color: $card-background-color;
-	z-index: 10;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 20px 0;
+  width: 100%;
+  transition: all 0.3s;
+  text-align: center;
+  border: $card-border-width solid $card-border-color;
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
+  z-index: 10;
 
-	@include respond-to($breakpoint-mobile) {
-		display: none;
-	}
+  @include respond-to($breakpoint-mobile) {
+    display: none;
+  }
 }
 
 .no-paging {
-
-	.dataTables_info,
-	.dataTables_paginate {
-		display: none !important;
-	}
+  .dataTables_info,
+  .dataTables_paginate {
+    display: none !important;
+  }
 }
 
 .report-table-header {
-	.table__cell--head {
-		text-transform: uppercase;
-	}
+  .table__cell--head {
+    text-transform: uppercase;
+  }
 }
 .report-table {
+  .table__cell {
+    padding: 5px;
+    border-right: 1px solid #eee;
+    transition: all 0.3s;
 
-	.table__cell {
-		padding: 5px;
-		border-right: 1px solid #eee;
-		transition: all 0.3s;
+    &:hover {
+      background: #cfe7d1;
+    }
+  }
 
-		&:hover {
-			background: #cfe7d1;
-		}
-	}
+  tr {
+    transition: all 0.3s;
+  }
 
-	
+  tr:hover {
+    background-color: rgba(186, 218, 249, 0.3);
+  }
 
-	tr {
-		transition: all 0.3s;
-	}
-
-	tr:hover {
-		background-color: rgba(186, 218, 249, 0.3);
-	}
-
-	tr:nth-of-type(odd):hover {
-		background-color: rgba(186, 218, 249, 0.3);
-	}
+  tr:nth-of-type(odd):hover {
+    background-color: rgba(186, 218, 249, 0.3);
+  }
 }
 .hidden-row {
-	height: 0;
+  height: 0;
 }

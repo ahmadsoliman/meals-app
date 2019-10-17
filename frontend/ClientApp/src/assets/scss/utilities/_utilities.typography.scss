@@ -1,96 +1,93 @@
-
 .h1 {
-	font-size: $h1-font-size;
+  font-size: $h1-font-size;
 }
 
 .h2 {
-	font-size: $h2-font-size;
+  font-size: $h2-font-size;
 }
 
 .h3 {
-	font-size: $h3-font-size;
+  font-size: $h3-font-size;
 }
 
 .h4 {
-	font-size: $h4-font-size;
+  font-size: $h4-font-size;
 }
 
 .h5 {
-	font-size: $h5-font-size;
+  font-size: $h5-font-size;
 }
 
 .h6 {
-	font-size: $h6-font-size;
+  font-size: $h6-font-size;
 }
 
 .text-mute {
-	color: $text-mute-color !important;
+  color: $text-mute-color !important;
 }
 
 .text-danger {
-	color: $color-danger !important;
+  color: $color-danger !important;
 }
 
 .text-success {
-	color: #45B854 !important;
+  color: #45b854 !important;
 }
 
 .text-dark {
-	color: $text-color;
+  color: $text-color;
 }
 
 .text-white {
-	color: $white;
+  color: $white;
 }
 
-
 .text-tiny {
-	font-size: $text-tiny-font-size !important;
+  font-size: $text-tiny-font-size !important;
 }
 
 .text-xsmall {
-	font-size: $text-small-font-size !important;
+  font-size: $text-small-font-size !important;
 }
 
 .text-small {
-	font-size: $text-font-size !important;
+  font-size: $text-font-size !important;
 }
 
 .text-large {
-	font-size: $h6-font-size !important;
+  font-size: $h6-font-size !important;
 }
 
 .text-big {
-	font-size: $h1-font-size * 1.5;
-	font-weight: $font-weight-bold;
-	line-height: 48px;
+  font-size: $h1-font-size * 1.5;
+  font-weight: $font-weight-bold;
+  line-height: 48px;
 }
 
 .text-bold {
-	font-weight: $font-weight-bold !important;
+  font-weight: $font-weight-bold !important;
 }
 
-
 .text-right {
-	text-align: right !important;
+  text-align: right !important;
 }
 
 .text-left {
-	text-align: left !important;
+  text-align: left !important;
 }
 
 .text-center {
-	text-align: center !important;
+  text-align: center !important;
 }
 
 .text-uppercase {
-	text-transform: uppercase !important;
+  text-transform: uppercase !important;
 }
 
 .text-lowercase {
-	text-transform: lowercase !important;
+  text-transform: lowercase !important;
 }
 
 .text-capitalize {
-	text-transform: capitalize !important;
+  text-transform: capitalize !important;
 }

@@ -1,78 +1,74 @@
-
-
 .navbar {
-	display: flex;
-	position: relative;
-	flex-wrap: wrap;
-	align-items: center;
-	width: 100%;
-	min-width: 100%;
-	min-height: $navbar-height;
-	// padding: $navbar-padding;
-	border-bottom: $navbar-border-width solid $navbar-border-color;
-	background-color: $navbar-background-color;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-width: 100%;
+  min-height: $navbar-height;
+  // padding: $navbar-padding;
+  border-bottom: $navbar-border-width solid $navbar-border-color;
+  background-color: $navbar-background-color;
 
-	@include respond-to($breakpoint-tablet){
-		padding:0 0 0 $spacer-small;
-	}
+  @include respond-to($breakpoint-tablet) {
+    padding: 0 0 0 $spacer-small;
+  }
 }
 
-
 .navbar-search {
-	width: 270px !important;
+  width: 270px !important;
 }
 
 .side-bar {
-	.navbar__logo {
-		display: none;
-	}
+  .navbar__logo {
+    display: none;
+  }
 }
 .navbar__logo {
-	display: inline-block;
-	width: $navbar-brand-width; 
-	height: $navbar-brand-height; 
-	margin: $navbar-brand-margin;
+  display: inline-block;
+  width: $navbar-brand-width;
+  height: $navbar-brand-height;
+  margin: $navbar-brand-margin;
 
-	@include respond-to($breakpoint-tablet){
-		margin-right: auto; 
-	}
+  @include respond-to($breakpoint-tablet) {
+    margin-right: auto;
+  }
 }
 
 .navbar-title {
-	margin: $navbar-title-padding;
-	padding: 0;
-	font-size: $h5-font-size;
+  margin: $navbar-title-padding;
+  padding: 0;
+  font-size: $h5-font-size;
 }
-
 
 .navbar--inverse {
-	@include linear-gradient(to bottom, $blue-300, $blue-400);
+  @include linear-gradient(to bottom, $blue-300, $blue-400);
 
-	.nav,
-	.nav__item {
-		border-color: $blue-200;
-	}
+  .nav,
+  .nav__item {
+    border-color: $blue-200;
+  }
 
-	.nav__link {
-		color: $white;
-	}
+  .nav__link {
+    color: $white;
+  }
 
-	.avatar.has-dropdown::after {
-		color: $white;
-	}
+  .avatar.has-dropdown::after {
+    color: $white;
+  }
 
-	.toggle-btn__icon,
-	.toggle-btn__icon::before,
-	.toggle-btn__icon::after {
-		background-color: $base-background-color;
-		opacity: 0.95;
-	}
+  .toggle-btn__icon,
+  .toggle-btn__icon::before,
+  .toggle-btn__icon::after {
+    background-color: $base-background-color;
+    opacity: 0.95;
+  }
 }
 .app-switcher-icon {
-    padding: $app-switcher-padding; 
-    margin: $app-switcher-margin; 
-    background:$app-switcher-background; 
-    cursor: pointer;
-    border-left: $app-switcher-border; 
-    font-size: $app-switcher-font-size; 
+  padding: $app-switcher-padding;
+  margin: $app-switcher-margin;
+  background: $app-switcher-background;
+  cursor: pointer;
+  border-left: $app-switcher-border;
+  font-size: $app-switcher-font-size;
 }

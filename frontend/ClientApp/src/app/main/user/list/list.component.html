@@ -1,7 +1,11 @@
 <div class="toolbar mb-medium">
   <h5 class="ml-xsmall">Users List</h5>
 
-  <a class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn" routerLink="/create-user">
+  <a
+    class="btn btn--fancy ml-auto mr-medium open-side-panel-btn"
+    id="panel-newAssetType-btn"
+    routerLink="/create-user"
+  >
     <i class="fa fa-plus"></i> New User
   </a>
 </div>
@@ -9,9 +13,15 @@
 <div class="container-fluid">
   <div class="row">
     <div class="ml-medium mr-medium">
-      <kendo-grid [data]="usersGridData$ | async" [loading]="usersLoading$ | async" height="500" [pageable]="true"
-        [pageSize]="10" [skip]="skip$ | async" (pageChange)="changePage($event)">
-
+      <kendo-grid
+        [data]="usersGridData$ | async"
+        [loading]="usersLoading$ | async"
+        height="500"
+        [pageable]="true"
+        [pageSize]="10"
+        [skip]="skip$ | async"
+        (pageChange)="changePage($event)"
+      >
         <kendo-grid-column title="Email" width="250">
           <ng-template kendoGridCellTemplate let-dataItem>
             <a [routerLink]="['/users', dataItem.id]">
@@ -21,19 +31,29 @@
         </kendo-grid-column>
         <kendo-grid-column title="Name" width="200">
           <ng-template kendoGridCellTemplate let-dataItem>
-            {{ dataItem.firstName + ' ' + dataItem.lastName }}
+            {{ dataItem.firstName + " " + dataItem.lastName }}
           </ng-template>
         </kendo-grid-column>
         <kendo-grid-column title="User Level" width="150">
           <ng-template kendoGridCellTemplate let-dataItem>
-            <span class="badge badge--danger mr-xsmall field-type" *ngIf="dataItem.permissionLevel >= 4">
+            <span
+              class="badge badge--danger mr-xsmall field-type"
+              *ngIf="dataItem.permissionLevel >= 4"
+            >
               Admin
             </span>
-            <span class="badge badge--warning mr-xsmall field-type"
-              *ngIf="dataItem.permissionLevel < 4 && dataItem.permissionLevel >= 2">
+            <span
+              class="badge badge--warning mr-xsmall field-type"
+              *ngIf="
+                dataItem.permissionLevel < 4 && dataItem.permissionLevel >= 2
+              "
+            >
               User Manager
             </span>
-            <span class="badge badge--success mr-xsmall field-type" *ngIf="dataItem.permissionLevel === 1">
+            <span
+              class="badge badge--success mr-xsmall field-type"
+              *ngIf="dataItem.permissionLevel === 1"
+            >
               User
             </span>
           </ng-template>
@@ -41,21 +61,43 @@
 
         <kendo-grid-column title="Daily Calories" width="150">
           <ng-template kendoGridCellTemplate let-dataItem>
-            {{ dataItem.permissionLevel ===  permissionLevels.USER ? dataItem.expectedNumberOfCalories : '_' }}
+            {{
+              dataItem.permissionLevel === permissionLevels.USER
+                ? dataItem.expectedNumberOfCalories
+                : "_"
+            }}
           </ng-template>
         </kendo-grid-column>
 
         <kendo-grid-column title="Actions">
           <ng-template kendoGridCellTemplate let-dataItem>
-            <a title="View Details" class="btn--sm" [routerLink]="['/users', dataItem.id]">
+            <a
+              title="View Details"
+              class="btn--sm"
+              [routerLink]="['/users', dataItem.id]"
+            >
               <i class="fa fa-eye"></i>
             </a>
-            <a title="View Meals" class="btn--sm" [routerLink]="['/meals', dataItem.id]"
-              *ngIf="auth.isAdmin() && dataItem.permissionLevel === permissionLevels.USER">
+            <a
+              title="View Meals"
+              class="btn--sm"
+              [routerLink]="['/meals', dataItem.id]"
+              *ngIf="
+                auth.isAdmin() &&
+                dataItem.permissionLevel === permissionLevels.USER
+              "
+            >
               <i class="fa fa-cutlery"></i>
             </a>
-            <a title="Delete" class="btn--sm" (click)="openDeleteDialog(dataItem)"
-              *ngIf="auth.isAdmin() || dataItem.permissionLevel < permissionLevels.ADMIN">
+            <a
+              title="Delete"
+              class="btn--sm"
+              (click)="openDeleteDialog(dataItem)"
+              *ngIf="
+                auth.isAdmin() ||
+                dataItem.permissionLevel < permissionLevels.ADMIN
+              "
+            >
               <i class="fa fa-trash"></i>
             </a>
           </ng-template>
@@ -64,11 +106,32 @@
     </div>
   </div>
 </div>
-<kendo-dialog title="Please confirm" *ngIf="deleteDialogOpened" (close)="closeDeleteDialog()" [minWidth]="250">
-  <p style="margin: 30px; text-align: center;">Are you sure you want to delete the user named
-    "{{ userBeingDeleted.firstName }}"?</p>
+<kendo-dialog
+  title="Please confirm"
+  *ngIf="deleteDialogOpened"
+  (close)="closeDeleteDialog()"
+  [minWidth]="250"
+>
+  <p style="margin: 30px; text-align: center;">
+    Are you sure you want to delete the user named "{{
+      userBeingDeleted.firstName
+    }}"?
+  </p>
   <kendo-dialog-actions>
-    <button kendoButton class="width-50 btn--fancy" (click)="closeDeleteDialog()">No</button>
-    <button kendoButton class="width-50 btn--danger" (click)="deleteUser()" primary="true">Yes</button>
+    <button
+      kendoButton
+      class="width-50 btn--fancy"
+      (click)="closeDeleteDialog()"
+    >
+      No
+    </button>
+    <button
+      kendoButton
+      class="width-50 btn--danger"
+      (click)="deleteUser()"
+      primary="true"
+    >
+      Yes
+    </button>
   </kendo-dialog-actions>
 </kendo-dialog>

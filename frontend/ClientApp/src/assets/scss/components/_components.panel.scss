@@ -1,32 +1,31 @@
-
 .panel {
-	height: 100%;
-	margin: 0;
-	padding: $spacer;
-	border: $base-border-width solid $base-border-color;
-	border-top: 0; 
-	background-color: $base-background-color;
+  height: 100%;
+  margin: 0;
+  padding: $spacer;
+  border: $base-border-width solid $base-border-color;
+  border-top: 0;
+  background-color: $base-background-color;
 }
 .panel--full-height {
-	height: calc(100vh - #{$navbar-height});
+  height: calc(100vh - #{$navbar-height});
 }
 
 .panel__title {
-	margin-bottom: $spacer;
-	font-size: $text-large-font-size;
+  margin-bottom: $spacer;
+  font-size: $text-large-font-size;
 }
 
 .panel__widget {
-	&::after {
-		display: block;
-		height: $base-border-width; 
-		margin: $spacer 0;
-		background-color: $base-border-color;
-		content: " ";
-		opacity: 0.5;
-	}
+  &::after {
+    display: block;
+    height: $base-border-width;
+    margin: $spacer 0;
+    background-color: $base-border-color;
+    content: ' ';
+    opacity: 0.5;
+  }
 
-	&:last-child::after {
-		content: none;
-	}
+  &:last-child::after {
+    content: none;
+  }
 }

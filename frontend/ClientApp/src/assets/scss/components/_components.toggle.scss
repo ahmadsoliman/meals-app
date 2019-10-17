@@ -1,154 +1,147 @@
 .toggle {
-	display: flex;
-	align-content: center;
-	align-items: center;
-	width: 100%;
-	height: $toggle-height;
-	cursor: pointer;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  height: $toggle-height;
+  cursor: pointer;
 
-	&.is-disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 
-		.radio-toggle.is-active {
-			border-color: $toggle-border-color;
-			background-color: $toggle-background-color;
-			color: $toggle-color;
-		}
-	}
+    .radio-toggle.is-active {
+      border-color: $toggle-border-color;
+      background-color: $toggle-background-color;
+      color: $toggle-color;
+    }
+  }
 }
 
 .radio-toggle {
-	width: $toggle-width;
-	height: $toggle-height;
-	transition: all .3s;
-	border: $toggle-border-width solid $toggle-border-color;
-	border-radius: $toggle-border-radius;
-	background-color: $toggle-background-color;
-	color: $toggle-color;
-	font-size: $toggle-font-size;
-	text-align: center;
-	text-transform: uppercase;
-	cursor: inherit;
+  width: $toggle-width;
+  height: $toggle-height;
+  transition: all 0.3s;
+  border: $toggle-border-width solid $toggle-border-color;
+  border-radius: $toggle-border-radius;
+  background-color: $toggle-background-color;
+  color: $toggle-color;
+  font-size: $toggle-font-size;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: inherit;
 
-	&:nth-child(1) {
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
-	}
+  &:nth-child(1) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 
-	&:nth-child(2) {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-	}
+  &:nth-child(2) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 
-	&.is-active {
-		border-color: $toggle-active-border-color;
-		background-color: $toggle-active-background-color;
-		color: $toggle-active-color;
-	}
+  &.is-active {
+    border-color: $toggle-active-border-color;
+    background-color: $toggle-active-background-color;
+    color: $toggle-active-color;
+  }
 }
 
 .radio-toggle__label {
-	width: $toggle-label-width;
-	height: $toggle-label-height;
-	line-height: $toggle-label-line-height;
-	cursor: inherit;
+  width: $toggle-label-width;
+  height: $toggle-label-height;
+  line-height: $toggle-label-line-height;
+  cursor: inherit;
 }
 
-
 .radio-toggle__input {
-	display: none;
-	width: 100%;
-	height: 100%;
+  display: none;
+  width: 100%;
+  height: 100%;
 }
 
 // mido
 
-
-
 .check-methods {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .check-methods:after {
-	content: "";
-	clear: both;
+  content: '';
+  clear: both;
 }
 
 .check-method {
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-	float: left;
-	height: 70px;
-	position: relative;
-	width: 120px;
-	background: #fff;
-	input {
-		opacity: 0 !important;
-	}
-	.fa {
-		font-size: 40px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  float: left;
+  height: 70px;
+  position: relative;
+  width: 120px;
+  background: #fff;
+  input {
+    opacity: 0 !important;
+  }
+  .fa {
+    font-size: 40px;
     position: relative;
     top: 13px;
     left: 18px;
     color: #8d9da7;
-	}
-	// &:before {
-	// 	position: absolute;
-	// 	top: 20px;
-	// 	left: 20px;
-	// 	content: "\f364";
-	// 	font-family: $base-icon-font;
-	// 	font-size: 30px;
-	// }
+  }
+  // &:before {
+  // 	position: absolute;
+  // 	top: 20px;
+  // 	left: 20px;
+  // 	content: "\f364";
+  // 	font-family: $base-icon-font;
+  // 	font-size: 30px;
+  // }
 }
 
 .check-method label {
-	// background: #fff no-repeat center center;
-	bottom: 1px;
-	cursor: pointer;
-	display: block;
-	font-size: 0;
-	left: 1px;
-	position: absolute;
-	right: 1px;
-	text-indent: 100%;
-	top: 1px;
-	white-space: nowrap;
+  // background: #fff no-repeat center center;
+  bottom: 1px;
+  cursor: pointer;
+  display: block;
+  font-size: 0;
+  left: 1px;
+  position: absolute;
+  right: 1px;
+  text-indent: 100%;
+  top: 1px;
+  white-space: nowrap;
 }
 
-.check-method+.check-method {
-	margin-left: 25px;
+.check-method + .check-method {
+  margin-left: 25px;
 }
 
-
-.check-methods input:focus+label {
-	outline: 2px dotted #21b4d0;
+.check-methods input:focus + label {
+  outline: 2px dotted #21b4d0;
 }
 
-.check-methods input:checked+label {
-	outline: 2px solid #ffc700;
+.check-methods input:checked + label {
+  outline: 2px solid #ffc700;
 }
 
-.check-methods input:checked+label:after {
-	bottom: -10px;
-	content: "";
-	display: inline-block;
-	height: 20px;
-	position: absolute;
-	right: -10px;
-	width: 20px;
+.check-methods input:checked + label:after {
+  bottom: -10px;
+  content: '';
+  display: inline-block;
+  height: 20px;
+  position: absolute;
+  right: -10px;
+  width: 20px;
 }
 
 @-moz-document url-prefix() {
-	.check-methods input:checked+label:after {
-		bottom: 0;
-		right: 0;
-		background-color: #21b4d0;
-	}
+  .check-methods input:checked + label:after {
+    bottom: 0;
+    right: 0;
+    background-color: #21b4d0;
+  }
 }
-
-
-

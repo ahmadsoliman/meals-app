@@ -1,261 +1,251 @@
 .tree-container {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: -350px;
-	width: 350px;
-	transition: all .3s;
-	z-index: $z-index-300;
-	background: #fff;
-	overflow: hidden;
-    border-right: 1px solid #eee;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -350px;
+  width: 350px;
+  transition: all 0.3s;
+  z-index: $z-index-300;
+  background: #fff;
+  overflow: hidden;
+  border-right: 1px solid #eee;
 
-	@include respond-to($breakpoint-desktop) {
-		width: 100%;
-		left:-100%;
-	}
+  @include respond-to($breakpoint-desktop) {
+    width: 100%;
+    left: -100%;
+  }
 
-	@include respond-to($breakpoint-mobile) {
-		left: -100%;
-	}
+  @include respond-to($breakpoint-mobile) {
+    left: -100%;
+  }
 
-	&.is-visible {
-		transform: translateX(0);
-	}
+  &.is-visible {
+    transform: translateX(0);
+  }
 }
 
-.tree-header {}
+.tree-header {
+}
 
 .tree-tabs {
-	min-height: $navbar-height;
+  min-height: $navbar-height;
 
-	.tabs__list {
-		padding: 22px 30px;
-	}
+  .tabs__list {
+    padding: 22px 30px;
+  }
 }
 
-.tree-content {}
-
-
+.tree-content {
+}
 
 .assets-list {
-	position: absolute;
-	left: 0;
-	height: calc(55% - #{$navbar-height} - 85px);
-	width: 100%;
-	overflow-x: hidden;
-	overflow-y: auto;
-	user-select: none;
-	color: $heading-color;
-	border: $table-border-width solid $table-border-color;
-	border-radius: 0 0 4px 4px;
-	background-color: $table-background-color;
-	@include scrollbar;
+  position: absolute;
+  left: 0;
+  height: calc(55% - #{$navbar-height} - 85px);
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  user-select: none;
+  color: $heading-color;
+  border: $table-border-width solid $table-border-color;
+  border-radius: 0 0 4px 4px;
+  background-color: $table-background-color;
+  @include scrollbar;
 
-	ul li {
-		border-bottom: 1px solid #eee;
-	}
+  ul li {
+    border-bottom: 1px solid #eee;
+  }
 
-	a {
-		display: block;
-		position: relative;
-		padding: 0.7em;
+  a {
+    display: block;
+    position: relative;
+    padding: 0.7em;
 
-		background-color: $navbar-background-color;
-		color: $heading-color;
-		text-decoration: none;
-		transition: color 0.15s, background-color 0.15s;
+    background-color: $navbar-background-color;
+    color: $heading-color;
+    text-decoration: none;
+    transition: color 0.15s, background-color 0.15s;
 
-		&:hover {
-			background-color: $table-highlight-row-background-color;
-			box-shadow: inset 3px 0 0 0 #ff4b00;
+    &:hover {
+      background-color: $table-highlight-row-background-color;
+      box-shadow: inset 3px 0 0 0 #ff4b00;
+    }
+  }
 
-		}
-	}
+  ul {
+    list-style: none;
+    //padding-top: 50px;
+    transition: transform 0.3s;
+    // background-color: #324b5c;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
 
-	ul {
-		list-style: none;
-		//padding-top: 50px;
-		transition: transform 0.3s;
-		// background-color: #324b5c;
-		position: absolute;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
+    ul {
+      display: none;
+      left: 100%;
+    }
+  }
 
-		ul {
-			display: none;
-			left: 100%;
-		}
-	}
+  li {
+    &.has-dropdown {
+      > a {
+        padding-right: 2.5em;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
 
-	li {
+        &:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          right: 1em;
+          width: 9px;
+          height: 9px;
+          border: 1px solid currentcolor;
+          border-left-color: transparent;
+          border-top-color: transparent;
+          transform: translateY(-90%) rotateZ(-45deg);
+          transition: transform 0.3s;
+          transform-origin: 100%;
+        }
+      }
+    }
 
-		&.has-dropdown {
-
-			>a {
-				padding-right: 2.5em;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				overflow: hidden;
-
-				&:after {
-					content: '';
-					position: absolute;
-					top: 50%;
-					right: 1em;
-					width: 9px;
-					height: 9px;
-					border: 1px solid currentcolor;
-					border-left-color: transparent;
-					border-top-color: transparent;
-					transform: translateY(-90%) rotateZ(-45deg);
-					transition: transform 0.3s;
-					transform-origin: 100%;
-				}
-			}
-		}
-
-		&.nav-dropdown-open {
-
-			ul {
-				display: block;
-			}
-		}
-	}
+    &.nav-dropdown-open {
+      ul {
+        display: block;
+      }
+    }
+  }
 }
 
 .tree-nav-header {
-	position: relative;
-	top: 0;
-	left: 0;
-	width: 100%;
-	min-height: 50px;
-	padding: 5px;
-	background-color: #f5f8fa;
-	color: $heading-color;
-	z-index: 100;
-	cursor: pointer;
-	transition: backgroun-color 0.2s;
-	border-top: 1px solid #eee;
-	border-right: 1px solid #eee;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 50px;
+  padding: 5px;
+  background-color: #f5f8fa;
+  color: $heading-color;
+  z-index: 100;
+  cursor: pointer;
+  transition: backgroun-color 0.2s;
+  border-top: 1px solid #eee;
+  border-right: 1px solid #eee;
 
+  &.back-visible {
+    .nav-back {
+      opacity: 1;
+    }
 
-
-	&.back-visible {
-
-		.nav-back {
-			opacity: 1;
-		}
-
-		.nav-title {
-			transform: translateX(40px);
-		}
-	}
+    .nav-title {
+      transform: translateX(40px);
+    }
+  }
 }
 .tree-result {
-	height: calc(45% - 50px);
-	width: 100%;
-	bottom: 0;
-	position: absolute;
-	background: #f5f8fa;
-	border-right: 1px solid #eee;
+  height: calc(45% - 50px);
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  background: #f5f8fa;
+  border-right: 1px solid #eee;
 }
 .tree-result__header {
-	position: absolute;
-	width: 100%;
+  position: absolute;
+  width: 100%;
 }
 .tree-result__content {
-	padding-top: 85px;
+  padding-top: 85px;
 }
 .tree-result-list {
-	display: none;
-	height: calc(100% - 85px);
-	width: 100%;
-	bottom: 0;
-	position: absolute;
-	overflow-x: hidden;
-	overflow-y: auto;
-	@include scrollbar;
+  display: none;
+  height: calc(100% - 85px);
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: auto;
+  @include scrollbar;
 }
 .tree-result-item {
-	display: block;
-	position: relative;
-	padding: 0.7em;
-	background-color: $navbar-background-color;
-	color: $heading-color;
-	text-decoration: none;
-	transition: color 0.15s, background-color 0.15s;
-	border-bottom: 1px solid #eee;
+  display: block;
+  position: relative;
+  padding: 0.7em;
+  background-color: $navbar-background-color;
+  color: $heading-color;
+  text-decoration: none;
+  transition: color 0.15s, background-color 0.15s;
+  border-bottom: 1px solid #eee;
 
-	a {
-		text-decoration: none;
-	}
+  a {
+    text-decoration: none;
+  }
 
-	&:hover {
-		background: $table-highlight-row-background-color;
-	}
+  &:hover {
+    background: $table-highlight-row-background-color;
+  }
 
-	&.is-active {
-		background: $table-highlight-row-background-color;
-	}
+  &.is-active {
+    background: $table-highlight-row-background-color;
+  }
 }
 
 .nav-title {
-	position: absolute;
-	left: 0;
-	top: 13px;
-	padding-left: 0.7em;
-	transition: transform 0.3s;
-	min-height: 50px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	user-select: none;
-	max-width: 274px;
-
+  position: absolute;
+  left: 0;
+  top: 13px;
+  padding-left: 0.7em;
+  transition: transform 0.3s;
+  min-height: 50px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  user-select: none;
+  max-width: 274px;
 }
 
 .nav-back {
-	display: inline-block;
-	position: relative;
-	top: 7px;
-	vertical-align: middle;
-	z-index: 1;
-	opacity: 0;
-	transition: opacity 0.2s;
+  display: inline-block;
+  position: relative;
+  top: 7px;
+  vertical-align: middle;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
 .asset-tree-btn {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .tree__header-search {
-	padding: 20px 12px;
-	background: #fff;
-	border-right: 1px solid $tabs-list-border-color;
-	border-left: 1px solid $tabs-list-border-color;
+  padding: 20px 12px;
+  background: #fff;
+  border-right: 1px solid $tabs-list-border-color;
+  border-left: 1px solid $tabs-list-border-color;
 
-	>.field__icon {
-		right: 20px !important;
-	}
+  > .field__icon {
+    right: 20px !important;
+  }
 }
 .close-overlap {
-	position: fixed;
+  position: fixed;
+  top: 17px;
+  right: -30px;
+  z-index: 301;
+  color: #000;
+  font-size: 23px;
+  transition: all 0.3s;
+  &.active {
     top: 17px;
-    right: -30px;
-    z-index: 301;
-    color: #000;
-	font-size: 23px;
-	transition: all 0.3s;
-	&.active {
-		top: 17px;
-		right: 13px;
-		@media (min-width: $breakpoint-mobile) {
-			right: -30px;
-		}
-	}
-
-
+    right: 13px;
+    @media (min-width: $breakpoint-mobile) {
+      right: -30px;
+    }
+  }
 }

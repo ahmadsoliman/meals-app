@@ -1,57 +1,56 @@
-
 .project-card {
-	border: $base-border-width solid $base-border-color;
-	border-radius: $base-border-radius;
-	background-color: $base-background-color;
-	overflow: hidden;
+  border: $base-border-width solid $base-border-color;
+  border-radius: $base-border-radius;
+  background-color: $base-background-color;
+  overflow: hidden;
 }
 .project-card__content {
-	height: 250px;
-	border-top: 1px solid #eee;
+  height: 250px;
+  border-top: 1px solid #eee;
 }
 .project-card__img {
-	display: block;
+  display: block;
 }
 .project-card__img--sm {
-	padding: 30px;
-	text-align: center;
-	img {
-		max-width: 80%;
-	}
+  padding: 30px;
+  text-align: center;
+  img {
+    max-width: 80%;
+  }
 }
 
 .project-card__head {
-	padding: 10px 15px;
-	border-bottom: $base-border-width solid $base-border-color;
+  padding: 10px 15px;
+  border-bottom: $base-border-width solid $base-border-color;
 }
 
 .project-card__footer {
-	overflow: hidden;
-	padding: 10px 15px;
-	height: 72px;
-	border-top: $base-border-width solid $base-border-color;
+  overflow: hidden;
+  padding: 10px 15px;
+  height: 72px;
+  border-top: $base-border-width solid $base-border-color;
 }
 
 .project-card__title {
-	margin: 0;
-	font-size: $h6-font-size;
+  margin: 0;
+  font-size: $h6-font-size;
 }
 
 .project-card__info {
-	margin: 0;
-	color: $color-mute;
-	font-size: $text-small-font-size;
+  margin: 0;
+  color: $color-mute;
+  font-size: $text-small-font-size;
 }
 
 .project-card__meta {
-	display: flex;
-	justify-content: space-between;
-	padding: rem(20px) $spacer;
+  display: flex;
+  justify-content: space-between;
+  padding: rem(20px) $spacer;
 }
 .project-card__bottom-options {
-	padding: 10px;
-	overflow: hidden;
+  padding: 10px;
+  overflow: hidden;
 }
 .project-card__date {
-	margin-top: 5px;
+  margin-top: 5px;
 }

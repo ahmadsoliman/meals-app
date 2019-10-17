@@ -1,189 +1,188 @@
-$board-bg:#ebf2ff;
+$board-bg: #ebf2ff;
 .board {
-	position: relative;
-	margin-bottom: $spacer-large;
-    background: $board-bg;
-    padding: 14px;
-    border-radius: $base-border-radius;
-    border: 1px solid $base-border-color;
+  position: relative;
+  margin-bottom: $spacer-large;
+  background: $board-bg;
+  padding: 14px;
+  border-radius: $base-border-radius;
+  border: 1px solid $base-border-color;
 }
 
 .board__header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: $spacer-xsmall;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacer-xsmall;
 }
 
 .board__title {
-	margin-bottom: 0;
-	font-size: $text-large-font-size;
-	font-weight: $font-weight-bold;
+  margin-bottom: 0;
+  font-size: $text-large-font-size;
+  font-weight: $font-weight-bold;
 }
 
 .board__actions {
-	display: block;
-	position: relative;
+  display: block;
+  position: relative;
 
-	> a {
-		color: $grey-500;
-	}
+  > a {
+    color: $grey-500;
+  }
 }
 
 .board__content {
-	position: relative;
-	padding: 10px;
-	border: $base-border-width solid $base-border-color;
-	border-radius: $base-border-radius;
-	background-color: $secondary-background-color;
-	overflow-y: auto;
+  position: relative;
+  padding: 10px;
+  border: $base-border-width solid $base-border-color;
+  border-radius: $base-border-radius;
+  background-color: $secondary-background-color;
+  overflow-y: auto;
 }
 
 .board__btn {
-	display: block;
-	margin-top: $spacer-small;
-	width: 100%;
-	height: 32px;
-	border-radius: $base-border-radius;
-	color: $white;
-	font-size: $text-font-size;
-	line-height: 32px;
-	text-align: center;
-	z-index: $z-index-200;
-	@include linear-gradient(to bottom, $blue-300, $blue-400);
+  display: block;
+  margin-top: $spacer-small;
+  width: 100%;
+  height: 32px;
+  border-radius: $base-border-radius;
+  color: $white;
+  font-size: $text-font-size;
+  line-height: 32px;
+  text-align: center;
+  z-index: $z-index-200;
+  @include linear-gradient(to bottom, $blue-300, $blue-400);
 
-	&:hover {
-		color: $white;
-	}
+  &:hover {
+    color: $white;
+  }
 }
 
 .add-board {
-	display: block;
-	width: 100%;
-	margin-bottom: $spacer;
-	padding: $spacer-small rem(20px);
-	border-radius: $base-border-radius;
-	background-color: $grey-600;
-	color: $white;
-	font-size: $text-font-size;
-	font-weight: $font-weight-bold;
-	opacity: .8;
+  display: block;
+  width: 100%;
+  margin-bottom: $spacer;
+  padding: $spacer-small rem(20px);
+  border-radius: $base-border-radius;
+  background-color: $grey-600;
+  color: $white;
+  font-size: $text-font-size;
+  font-weight: $font-weight-bold;
+  opacity: 0.8;
 
-	> i {
-		margin-right: $spacer-xsmall;
-	}
+  > i {
+    margin-right: $spacer-xsmall;
+  }
 
-	&:hover {
-		color: $white;
-		text-decoration: none;
-		opacity: 1;
-	}
+  &:hover {
+    color: $white;
+    text-decoration: none;
+    opacity: 1;
+  }
 }
 
 .board--info,
 .board--success,
 .board--warning,
 .board--danger {
-	.board__content {
-		border-top: 3px solid $color-info;
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-	}
+  .board__content {
+    border-top: 3px solid $color-info;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 }
 
 .board--info {
-	.board__content {
-		border-top-color: $color-info;
-	}
+  .board__content {
+    border-top-color: $color-info;
+  }
 }
 
 .board--success {
-	.board__content {
-		border-top-color: $color-success;
-	}
+  .board__content {
+    border-top-color: $color-success;
+  }
 }
 
 .board--warning {
-	.board__content {
-		border-top-color: $color-warning;
-	}
+  .board__content {
+    border-top-color: $color-warning;
+  }
 }
 
 .board--danger {
-	.board__content {
-		border-top-color: $color-danger;
-	}
+  .board__content {
+    border-top-color: $color-danger;
+  }
 }
 
-
 .task {
-	margin-bottom: $spacer-xsmall;
-	border: $base-border-width solid $base-border-color;
-	border-radius: $base-border-radius;
-	background-color: $base-background-color;
-	cursor: grabbing;
-	overflow: hidden;
+  margin-bottom: $spacer-xsmall;
+  border: $base-border-width solid $base-border-color;
+  border-radius: $base-border-radius;
+  background-color: $base-background-color;
+  cursor: grabbing;
+  overflow: hidden;
 
-	&:last-of-type {
-		margin-bottom: 0;
-	}
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .task__img {
-	display: block;
+  display: block;
 }
 
 .task__content {
-	margin: 0;
-	padding: $spacer-small $spacer-xsmall $spacer-xsmall;
-	color: $heading-color;
-	font-size: $text-font-size;
-	font-weight: $font-weight-bold;
+  margin: 0;
+  padding: $spacer-small $spacer-xsmall $spacer-xsmall;
+  color: $heading-color;
+  font-size: $text-font-size;
+  font-weight: $font-weight-bold;
 }
 
 .task__indicators {
-	display: flex;
-	align-items: center;
-	padding: 0 0 $spacer-xsmall $spacer-xsmall;
+  display: flex;
+  align-items: center;
+  padding: 0 0 $spacer-xsmall $spacer-xsmall;
 }
 
 .task__indicator {
-	display: inline-flex;
-	align-items: center;
-	margin-right: $spacer-small;
-	color: $color-mute;
-	font-size: $text-small-font-size;
-	font-weight: $font-weight-bold;
+  display: inline-flex;
+  align-items: center;
+  margin-right: $spacer-small;
+  color: $color-mute;
+  font-size: $text-small-font-size;
+  font-weight: $font-weight-bold;
 
-	> i {
-		display: inline-block;
-		margin-right: rem(5px);
-		color: $grey-500;
-		font-size: $text-large-font-size;
-	}
+  > i {
+    display: inline-block;
+    margin-right: rem(5px);
+    color: $grey-500;
+    font-size: $text-large-font-size;
+  }
 }
 
 .task--info,
 .task--success,
 .task--warning,
 .task--danger {
-	border-left: 3px solid $color-info;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
+  border-left: 3px solid $color-info;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .task--info {
-	border-left-color: $color-info;
+  border-left-color: $color-info;
 }
 
 .task--success {
-	border-left-color: $color-success;
+  border-left-color: $color-success;
 }
 
 .task--warning {
-	border-left-color: $color-warning;
+  border-left-color: $color-warning;
 }
 
 .task--danger {
-	border-left-color: $color-danger;
+  border-left-color: $color-danger;
 }

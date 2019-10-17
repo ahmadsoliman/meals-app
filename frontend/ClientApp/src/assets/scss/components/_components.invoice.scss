@@ -1,147 +1,140 @@
 .single-invoice {
-	position: relative;
-	padding: $spacer-xlarge $spacer-xlarge $spacer;
-	border: $base-border-width solid $base-border-color;
-	border-radius: $base-border-radius;
-	background-color: $base-background-color;
-	color: $heading-color;
-	box-shadow: 0 0 10px 1px rgba(53,64,82,0.1);
-	@include respond-to($breakpoint-tablet) {
-		padding: $spacer;
-	}
+  position: relative;
+  padding: $spacer-xlarge $spacer-xlarge $spacer;
+  border: $base-border-width solid $base-border-color;
+  border-radius: $base-border-radius;
+  background-color: $base-background-color;
+  color: $heading-color;
+  box-shadow: 0 0 10px 1px rgba(53, 64, 82, 0.1);
+  @include respond-to($breakpoint-tablet) {
+    padding: $spacer;
+  }
 }
 
-
 .single-invoice__header {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: $spacer-large;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $spacer-large;
 
-	@include respond-to($breakpoint-tablet) {
-		flex-flow: column;
-	}
+  @include respond-to($breakpoint-tablet) {
+    flex-flow: column;
+  }
 }
 
 .single-invoice__brand {
-	margin-bottom: $spacer;
+  margin-bottom: $spacer;
 
-	@include respond-to($breakpoint-tablet) {
-		margin: 0;
-	}
+  @include respond-to($breakpoint-tablet) {
+    margin: 0;
+  }
 }
 
 .single-invoice__brand-img {
-	max-width: 40px;
-	margin-bottom: $spacer-small;
+  max-width: 40px;
+  margin-bottom: $spacer-small;
 }
 
 .single-invoice__brand-name {
-	font-size: $h3-font-size;
+  font-size: $h3-font-size;
 }
 
 .single-invoice__title {
-	margin-top: $spacer;
+  margin-top: $spacer;
 
-	h4 {
-		margin: 0;
-	}
+  h4 {
+    margin: 0;
+  }
 }
 
 .single-invoice__date {
-	color: $color-mute;
+  color: $color-mute;
 }
-
-
 
 .single-invoice__details {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: $spacer-xlarge;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $spacer-xlarge;
 }
 
-
 .single-invoice__company-name {
-	margin-bottom: $spacer-small;
-	font-size: $h4-font-size;
+  margin-bottom: $spacer-small;
+  font-size: $h4-font-size;
 }
 
 .single-invoice__company-address {
-	margin-bottom: $spacer-small;
-	color: $color-mute;
+  margin-bottom: $spacer-small;
+  color: $color-mute;
 }
 
-
-
 .single-invoice__body {
-	display: flex;
+  display: flex;
 
-	@include respond-to($breakpoint-tablet) {
-		flex-flow: column;
-	}
+  @include respond-to($breakpoint-tablet) {
+    flex-flow: column;
+  }
 }
 
 .single-invoice__desc {
-	flex: 0 1 250px;
-	font-size: $h4-font-size;
+  flex: 0 1 250px;
+  font-size: $h4-font-size;
 
-	@include respond-to($breakpoint-tablet) {
-		flex: 0;
-		margin-bottom: $spacer;
-	}
+  @include respond-to($breakpoint-tablet) {
+    flex: 0;
+    margin-bottom: $spacer;
+  }
 }
 
 .single-invoice__number {
-	color: $color-mute;
-	font-size: $text-font-size;
+  color: $color-mute;
+  font-size: $text-font-size;
 }
 
 .single-invoice__table {
-	width: 100%;
+  width: 100%;
 
-	.table {
-		margin-bottom: $spacer-xsmall;
+  .table {
+    margin-bottom: $spacer-xsmall;
 
-		@include respond-to($breakpoint-tablet) {
-			display: table;
-			width: 100%;
-		}
-	}
+    @include respond-to($breakpoint-tablet) {
+      display: table;
+      width: 100%;
+    }
+  }
 }
 
 .single-invoice__terms {
-	color: $color-mute;
-	font-size: $text-font-size;
+  color: $color-mute;
+  font-size: $text-font-size;
 }
 
-
 .single-invoice__footer {
-	display: flex;
-	justify-content: space-between;
-	margin-top: $spacer-xlarge;
-	padding-top: $spacer;
-	border-top: $base-border-width solid $base-border-color;
+  display: flex;
+  justify-content: space-between;
+  margin-top: $spacer-xlarge;
+  padding-top: $spacer;
+  border-top: $base-border-width solid $base-border-color;
 
-	@include respond-to($breakpoint-mobile) {
-		flex-flow: column;
-		text-align: center;
-	}
+  @include respond-to($breakpoint-mobile) {
+    flex-flow: column;
+    text-align: center;
+  }
 }
 
 .single-invoice__footer-brand {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 
-	@include respond-to($breakpoint-mobile) {
-		flex-flow: column;
-		justify-content: center;
-	}
+  @include respond-to($breakpoint-mobile) {
+    flex-flow: column;
+    justify-content: center;
+  }
 }
 
 .single-invoice__footer-brand img {
-	max-width: 30px;
-	margin-right: $spacer-xsmall;
+  max-width: 30px;
+  margin-right: $spacer-xsmall;
 
-	@include respond-to($breakpoint-mobile) {
-		margin-bottom: $spacer-xsmall;
-	}
+  @include respond-to($breakpoint-mobile) {
+    margin-bottom: $spacer-xsmall;
+  }
 }

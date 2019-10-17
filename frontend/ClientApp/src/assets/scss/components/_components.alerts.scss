@@ -1,49 +1,50 @@
-// Settings file: 
+// Settings file:
 .alert {
-	display: flex;
-	position: relative;
-	width: 100%;
-	margin: $alert-margin;
-	padding: $alert-padding;
-	transition: all 0.3s;
-	border-radius: $alert-border-radius;
-	color: $alert-color;
-	.close {
-		position: absolute;
-		top: $alert-close-top;
-		right: $alert-close-right;
-	}
+  display: flex;
+  position: relative;
+  width: 100%;
+  margin: $alert-margin;
+  padding: $alert-padding;
+  transition: all 0.3s;
+  border-radius: $alert-border-radius;
+  color: $alert-color;
+  .close {
+    position: absolute;
+    top: $alert-close-top;
+    right: $alert-close-right;
+  }
 
-	&.fade {
-		transition: opacity 0.3s;
-		opacity: 0;
+  &.fade {
+    transition: opacity 0.3s;
+    opacity: 0;
 
-		&.show {
-			opacity: 1;
-		}
-	}
+    &.show {
+      opacity: 1;
+    }
+  }
 }
 
 .alert__icon {
-	position: relative;
-	bottom: -4px; 
-	margin-right: $alert-icon-margin-right;
-	font-size: $alert-icon-font-size;
-	opacity: $alert-icon-opacity;
+  position: relative;
+  bottom: -4px;
+  margin-right: $alert-icon-margin-right;
+  font-size: $alert-icon-font-size;
+  opacity: $alert-icon-opacity;
 }
 
 .alert--success {
-	background-color: $alert-success-background-color;
+  background-color: $alert-success-background-color;
 }
 
-.alert--info, .alert {
-	background-color: $alert-info-background-color;
+.alert--info,
+.alert {
+  background-color: $alert-info-background-color;
 }
 
 .alert--warning {
-	background-color: $alert-warning-background-color;
+  background-color: $alert-warning-background-color;
 }
 
 .alert--danger {
-	background-color: $alert-danger-background-color;
+  background-color: $alert-danger-background-color;
 }

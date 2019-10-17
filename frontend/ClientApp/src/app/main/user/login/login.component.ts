@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '@app/core/auth';
-import { Store } from '@ngxs/store';
-import { LoginWithEmailAndPassword } from '../user.actions';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthService } from "@app/core/auth";
+import { Store } from "@ngxs/store";
+import { LoginWithEmailAndPassword } from "../user.actions";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html'
+  selector: "app-login",
+  templateUrl: "./login.component.html"
 })
 export class LoginComponent implements OnInit {
   constructor(
@@ -18,13 +18,13 @@ export class LoginComponent implements OnInit {
   ) {}
 
   detailsForm!: FormGroup;
-  errorMsg = '';
+  errorMsg = "";
 
   ngOnInit() {
     if (!this.auth.isAuthenticated()) {
       this.buildForm();
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(["/"]);
     }
   }
 
@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
 
   buildForm() {
     this.detailsForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", Validators.required]
     });
   }
 
   onSubmit() {
-    this.errorMsg = '';
+    this.errorMsg = "";
     // this.helperService.markFormAsTouched(this.detailsForm);
     if (this.detailsForm.valid) {
       this.store
@@ -51,8 +51,8 @@ export class LoginComponent implements OnInit {
           )
         )
         .subscribe(
-          (x) => {},
-          (errors) => {
+          x => {},
+          errors => {
             this.errorMsg = errors[0];
           }
         );

@@ -1,78 +1,77 @@
-
 .progress {
-	display: block;
-	width: 100%;
-	height: $progress-height;
-	margin: $progress-margin;
-	border-radius: $progress-border-radius;
-	background-color: $progress-background-color;
+  display: block;
+  width: 100%;
+  height: $progress-height;
+  margin: $progress-margin;
+  border-radius: $progress-border-radius;
+  background-color: $progress-background-color;
 }
 
 .progress__bar {
-	position: relative;
-	height: 100%;
-	border-radius: $progress-border-radius;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	transition: all 0.7s;
-	@include linear-gradient(to bottom, $progress-bar-info-gradient); 
+  position: relative;
+  height: 100%;
+  border-radius: $progress-border-radius;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.7s;
+  @include linear-gradient(to bottom, $progress-bar-info-gradient);
 }
 
 .progress--xsmall {
-	height: $progress-xsmall-height;
+  height: $progress-xsmall-height;
 }
 
 .progress--small {
-	height: $progress-small-height;
+  height: $progress-small-height;
 }
 
 .progress--medium {
-	height: $progress-medium-height;
+  height: $progress-medium-height;
 }
 
 .progress--danger {
-	.progress__bar {
-		@include linear-gradient(to bottom, $progress-bar-danger-gradient);
-	}
+  .progress__bar {
+    @include linear-gradient(to bottom, $progress-bar-danger-gradient);
+  }
 }
 
 .progress--info {
-	.progress__bar {
-		@include linear-gradient(to bottom, $progress-bar-info-gradient);
-	}
+  .progress__bar {
+    @include linear-gradient(to bottom, $progress-bar-info-gradient);
+  }
 }
 
 .progress--primary {
-	.progress__bar {
-		@include linear-gradient(to bottom, $progress-bar-primary-gradient);
-	}
+  .progress__bar {
+    @include linear-gradient(to bottom, $progress-bar-primary-gradient);
+  }
 }
 
 .progress--success {
-	.progress__bar {
-		@include linear-gradient(to bottom, $progress-bar-success-gradient);
-	}
+  .progress__bar {
+    @include linear-gradient(to bottom, $progress-bar-success-gradient);
+  }
 }
 
 .progress--warning {
-	.progress__bar {
-		@include linear-gradient(to bottom, $progress-bar-warning-gradient);
-	}
+  .progress__bar {
+    @include linear-gradient(to bottom, $progress-bar-warning-gradient);
+  }
 }
 
 .progress--fancy {
-	.progress__bar {
-		@include linear-gradient(to bottom, $progress-bar-fancy-gradient);
-	}
+  .progress__bar {
+    @include linear-gradient(to bottom, $progress-bar-fancy-gradient);
+  }
 }
 .progress__bar {
-	.progress__bar {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		background-color: red;
-		z-index: $z-index-200;
-	}
+  .progress__bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: red;
+    z-index: $z-index-200;
+  }
 }

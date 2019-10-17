@@ -1,121 +1,115 @@
-
 .field {
-	position: relative;
-	width: 100%;
+  position: relative;
+  width: 100%;
 
-	&.has-addon-left,
-	&.has-addon-right {
-		display: flex;
-		flex-flow: row nowrap;
+  &.has-addon-left,
+  &.has-addon-right {
+    display: flex;
+    flex-flow: row nowrap;
 
-		> .input {
-			flex-basis: calc(100% - $field-addon-width); 
-		}
-	}
+    > .input {
+      flex-basis: calc(100% - $field-addon-width);
+    }
+  }
 
-	&.has-addon-left {
-		> .field__addon {
-			border-right: 0;
-			border-top-right-radius: 0;
-			border-bottom-right-radius: 0;
-		}
+  &.has-addon-left {
+    > .field__addon {
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
 
-		> .input {
-			border-top-left-radius: 0;
-			border-bottom-left-radius: 0;
-		}
-	}
+    > .input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
 
-	&.has-addon-right {
-		> .field__addon {
-			border-left: 0;
-			border-top-left-radius: 0;
-			border-bottom-left-radius: 0;
-		}
+  &.has-addon-right {
+    > .field__addon {
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
 
-		> .input {
-			border-top-right-radius: 0;
-			border-bottom-right-radius: 0;
-		}
-	}
+    > .input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
 
-	&.has-icon-left,
-	&.has-icon-right {
-		> .field__icon {
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-			color: $field-icon-color;
-			font-size: $field-icon-font-size;
-		}
-	}
+  &.has-icon-left,
+  &.has-icon-right {
+    > .field__icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $field-icon-color;
+      font-size: $field-icon-font-size;
+    }
+  }
 
-	&.has-icon-left {
-		> .input {
-			padding-left: 40px;
-		}
+  &.has-icon-left {
+    > .input {
+      padding-left: 40px;
+    }
 
-		> .field__icon {
-			left: 15px;
-		}
-	}
+    > .field__icon {
+      left: 15px;
+    }
+  }
 
-	&.has-icon-right {
-		> .input {
-			padding-right: 40px;
-		}
+  &.has-icon-right {
+    > .input {
+      padding-right: 40px;
+    }
 
-		> .field__icon {
-			right: 15px;
-		}
-	}
+    > .field__icon {
+      right: 15px;
+    }
+  }
 }
-
 
 .field--inline {
-	width: 270px;
+  width: 270px;
 
-	@include respond-to($breakpoint-tablet) {
-		width: 100%;
-	}
+  @include respond-to($breakpoint-tablet) {
+    width: 100%;
+  }
 }
 
-
-.field-label, .field__label { 
-	display: block;
-	flex-basis: 100%;
-	margin: $field-label-margin;
-	color: $field-label-color;
-	font-size: $field-label-font-size;
-	font-weight: $field-label-font-weight;
+.field-label,
+.field__label {
+  display: block;
+  flex-basis: 100%;
+  margin: $field-label-margin;
+  color: $field-label-color;
+  font-size: $field-label-font-size;
+  font-weight: $field-label-font-weight;
 }
-
-
 
 .field__addon {
-	@include linear-gradient(to bottom, $field-addon-gradient);
-	display: inline-flex;
-	flex-basis: $field-addon-width;
-	align-content: center;
-	align-items: center;
-	justify-content: center;
-	border: $field-addon-border-width solid $field-addon-border-color;
-	border-radius: $base-border-radius;
-	color: $field-addon-color;
-	font-size: rem(18px);
-	text-align: center;
+  @include linear-gradient(to bottom, $field-addon-gradient);
+  display: inline-flex;
+  flex-basis: $field-addon-width;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  border: $field-addon-border-width solid $field-addon-border-color;
+  border-radius: $base-border-radius;
+  color: $field-addon-color;
+  font-size: rem(18px);
+  text-align: center;
 }
 
-
-
 .field__message {
-	display: inline-block;
-	margin: $field-message-margin;
-	padding: $field-message-padding;
-	color: $field-message-color;
-	font-size: $field-message-font-size;
+  display: inline-block;
+  margin: $field-message-margin;
+  padding: $field-message-padding;
+  color: $field-message-color;
+  font-size: $field-message-font-size;
 
-	> i {
-		margin-right: rem(5px);
-	}
+  > i {
+    margin-right: rem(5px);
+  }
 }

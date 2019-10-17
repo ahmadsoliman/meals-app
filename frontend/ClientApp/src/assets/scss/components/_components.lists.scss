@@ -1,20 +1,20 @@
 .list--style-one {
-    text-align: left;
+  text-align: left;
 }
 
 .list--style-one__item {
-    background: #f2f2f3 url(assets/img/check-mark.png) no-repeat;
-    background-position: right -30px top 10px;
-    padding: 8px 12px;
-    margin-bottom: 3px;
-    border-left: 3px solid transparent;
-    transition: all 0.3s;
-    a {
-        text-decoration: none;
-        color: $heading-color;
-    }
-    &.is-active {
-        border-color: $navbar-background-color;
-        background-position: right 10px top 10px;
-    }
+  background: #f2f2f3 url(assets/img/check-mark.png) no-repeat;
+  background-position: right -30px top 10px;
+  padding: 8px 12px;
+  margin-bottom: 3px;
+  border-left: 3px solid transparent;
+  transition: all 0.3s;
+  a {
+    text-decoration: none;
+    color: $heading-color;
+  }
+  &.is-active {
+    border-color: $navbar-background-color;
+    background-position: right 10px top 10px;
+  }
 }

@@ -1,32 +1,32 @@
-$gray: #EEEEEE;
-$pink: #FF819C;
-$blue: #36A2EB;
-$yellow: #FFCE56;
-$biolet: #B28CFF;
+$gray: #eeeeee;
+$pink: #ff819c;
+$blue: #36a2eb;
+$yellow: #ffce56;
+$biolet: #b28cff;
 
 .gray {
- background-color: $gray;
+  background-color: $gray;
 }
 .pink {
- background-color: $pink;
+  background-color: $pink;
 }
 .blue {
- background-color: $blue;
+  background-color: $blue;
 }
 .yellow {
- background-color: $yellow;
+  background-color: $yellow;
 }
 .biolet {
- background-color: $biolet
+  background-color: $biolet;
 }
-.color-box {  
+.color-box {
   display: inline-block;
   height: 30px;
   width: 30px;
-  margin-right:5px;
+  margin-right: 5px;
   cursor: pointer;
   border: 5px solid transparent;
   &.selected {
-    border: 5px solid #C8C9C6;
+    border: 5px solid #c8c9c6;
   }
 }
