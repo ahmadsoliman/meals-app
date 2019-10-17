@@ -156,8 +156,25 @@
           </div>
         </div>
 
-        <div class="card p-medium mb-medium">
+        <div
+          class="card p-medium mb-medium"
+          *ngIf="
+            form.value.permissionLevel == permissionLevels.USER ||
+            auth.isAdmin() ||
+            (auth.isUserManager() &&
+              (user$ | async)?.permissionLevel < permissionLevels.ADMIN)
+          "
+        >
           <h5 class="mb-medium">User Settings</h5>
+
+          <div class="field mb-small" *ngIf="isUserTypeShown()">
+            <label class="field__label" for="email">User Type*</label>
+            <select id="userType" formControlName="permissionLevel" class="">
+              <option value="1">User</option>
+              <option value="3">User Manager</option>
+              <option value="7" *ngIf="auth.isAdmin()">Admin</option>
+            </select>
+          </div>
 
           <div
             class="field mb-small"
@@ -194,22 +211,6 @@
                 Calories must be less than 5000.
               </div>
             </div>
-          </div>
-
-          <div
-            class="field mb-small"
-            *ngIf="
-              auth.isAdmin() ||
-              (auth.isUserManager() &&
-                (user$ | async)?.permissionLevel < permissionLevels.ADMIN)
-            "
-          >
-            <label class="field__label" for="email">User Type*</label>
-            <select id="userType" formControlName="permissionLevel" class="">
-              <option value="1">User</option>
-              <option value="3">User Manager</option>
-              <option value="7" *ngIf="auth.isAdmin()">Admin</option>
-            </select>
           </div>
         </div>
 
@@ -250,7 +251,20 @@
     Are you sure you want to delete the account forever?
   </p>
   <kendo-dialog-actions>
-    <button kendoButton (click)="deleteDialogOpened = false">No</button>
-    <button kendoButton (click)="deleteAccount()" primary="true">Yes</button>
+    <button
+      kendoButton
+      class="width-50 btn--fancy"
+      (click)="deleteDialogOpened = false"
+    >
+      No
+    </button>
+    <button
+      kendoButton
+      class="width-50 btn--danger"
+      (click)="deleteAccount()"
+      primary="true"
+    >
+      Yes
+    </button>
   </kendo-dialog-actions>
 </kendo-dialog>

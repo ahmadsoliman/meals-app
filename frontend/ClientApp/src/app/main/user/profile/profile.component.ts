@@ -127,7 +127,9 @@ export class ProfileComponent implements OnInit {
         email: this.f.email.value,
         password: this.changePassword ? this.f.password.value : undefined,
         expectedNumberOfCalories: this.f.expectedNumberOfCalories.value,
-        permissionLevel: this.f.permissionLevel.value
+        permissionLevel: this.isUserTypeShown()
+          ? this.f.permissionLevel.value
+          : undefined
       };
 
       if (this.createUser) {
@@ -152,6 +154,14 @@ export class ProfileComponent implements OnInit {
         );
       }
     }
+  }
+
+  isUserTypeShown(): boolean {
+    return (
+      this.auth.isAdmin() ||
+      (this.auth.isUserManager() &&
+        this.f.permissionLevel.value < permissionLevels.ADMIN)
+    );
   }
 
   deleteAccount() {
