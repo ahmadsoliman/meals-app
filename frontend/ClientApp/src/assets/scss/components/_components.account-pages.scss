@@ -7,6 +7,10 @@
     @media (max-width: $breakpoint-mobile) {
         padding: 15px;
     }
+
+    img {
+        border-radius: 10px;
+    }
 }
 
 .polygon {

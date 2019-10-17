@@ -14,8 +14,8 @@ import { first } from 'rxjs/operators';
   templateUrl: './list.component.html',
   encapsulation: ViewEncapsulation.None,
   styles: [`
-      .k-grid tr.valid { background-color: rgba(75, 229, 71, 0.8); }
-      .k-grid tr.invalid { background-color: rgba(229, 71, 75, 0.8); }
+      .k-grid tr.valid { background-color: #bde1a8 }
+      .k-grid tr.invalid { background-color: rgba(229, 71, 75, 0.7); }
   `]
 })
 export class MealsListComponent implements OnInit {

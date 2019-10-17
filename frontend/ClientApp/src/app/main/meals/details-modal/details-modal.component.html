@@ -43,11 +43,11 @@
   <div class="side-panel-footer pb-small" style="background: #fff">
     <a class="btn btn--secondary close-panel-btn " (click)="closeModal()">Cancel</a>
     <div *ngIf="!isEditing">
-      <button class="btn btn--info mr-small" (click)="save(false)" [disabled]="form && !form.valid">Add and Add Another</button>
-      <button class="btn btn--success" (click)="save(true)" [disabled]="form && !form.valid">Add</button>
+      <button class="btn btn--primary mr-small" (click)="save(false)" [disabled]="form && !form.valid">Add and Add Another</button>
+      <button class="btn btn--fancy" (click)="save(true)" [disabled]="form && !form.valid">Add</button>
     </div>
     <div *ngIf="isEditing">
-      <button class="btn btn--success" (click)="save(true)" [disabled]="form && !form.valid">Save</button>
+      <button class="btn btn--fancy" (click)="save(true)" [disabled]="form && !form.valid">Save</button>
     </div>
   </div>
 </div>

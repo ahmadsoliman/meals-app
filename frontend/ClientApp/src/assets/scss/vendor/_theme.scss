@@ -2114,7 +2114,7 @@ input[type="button"],
 button,
 .button {
   background-color: #5a5a5a;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 input[type="submit"]:hover,
@@ -2318,7 +2318,8 @@ textarea:invalid {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="number"] {
+input[type="number"],
+.k-dateinput-wrap .k-input {
   height: 2.75em;
 }
 
@@ -2423,6 +2424,8 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="number"],
+.k-dateinput-wrap .k-input,
+.k-datetimepicker .k-picker-wrap,
 select,
 textarea {
   background: none;
@@ -2432,6 +2435,9 @@ textarea {
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
+input[type="number"]:focus,
+.k-dateinput-wrap .k-input:focus,
+.k-datetimepicker .k-picker-wrap:focus,
 select:focus,
 textarea:focus {
   border-color: #e5474b;
@@ -3351,6 +3357,13 @@ body {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.85em;
+
+  img {
+    left: -105px;
+    top: 20px;
+    border-radius: 6px;
+    position: absolute;
+  }
 }
 
 #header a:hover {

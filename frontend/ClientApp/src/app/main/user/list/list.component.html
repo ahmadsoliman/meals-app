@@ -63,7 +63,7 @@
   <p style="margin: 30px; text-align: center;">Are you sure you want to delete the user named
     "{{ userBeingDeleted.firstName }}"?</p>
   <kendo-dialog-actions>
-    <button kendoButton (click)="closeDeleteDialog()">No</button>
-    <button kendoButton (click)="deleteUser()" primary="true">Yes</button>
+    <button kendoButton class="width-50 btn--fancy" (click)="closeDeleteDialog()">No</button>
+    <button kendoButton class="width-50 btn--danger" (click)="deleteUser()" primary="true">Yes</button>
   </kendo-dialog-actions>
 </kendo-dialog>

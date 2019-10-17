@@ -18,11 +18,11 @@
           <kendo-daterange>
             <label>
               <span class="label mr-medium">Start</span>
-              <kendo-dateinput kendoDateRangeStartInput [(value)]="dateRangeFilter.start"></kendo-dateinput>
+              <kendo-dateinput kendoDateRangeStartInput class="float-right mr-medium width-65" [(value)]="dateRangeFilter.start"></kendo-dateinput>
             </label>
             <label>
               <span class="label mr-medium">End</span>
-              <kendo-dateinput kendoDateRangeEndInput [(value)]="dateRangeFilter.end"></kendo-dateinput>
+              <kendo-dateinput kendoDateRangeEndInput class="float-right mr-medium width-65" [(value)]="dateRangeFilter.end"></kendo-dateinput>
             </label>
           </kendo-daterange>
         </div>
@@ -34,25 +34,25 @@
           <div>
             <label>
               <span class="label mr-medium">Start</span>
-              <kendo-timepicker name="rangeStart" [(ngModel)]="timeRangeFilter.start"></kendo-timepicker>
+              <kendo-timepicker name="rangeStart" class="float-right mr-medium width-65" [(ngModel)]="timeRangeFilter.start"></kendo-timepicker>
             </label>
             <label>
               <span class="label mr-medium">End</span>
-              <kendo-timepicker name="rangeEnd" [(ngModel)]="timeRangeFilter.end"></kendo-timepicker>
+              <kendo-timepicker name="rangeEnd" class="float-right mr-medium width-65" [(ngModel)]="timeRangeFilter.end"></kendo-timepicker>
             </label>
           </div>
         </div>
       </div>
 
-      <div class="col-md-2">
+      <div class="col-md-2 pr-small">
         <div>
-          <div class="btn btn--fancy mt-small" id="panel-newAssetType-btn" (click)="search()">
+          <div class="btn btn--fancy btn--fullwidth mt-medium" id="panel-newAssetType-btn" (click)="search()">
             <i class="fa fa-search"></i> Search
           </div>
         </div>
         <div>
-          <div class="btn btn--primary mt-small" id="panel-newAssetType-btn" (click)="resetRanges()">
-            <i class="fa fa-refresh"></i> Reset &nbsp;&nbsp;&nbsp;
+          <div class="btn btn--primary btn--fullwidth mt-small" id="panel-newAssetType-btn" (click)="resetRanges()">
+            <i class="fa fa-refresh"></i> Reset
           </div>
         </div>
       </div>
@@ -99,8 +99,8 @@
 <kendo-dialog title="Please confirm" *ngIf="deleteDialogOpened" (close)="closeDeleteDialog()" [minWidth]="250">
   <p style="margin: 30px; text-align: center;">Are you sure you want to delete this meal?</p>
   <kendo-dialog-actions>
-    <button kendoButton (click)="closeDeleteDialog()">No</button>
-    <button kendoButton (click)="deleteMeal()" primary="true">Yes</button>
+    <button kendoButton class="width-50 btn--fancy" (click)="closeDeleteDialog()">No</button>
+    <button kendoButton class="width-50 btn--danger" (click)="deleteMeal()" primary="true">Yes</button>
   </kendo-dialog-actions>
 </kendo-dialog>
 
