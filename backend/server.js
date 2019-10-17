@@ -17,9 +17,9 @@ mongoose.connect(dbSettings.dbUrl, { useNewUrlParser: true }).then(db => {
 
   });
 
-  require('./users/routes.config')(app);
-  require('./auth/routes.config')(app);
-  require('./meals/routes.config')(app);
+  require('./src/users/routes.config')(app);
+  require('./src/auth/routes.config')(app);
+  require('./src/meals/routes.config')(app);
 
 }).catch(error => {
   console.log(error)

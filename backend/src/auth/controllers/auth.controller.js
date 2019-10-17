@@ -1,6 +1,6 @@
 const crypto = require('crypto');
-const jwtSecret = require('../../db.settings').jwtSecret;
 const jwt = require('jsonwebtoken');
+const jwtSecret = require('../../../db.settings').jwtSecret;
 
 exports.login = (req, res) => {
   try {

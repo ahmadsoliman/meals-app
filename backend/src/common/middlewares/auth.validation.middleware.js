@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const jwtSecret = require('../../db.settings').jwtSecret;
+const jwtSecret = require('../../../db.settings').jwtSecret;
 
 exports.validJWTNeeded = (req, res, next) => {
   if (req.headers['authorization']) {
