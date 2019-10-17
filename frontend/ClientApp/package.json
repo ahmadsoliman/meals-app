@@ -1,12 +1,18 @@
 {
   "name": "client-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.js",
     "build": "ng build",
-    "test": "ng test",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --runInBand",
+    "test:coverage": "jest --coverage",
+    "jest:clear": "jest --clearCache",
     "lint": "ng lint",
+    "lint-fix": "ng lint ClientApp --fix",
+    "lint-style": "ng lint --format checkstyle",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -54,6 +60,10 @@
     "codelyzer": "^5.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
     "karma": "~4.1.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
@@ -63,5 +73,31 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setup-jest.ts"
+    ],
+    "moduleNameMapper": {
+      "@app/(.*)": "<rootDir>/src/app/$1",
+      "@env/(.*)": "<rootDir>/src/environments/$1"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{html,js,css,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.ts": [
+      "node ng-lint-staged.js ClientApp",
+      "prettier --write",
+      "git add"
+    ]
   }
 }

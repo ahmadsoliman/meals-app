@@ -1,32 +1,32 @@
-import {
-  Component, OnInit
-} from '@angular/core';
-import { AuthService } from '@app/core/auth';
-import { Store, Select } from '@ngxs/store';
-import { Router } from '@angular/router';
-import { AppState } from '@app/app.state';
-import { Observable } from 'rxjs';
-import { UserInfo } from '@app/core/models';
-import { Logout } from '@app/main/user/user.actions';
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "@app/core/auth";
+import { Store, Select } from "@ngxs/store";
+import { Router } from "@angular/router";
+import { AppState } from "@app/app.state";
+import { Observable } from "rxjs";
+import { UserInfo } from "@app/core/models";
+import { Logout } from "@app/main/user/user.actions";
 
 @Component({
-  selector: 'app-main-header',
-  templateUrl: './header.component.html'
+  selector: "app-main-header",
+  templateUrl: "./header.component.html"
 })
 export class HeaderComponent implements OnInit {
-
-  @Select((state: AppState) => state.user.loggedInUser) user!: Observable<UserInfo>; 
+  @Select((state: AppState) => state.user.loggedInUser) user!: Observable<
+    UserInfo
+  >;
 
   items: any[] = [
     {
-      text: 'userName',
+      text: "userName",
       items: [
         {
-          text: 'Profile',
-          path: '/profile'
-        }, {
-          text: 'Logout',
-          path: '/logout'
+          text: "Profile",
+          path: "/profile"
+        },
+        {
+          text: "Logout",
+          path: "/logout"
         }
       ]
     }
@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
     public auth: AuthService,
     private readonly store: Store,
     private readonly router: Router
-  ){ }
+  ) {}
 
   ngOnInit() {
     this.user.subscribe(userInfo => {
@@ -45,9 +45,9 @@ export class HeaderComponent implements OnInit {
   }
 
   public onSelect({ item }: any): void {
-    if (item.path === '/logout') {
+    if (item.path === "/logout") {
       this.store.dispatch(new Logout());
-    } else if(item.path) {
+    } else if (item.path) {
       this.router.navigate([item.path]);
     }
   }

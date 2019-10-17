@@ -1,12 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { Meal } from '@app/core/models';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UpdateMeal, CreateMeal } from '../meals.actions';
+import { Component, OnInit, Input } from "@angular/core";
+import { Store } from "@ngxs/store";
+import { Meal } from "@app/core/models";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UpdateMeal, CreateMeal } from "../meals.actions";
 
 @Component({
-  selector: 'app-meals-details-modal',
-  templateUrl: './details-modal.component.html'
+  selector: "app-meals-details-modal",
+  templateUrl: "./details-modal.component.html"
 })
 export class DetailsModalComponent implements OnInit {
   isEditing = false;
@@ -17,11 +17,12 @@ export class DetailsModalComponent implements OnInit {
 
   @Input() userId!: string;
 
-  constructor(private readonly store: Store, private readonly fb: FormBuilder) { }
+  constructor(
+    private readonly store: Store,
+    private readonly fb: FormBuilder
+  ) {}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   editMeal(meal: Meal) {
     if (!meal) {

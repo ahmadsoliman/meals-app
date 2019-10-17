@@ -1,33 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { AuthService } from '@app/core/auth';
-import { Select, Store } from '@ngxs/store';
-import { AppState } from '@app/app.state';
-import { UserInfo, UserRegistration, permissionLevels } from '@app/core/models';
-import { Observable, of } from 'rxjs';
-import { FetchUser, UpdateUser, CreateUser, DeleteUserFromProfile } from '../user.actions';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PasswordValidator, MustMatch } from '@app/core/validators';
-import { Navigate } from '@ngxs/router-plugin';
+import { AuthService } from "@app/core/auth";
+import { Select, Store } from "@ngxs/store";
+import { AppState } from "@app/app.state";
+import { UserInfo, UserRegistration, permissionLevels } from "@app/core/models";
+import { Observable, of } from "rxjs";
+import {
+  FetchUser,
+  UpdateUser,
+  CreateUser,
+  DeleteUserFromProfile
+} from "../user.actions";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { PasswordValidator, MustMatch } from "@app/core/validators";
+import { Navigate } from "@ngxs/router-plugin";
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html'
+  selector: "app-profile",
+  templateUrl: "./profile.component.html"
 })
 export class ProfileComponent implements OnInit {
-
   permissionLevels = permissionLevels;
   createUser = false;
   currentUser = false;
   deleteDialogOpened = false;
-  userId = '';
+  userId = "";
   user$ = of(UserInfo.createNew());
-  @Select((state: AppState) => state.user.loggedInUser) loggedInUser$!: Observable<UserInfo>;
-  @Select((state: AppState) => state.user.selectedUser) selectedUser$!: Observable<UserInfo>;
+  @Select((state: AppState) => state.user.loggedInUser)
+  loggedInUser$!: Observable<UserInfo>;
+  @Select((state: AppState) => state.user.selectedUser)
+  selectedUser$!: Observable<UserInfo>;
 
   changePassword = false;
-  errorMsg = '';
+  errorMsg = "";
   form!: FormGroup;
 
   constructor(
@@ -35,7 +41,7 @@ export class ProfileComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly store: Store,
     private readonly fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -47,17 +53,17 @@ export class ProfileComponent implements OnInit {
           this.user$ = of(UserInfo.createNew());
         } else {
           this.createUser = false;
-          if (params['userId']) {
-            this.store.dispatch(new FetchUser(params['userId']));
+          if (params.userId) {
+            this.store.dispatch(new FetchUser(params.userId));
             this.user$ = this.selectedUser$;
-            this.userId = params['userId'];
+            this.userId = params.userId;
             this.currentUser = false;
           } else {
             this.currentUser = true;
             this.user$ = this.loggedInUser$;
           }
         }
-      })
+      });
     });
 
     this.user$.subscribe(user => this.buildForm(user));
@@ -71,13 +77,25 @@ export class ProfileComponent implements OnInit {
     this.form = this.fb.group(
       {
         email: [user.email, [Validators.required, Validators.email]],
-        firstName: [user.firstName, [Validators.required, Validators.maxLength(30)]],
-        lastName: [user.lastName, [Validators.required, Validators.maxLength(30)]],
-        permissionLevel: [user.permissionLevel, [Validators.min(1), Validators.max(7)]],
-        expectedNumberOfCalories: [user.expectedNumberOfCalories, [Validators.min(500), Validators.max(5000)]]
+        firstName: [
+          user.firstName,
+          [Validators.required, Validators.maxLength(30)]
+        ],
+        lastName: [
+          user.lastName,
+          [Validators.required, Validators.maxLength(30)]
+        ],
+        permissionLevel: [
+          user.permissionLevel,
+          [Validators.min(1), Validators.max(7)]
+        ],
+        expectedNumberOfCalories: [
+          user.expectedNumberOfCalories,
+          [Validators.min(500), Validators.max(5000)]
+        ]
       },
       {
-        validator: MustMatch('password', 'passwordConfirmation')
+        validator: MustMatch("password", "passwordConfirmation")
       }
     );
     if (this.changePassword) {
@@ -87,18 +105,21 @@ export class ProfileComponent implements OnInit {
 
   changePasswordToggled() {
     if (this.changePassword) {
-      this.form.addControl('password', this.fb.control('', [Validators.required, PasswordValidator]));
-      this.form.addControl('passwordConfirmation', this.fb.control(''));
+      this.form.addControl(
+        "password",
+        this.fb.control("", [Validators.required, PasswordValidator])
+      );
+      this.form.addControl("passwordConfirmation", this.fb.control(""));
       this.form.updateValueAndValidity();
     } else {
-      this.form.removeControl('password');
-      this.form.removeControl('passwordConfirmation');
+      this.form.removeControl("password");
+      this.form.removeControl("passwordConfirmation");
       this.form.updateValueAndValidity();
     }
   }
 
   onSubmit() {
-    this.errorMsg = '';
+    this.errorMsg = "";
     if (this.form.valid) {
       const user: UserRegistration = {
         firstName: this.f.firstName.value,
@@ -111,21 +132,21 @@ export class ProfileComponent implements OnInit {
 
       if (this.createUser) {
         this.store.dispatch(new CreateUser(user)).subscribe(
-          (x) => { },
-          (errors) => {
+          x => {},
+          errors => {
             this.errorMsg = errors[0];
           }
         );
       } else {
         this.store.dispatch(new UpdateUser(user, this.userId)).subscribe(
-          (x) => {
+          x => {
             if (this.currentUser) {
-              this.store.dispatch(new Navigate(['/meals']));
+              this.store.dispatch(new Navigate(["/meals"]));
             } else {
-              this.store.dispatch(new Navigate(['/users']));
+              this.store.dispatch(new Navigate(["/users"]));
             }
           },
-          (errors) => {
+          errors => {
             this.errorMsg = errors[0];
           }
         );
@@ -135,6 +156,8 @@ export class ProfileComponent implements OnInit {
 
   deleteAccount() {
     this.deleteDialogOpened = false;
-    this.store.dispatch(new DeleteUserFromProfile(this.userId, this.currentUser));
+    this.store.dispatch(
+      new DeleteUserFromProfile(this.userId, this.currentUser)
+    );
   }
 }
