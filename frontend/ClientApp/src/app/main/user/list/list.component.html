@@ -1,5 +1,5 @@
 <div class="toolbar mb-medium">
-  <h5 class="">Users List</h5>
+  <h5 class="ml-xsmall">Users List</h5>
 
   <a class="btn btn--fancy ml-auto mr-medium open-side-panel-btn" id="panel-newAssetType-btn" routerLink="/create-user">
     <i class="fa fa-plus"></i> New User
@@ -11,7 +11,7 @@
     <div class="ml-medium mr-medium">
       <kendo-grid [data]="usersGridData$ | async" [loading]="usersLoading$ | async" height="500" [pageable]="true"
         [pageSize]="10" [skip]="skip$ | async" (pageChange)="changePage($event)">
-        
+
         <kendo-grid-column title="Email" width="250">
           <ng-template kendoGridCellTemplate let-dataItem>
             <a [routerLink]="['/users', dataItem.id]">

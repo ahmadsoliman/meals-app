@@ -13,20 +13,9 @@
             <label>{{ errorMsg }}</label>
           </div>
           <div class="field mb-small">
-            <label class="field__label" for="email"
-              >Log in with your e-mail address</label
-            >
-            <input
-              class="input"
-              type="email"
-              id="email"
-              placeholder="Your email"
-              formControlName="email"
-            />
-            <div
-              *ngIf="f.email.touched && f.email.errors"
-              class="invalid-feedback"
-            >
+            <label class="field__label" for="email">Log in with your e-mail address</label>
+            <input class="input" type="email" id="email" placeholder="Your email" formControlName="email" />
+            <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
               <div *ngIf="f.email.errors.required">Email is required</div>
               <div *ngIf="f.email.errors.email">Email is not valid</div>
             </div>
@@ -34,17 +23,9 @@
 
           <div class="field mb-small">
             <label class="field__label" for="password">Password</label>
-            <input
-              class="input"
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              formControlName="password"
-            />
-            <div
-              *ngIf="f.password.touched && f.password.errors"
-              class="invalid-feedback"
-            >
+            <input class="input" type="password" id="password" placeholder="Enter your password"
+              formControlName="password" />
+            <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password is required</div>
             </div>
           </div>
@@ -52,12 +33,7 @@
           <div class="mt-medium">
             <div class="float-left">
               <div class="choice choice--checkbox">
-                <input
-                  class="choice__input"
-                  id="checkbox1"
-                  name="checkboxes"
-                  type="checkbox"
-                />
+                <input class="choice__input" id="checkbox1" name="checkboxes" type="checkbox" />
                 <!-- <label class="choice__label" for="checkbox1">Remember me</label> -->
               </div>
             </div>
@@ -66,10 +42,7 @@
             </div> -->
           </div>
 
-          <button
-            type="submit"
-            class="btn btn--round btn--warning btn--orange btn--fullwidth mt-medium"
-          >
+          <button type="submit" class="btn btn--round btn--fancy btn--fullwidth mt-medium">
             Login
           </button>
           <div class="mt-medium text-mute">

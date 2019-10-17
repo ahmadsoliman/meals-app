@@ -21,9 +21,9 @@
 	align-items: center;
 	padding: $toolbar-padding;
 
-	margin-left: -15px;
-  margin-right: -15px;
-
+	margin-left: 20px;
+	margin-right: 0px;
+	
 	@include respond-to($breakpoint-tablet) {
 		padding: 20px 15px;
 	}

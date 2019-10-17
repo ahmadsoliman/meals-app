@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     if (!this.auth.isAuthenticated()) {
       this.buildForm();
     } else {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/']);
     }
   }
 
