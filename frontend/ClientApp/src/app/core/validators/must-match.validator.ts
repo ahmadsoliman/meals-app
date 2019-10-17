@@ -8,7 +8,7 @@ export function MustMatch(controlName: string, matchingControlName: string) {
       if (control.value !== matchingControl.value) {
         matchingControl.setErrors({ mustMatch: true });
       } else {
-        matchingControl.setErrors(undefined);
+        matchingControl.setErrors(null);
       }
     }
   }

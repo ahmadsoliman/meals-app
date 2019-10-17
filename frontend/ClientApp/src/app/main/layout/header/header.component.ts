@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  public onSelect({ item }): void {
+  public onSelect({ item }: any): void {
     if (item.path === '/logout') {
       this.store.dispatch(new Logout());
     } else if(item.path) {

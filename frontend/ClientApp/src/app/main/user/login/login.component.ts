@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
     private readonly store: Store
   ) {}
 
-  detailsForm: FormGroup;
-  errorMsg: string;
+  detailsForm!: FormGroup;
+  errorMsg = '';
 
   ngOnInit() {
     if (!this.auth.isAuthenticated()) {

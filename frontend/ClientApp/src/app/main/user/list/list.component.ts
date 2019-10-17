@@ -15,7 +15,7 @@ export class UserListComponent implements OnInit {
 
   public permissionLevels = permissionLevels;
   public deleteDialogOpened = false;
-  public userBeingDeleted: UserInfo;
+  public userBeingDeleted = UserInfo.createNew();
 
   @Select((state: AppState) => state.user.skip) skip$!: Observable<number>;
   @Select((state: AppState) => state.user.usersGridData) usersGridData$!: Observable<GridDataResult>;
@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
   
   constructor(
     private readonly store: Store,
-    private readonly auth: AuthService
+    public readonly auth: AuthService
   ) {}
 
   ngOnInit() {

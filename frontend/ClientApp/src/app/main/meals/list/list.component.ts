@@ -21,9 +21,9 @@ import { first } from 'rxjs/operators';
 export class MealsListComponent implements OnInit {
 
   public isForCurrentUser = false;
-  public userId: string;
+  public userId = '';
   public deleteDialogOpened = false;
-  public mealBeingDeleted: Meal;
+  public mealBeingDeleted: Meal = Meal.createNew();
 
   public dateRangeFilter = new DateRange(null, null);
   public timeRangeFilter = new DateRange(null, null);

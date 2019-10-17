@@ -4,13 +4,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserApiService } from '../api/user-api.service';
 import { AuthToken, UserRegistration, UserInfo, permissionLevels } from '../models';
-import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private userApi: UserApiService, private router: Router) { }
+  constructor(private userApi: UserApiService) { }
 
   private setSession(authResult: AuthToken): void {
     // Set the time that the access token will expire at
@@ -23,7 +22,7 @@ export class AuthService {
     // localStorage.setItem('expires_at', expiresAt);
   }
 
-  public login(email, password): Observable<AuthToken> {
+  public login(email: string, password: string): Observable<AuthToken> {
     return this.userApi.login(email, password).pipe(tap(authToken => {
       this.setSession(authToken);
     }));
@@ -54,12 +53,12 @@ export class AuthService {
   }
 
   public getToken(): string {
-    return localStorage.getItem('access_token');
+    return localStorage.getItem('access_token') || '';
   }
 
   public isUserAtLeast(accessLevel: number) {
     if (this.isAuthenticated()) {
-      const permissionLevel = parseInt(localStorage.getItem('permission_level'));
+      const permissionLevel = parseInt(localStorage.getItem('permission_level') || '0');
       return permissionLevel >= accessLevel;
     }
     return false;

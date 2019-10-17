@@ -20,8 +20,8 @@ export class MealsList {
 
 export class DateRange {
   public constructor(
-    public start: Date,
-    public end: Date
+    public start: Date | null,
+    public end: Date | null
   ) {}
   public static createNew(): DateRange {
     return new DateRange(new Date(), new Date());

@@ -1,11 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Store, Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { Meal, UserInfo } from '@app/core/models';
+import { Store } from '@ngxs/store';
+import { Meal } from '@app/core/models';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { debug } from 'util';
 import { UpdateMeal, CreateMeal } from '../meals.actions';
-import { AppState } from '@app/app.state';
 
 @Component({
   selector: 'app-meals-details-modal',
@@ -16,7 +13,7 @@ export class DetailsModalComponent implements OnInit {
   opened = false;
 
   selectedMeal: Meal = Meal.createNew();
-  form: FormGroup;
+  form!: FormGroup;
 
   @Input() userId!: string;
 

@@ -21,14 +21,14 @@ export class ProfileComponent implements OnInit {
   createUser = false;
   currentUser = false;
   deleteDialogOpened = false;
-  userId: string;
+  userId = '';
   user$ = of(UserInfo.createNew());
   @Select((state: AppState) => state.user.loggedInUser) loggedInUser$!: Observable<UserInfo>;
   @Select((state: AppState) => state.user.selectedUser) selectedUser$!: Observable<UserInfo>;
 
   changePassword = false;
-  errorMsg: string;
-  form: FormGroup;
+  errorMsg = '';
+  form!: FormGroup;
 
   constructor(
     public readonly auth: AuthService,

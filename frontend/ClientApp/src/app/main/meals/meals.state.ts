@@ -14,8 +14,8 @@ export interface MealsStateModel {
   mealsLoading: boolean,
   skip: number,
 
-  dateRange: DateRange,
-  timeRange: DateRange
+  dateRange: DateRange | undefined,
+  timeRange: DateRange | undefined
 }
 
 @State<MealsStateModel>({

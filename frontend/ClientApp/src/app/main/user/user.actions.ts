@@ -1,4 +1,4 @@
-import { UserInfo, UserRegistration } from '@app/core/models';
+import { UserRegistration } from '@app/core/models';
 
 // Actions
 export class LoginWithEmailAndPassword {

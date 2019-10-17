@@ -24,8 +24,8 @@ export class RegistrationComponent implements OnInit {
     private router: Router
   ) {}
 
-  errorMsg: string;
-  detailsForm: FormGroup;
+  errorMsg = '';
+  detailsForm!: FormGroup;
 
   ngOnInit() {
     if (!this.auth.isAuthenticated()) {

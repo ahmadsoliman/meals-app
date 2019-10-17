@@ -26,15 +26,15 @@
     },
 
     // stricter rules
-    // "forceConsistentCasingInFileNames": true,
-    // "noImplicitReturns": true,
-    // "noUnusedLocals": true,
-    // "noImplicitThis": true,
-    // "strictNullChecks": true,
-    // "alwaysStrict": true,
-    // "strict": true,
-    // "skipLibCheck": true,
-    // "noImplicitAny": true
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true
   },
 
   "angularCompilerOptions": {

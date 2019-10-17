@@ -1,11 +1,9 @@
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpParams,
-  HttpResponse
+  HttpParams
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map } from 'rxjs/operators';
@@ -83,14 +81,15 @@ export class UserApiService {
 
   private handleError(error: HttpErrorResponse) {
     let message: string;
-    let statusCode: number;
+    // let statusCode: number;
     if (error instanceof ErrorEvent) {
       message = error.error.message ? error.error.message : error.toString();
     } else {
       const err = error.error || JSON.stringify(error);
-      statusCode = error.status;
+      // statusCode = error.status;
       message = err;
     }
+    console.error(message);
     return throwError(error);
   }
 }
